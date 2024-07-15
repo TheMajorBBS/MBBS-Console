@@ -30,6 +30,10 @@ dependencies:
   collection: 1.18.0
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.3.1
+  flutterflow_colorpicker: 
+    git:
+      url: https://github.com/FlutterFlow/flutterflow_colorpicker.git
+      ref: v0.0.1+1
   font_awesome_flutter: 10.6.0
   from_css_color: 2.0.0
   go_router: 12.1.3
@@ -53,6 +57,7 @@ dependencies:
   url_launcher_android: 6.3.0
   url_launcher_ios: 6.2.5
   url_launcher_platform_interface: 2.3.2
+  web_socket_channel: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
