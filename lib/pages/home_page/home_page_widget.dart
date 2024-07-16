@@ -35,11 +35,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().insertAtIndexInChannelList(
             0,
             ChannelStruct(
-              channel: 0.0,
               msg: 'Local Session',
               character: '-',
               code: 23,
+              channel: 0,
             ));
+        FFAppState().addToAuditList(AuditStruct(
+          datetime: getCurrentTimestamp,
+          data: 'This is my audit',
+        ));
         setState(() {});
       }
     });
