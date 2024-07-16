@@ -47,7 +47,19 @@ class _WebSocketConnState extends State<WebSocketConn> {
         stream: _channel.stream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            FFAppState().channelList;
+            FFFAppState().insertAtIndexInChannelList(
+                0,
+                ChannelStruct(
+                  msg: 'Local Session',
+                  character: '-',
+                  code: 23,
+                  channel: 0,
+                ));
+            FFAppState().addToAuditList(AuditStruct(
+              datetime: getCurrentTimestamp,
+              data: 'This is my audit',
+            ));
+            setState(() {});
             return Text('${snapshot.data}');
           }
         });
