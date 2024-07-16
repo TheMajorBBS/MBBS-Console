@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -32,6 +34,36 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _firstLoad = prefs.getBool('ff_firstLoad') ?? _firstLoad;
+    });
+    _safeInit(() {
+      _channelList = prefs
+              .getStringList('ff_channelList')
+              ?.map((x) {
+                try {
+                  return ChannelStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _channelList;
+    });
+    _safeInit(() {
+      _auditList = prefs
+              .getStringList('ff_auditList')
+              ?.map((x) {
+                try {
+                  return AuditStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _auditList;
     });
   }
 
@@ -87,6 +119,88 @@ class FFAppState extends ChangeNotifier {
   set firstLoad(bool value) {
     _firstLoad = value;
     prefs.setBool('ff_firstLoad', value);
+  }
+
+  List<ChannelStruct> _channelList = [];
+  List<ChannelStruct> get channelList => _channelList;
+  set channelList(List<ChannelStruct> value) {
+    _channelList = value;
+    prefs.setStringList(
+        'ff_channelList', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToChannelList(ChannelStruct value) {
+    channelList.add(value);
+    prefs.setStringList(
+        'ff_channelList', _channelList.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromChannelList(ChannelStruct value) {
+    channelList.remove(value);
+    prefs.setStringList(
+        'ff_channelList', _channelList.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromChannelList(int index) {
+    channelList.removeAt(index);
+    prefs.setStringList(
+        'ff_channelList', _channelList.map((x) => x.serialize()).toList());
+  }
+
+  void updateChannelListAtIndex(
+    int index,
+    ChannelStruct Function(ChannelStruct) updateFn,
+  ) {
+    channelList[index] = updateFn(_channelList[index]);
+    prefs.setStringList(
+        'ff_channelList', _channelList.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInChannelList(int index, ChannelStruct value) {
+    channelList.insert(index, value);
+    prefs.setStringList(
+        'ff_channelList', _channelList.map((x) => x.serialize()).toList());
+  }
+
+  List<AuditStruct> _auditList = [];
+  List<AuditStruct> get auditList => _auditList;
+  set auditList(List<AuditStruct> value) {
+    _auditList = value;
+    prefs.setStringList(
+        'ff_auditList', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAuditList(AuditStruct value) {
+    auditList.add(value);
+    prefs.setStringList(
+        'ff_auditList', _auditList.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAuditList(AuditStruct value) {
+    auditList.remove(value);
+    prefs.setStringList(
+        'ff_auditList', _auditList.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAuditList(int index) {
+    auditList.removeAt(index);
+    prefs.setStringList(
+        'ff_auditList', _auditList.map((x) => x.serialize()).toList());
+  }
+
+  void updateAuditListAtIndex(
+    int index,
+    AuditStruct Function(AuditStruct) updateFn,
+  ) {
+    auditList[index] = updateFn(_auditList[index]);
+    prefs.setStringList(
+        'ff_auditList', _auditList.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAuditList(int index, AuditStruct value) {
+    auditList.insert(index, value);
+    prefs.setStringList(
+        'ff_auditList', _auditList.map((x) => x.serialize()).toList());
   }
 }
 

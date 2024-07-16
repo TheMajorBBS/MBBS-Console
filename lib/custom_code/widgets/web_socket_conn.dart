@@ -1,4 +1,5 @@
 // Automatic FlutterFlow imports
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
@@ -45,7 +46,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
     return StreamBuilder(
         stream: _channel.stream,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {}
+          if (snapshot.hasData) {
+            FFAppState().channelList;
+            return Text('${snapshot.data}');
+          }
         });
   }
 

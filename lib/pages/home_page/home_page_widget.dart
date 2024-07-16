@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -31,6 +32,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentBG = FFAppState().defaultBG;
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
+        FFAppState().insertAtIndexInChannelList(
+            0,
+            ChannelStruct(
+              channel: 0.0,
+              msg: 'Local Session',
+              character: '-',
+              code: 23,
+            ));
         setState(() {});
       }
     });
