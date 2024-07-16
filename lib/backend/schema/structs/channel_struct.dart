@@ -7,7 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ChannelStruct extends BaseStruct {
   ChannelStruct({
-    double? channel,
+    int? channel,
     String? msg,
     String? character,
     int? code,
@@ -17,11 +17,11 @@ class ChannelStruct extends BaseStruct {
         _code = code;
 
   // "channel" field.
-  double? _channel;
-  double get channel => _channel ?? 0.0;
-  set channel(double? val) => _channel = val;
+  int? _channel;
+  int get channel => _channel ?? 0;
+  set channel(int? val) => _channel = val;
 
-  void incrementChannel(double amount) => channel = channel + amount;
+  void incrementChannel(int amount) => channel = channel + amount;
 
   bool hasChannel() => _channel != null;
 
@@ -49,7 +49,7 @@ class ChannelStruct extends BaseStruct {
   bool hasCode() => _code != null;
 
   static ChannelStruct fromMap(Map<String, dynamic> data) => ChannelStruct(
-        channel: castToType<double>(data['channel']),
+        channel: castToType<int>(data['channel']),
         msg: data['msg'] as String?,
         character: data['character'] as String?,
         code: castToType<int>(data['code']),
@@ -69,7 +69,7 @@ class ChannelStruct extends BaseStruct {
   Map<String, dynamic> toSerializableMap() => {
         'channel': serializeParam(
           _channel,
-          ParamType.double,
+          ParamType.int,
         ),
         'msg': serializeParam(
           _msg,
@@ -89,7 +89,7 @@ class ChannelStruct extends BaseStruct {
       ChannelStruct(
         channel: deserializeParam(
           data['channel'],
-          ParamType.double,
+          ParamType.int,
           false,
         ),
         msg: deserializeParam(
@@ -127,7 +127,7 @@ class ChannelStruct extends BaseStruct {
 }
 
 ChannelStruct createChannelStruct({
-  double? channel,
+  int? channel,
   String? msg,
   String? character,
   int? code,
