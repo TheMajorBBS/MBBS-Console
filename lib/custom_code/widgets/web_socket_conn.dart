@@ -50,22 +50,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
           if (snapshot.hasData) {
             myMessage = '${snapshot.data}';
             if (myMessage.startsWith('[CHANNEL')) {
-            } else if (myMessage.startsWith('[AUDIT')) {}
-
-            FFFAppState().insertAtIndexInChannelList(
-                0,
-                ChannelStruct(
-                  msg: 'Local Session',
-                  character: '-',
-                  code: 23,
-                  channel: 0,
-                ));
-            FFAppState().addToAuditList(AuditStruct(
-              datetime: getCurrentTimestamp,
-              data: 'This is my audit',
-              channel: 'Chan 02',
-              user: 'User-ID: Sysop',
-            ));
+              FFAppState().insertAtIndexInChannelList(
+                  functions.getChannel(myMessage!)!,
+                  functions.parseChannelLog(myMessage!));
+            } else if (myMessage.startsWith('[AUDIT')) {
+              FFAppState().addToAuditList(functions.parseAuditLog(myMessage!));
+            }
             setState(() {});
             return Text(myMessage);
           }
