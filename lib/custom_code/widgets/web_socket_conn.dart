@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
+import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
@@ -47,6 +48,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
         stream: _channel.stream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            myMessage = '${snapshot.data}';
+            if (myMessage.startsWith('[CHANNEL')) {
+            } else if (myMessage.startsWith('[AUDIT')) {}
+
             FFFAppState().insertAtIndexInChannelList(
                 0,
                 ChannelStruct(
@@ -62,7 +67,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
               user: 'User-ID: Sysop',
             ));
             setState(() {});
-            return Text('${snapshot.data}');
+            return Text(myMessage);
           }
         });
   }
