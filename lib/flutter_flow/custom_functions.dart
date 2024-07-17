@@ -50,3 +50,20 @@ ChannelStruct? parseChannelLog(String? channelString) {
       code: int.parse(code!),
       channel: int.parse(channel!));
 }
+
+int? getChannel(String? channelString) {
+  final regex = RegExp(r'\[([^\]]+)\]');
+  final matches = regex.allMatches(channelString!);
+
+  if (matches.length != 5) {
+    throw FormatException('Unexpected log format');
+  }
+
+  final type = matches.elementAt(0).group(1);
+  final channel = matches.elementAt(1).group(1);
+  final msg = matches.elementAt(2).group(1);
+  final character = matches.elementAt(3).group(1);
+  final code = matches.elementAt(4).group(1);
+
+  return int.parse(channel!);
+}
