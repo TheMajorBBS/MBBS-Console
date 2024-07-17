@@ -9,8 +9,12 @@ class AuditStruct extends BaseStruct {
   AuditStruct({
     DateTime? datetime,
     String? data,
+    String? channel,
+    String? user,
   })  : _datetime = datetime,
-        _data = data;
+        _data = data,
+        _channel = channel,
+        _user = user;
 
   // "datetime" field.
   DateTime? _datetime;
@@ -26,9 +30,25 @@ class AuditStruct extends BaseStruct {
 
   bool hasData() => _data != null;
 
+  // "channel" field.
+  String? _channel;
+  String get channel => _channel ?? '';
+  set channel(String? val) => _channel = val;
+
+  bool hasChannel() => _channel != null;
+
+  // "user" field.
+  String? _user;
+  String get user => _user ?? '';
+  set user(String? val) => _user = val;
+
+  bool hasUser() => _user != null;
+
   static AuditStruct fromMap(Map<String, dynamic> data) => AuditStruct(
         datetime: data['datetime'] as DateTime?,
         data: data['data'] as String?,
+        channel: data['channel'] as String?,
+        user: data['user'] as String?,
       );
 
   static AuditStruct? maybeFromMap(dynamic data) =>
@@ -37,6 +57,8 @@ class AuditStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'datetime': _datetime,
         'data': _data,
+        'channel': _channel,
+        'user': _user,
       }.withoutNulls;
 
   @override
@@ -47,6 +69,14 @@ class AuditStruct extends BaseStruct {
         ),
         'data': serializeParam(
           _data,
+          ParamType.String,
+        ),
+        'channel': serializeParam(
+          _channel,
+          ParamType.String,
+        ),
+        'user': serializeParam(
+          _user,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -63,6 +93,16 @@ class AuditStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        channel: deserializeParam(
+          data['channel'],
+          ParamType.String,
+          false,
+        ),
+        user: deserializeParam(
+          data['user'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -72,18 +112,25 @@ class AuditStruct extends BaseStruct {
   bool operator ==(Object other) {
     return other is AuditStruct &&
         datetime == other.datetime &&
-        data == other.data;
+        data == other.data &&
+        channel == other.channel &&
+        user == other.user;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([datetime, data]);
+  int get hashCode =>
+      const ListEquality().hash([datetime, data, channel, user]);
 }
 
 AuditStruct createAuditStruct({
   DateTime? datetime,
   String? data,
+  String? channel,
+  String? user,
 }) =>
     AuditStruct(
       datetime: datetime,
       data: data,
+      channel: channel,
+      user: user,
     );

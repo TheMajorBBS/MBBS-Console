@@ -43,6 +43,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().addToAuditList(AuditStruct(
           datetime: getCurrentTimestamp,
           data: 'This is my audit',
+          channel: 'Chan 02',
+          user: 'User-ID: Sysop',
         ));
         setState(() {});
       }
