@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'package:web_socket_channel/web_socket_channel.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -31,13 +32,14 @@ class WebSocketConn extends StatefulWidget {
 class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myMessage = '';
+  WebSocketChannel? _channel;
 
   @override
   void initState() {
     super.initState();
-    myUrl = 'ws://' + widget.systemIP + ':' + widget.systemPort.toString();
+    myUrl = 'ws://' + widget.systemIP! + ':' + widget.systemPort!.toString();
 
-    final _channel = WebSocketChannel.connect(
+    _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
   }
@@ -45,26 +47,28 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: _channel.stream,
+        stream: _channel!.stream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             myMessage = '${snapshot.data}';
             if (myMessage.startsWith('[CHANNEL')) {
               FFAppState().insertAtIndexInChannelList(
                   functions.getChannel(myMessage!)!,
-                  functions.parseChannelLog(myMessage!));
+                  functions.parseChannelLog(myMessage!))!;
             } else if (myMessage.startsWith('[AUDIT')) {
-              FFAppState().addToAuditList(functions.parseAuditLog(myMessage!));
+              FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))!;
             }
             setState(() {});
-            return Text(myMessage);
+            return Text(myMessage!);
+          } else {
+            return Text(myMessage!);
           }
         });
   }
 
   @override
   void dispose() {
-    _channel.sink.close();
+    _channel!.sink.close();
     super.dispose();
   }
 }
