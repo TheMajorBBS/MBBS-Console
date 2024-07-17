@@ -10,7 +10,7 @@ import 'place.dart';
 import 'uploaded_file.dart';
 import '/backend/schema/structs/index.dart';
 
-AuditStruct? parseAuditLog(String? auditString) {
+AuditStruct parseAuditLog(String auditString) {
   final regex = RegExp(r'\[([^\]]+)\]');
   final matches = regex.allMatches(auditString!);
 
@@ -30,7 +30,7 @@ AuditStruct? parseAuditLog(String? auditString) {
       datetime: timestamp, data: action!, channel: channel!, user: userId!);
 }
 
-ChannelStruct? parseChannelLog(String? channelString) {
+ChannelStruct parseChannelLog(String channelString) {
   final regex = RegExp(r'\[([^\]]+)\]');
   final matches = regex.allMatches(channelString!);
 
@@ -51,7 +51,7 @@ ChannelStruct? parseChannelLog(String? channelString) {
       channel: int.parse(channel!));
 }
 
-int? getChannel(String? channelString) {
+int getChannel(String channelString) {
   final regex = RegExp(r'\[([^\]]+)\]');
   final matches = regex.allMatches(channelString!);
 

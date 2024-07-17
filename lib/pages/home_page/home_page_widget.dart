@@ -33,10 +33,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
         FFAppState().insertAtIndexInChannelList(
-            functions.getChannel('[CHANNEL][2][Sysop][F][31]')!,
-            functions.parseChannelLog('[CHANNEL][2][Sysop][F][31]')!);
+            functions.getChannel('[CHANNEL][2][Sysop][F][31]'),
+            functions.parseChannelLog('[CHANNEL][2][Sysop][F][31]'));
         FFAppState().addToAuditList(functions.parseAuditLog(
-            '[AUDIT][20240716 154138][USER LOGOFF][Chan 02][User-ID: Sysop]')!);
+            '[AUDIT][20240716 154138][USER LOGOFF][Chan 02][User-ID: Sysop]'));
         setState(() {});
       }
     });
