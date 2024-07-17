@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
@@ -471,6 +472,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
+                ),
+                Text(
+                  valueOrDefault<String>(
+                    functions.parseAuditLog('test')?.data,
+                    'test',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+                Text(
+                  valueOrDefault<String>(
+                    functions.parseChannelLog('test')?.msg,
+                    'test',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Readex Pro',
+                        letterSpacing: 0.0,
+                      ),
                 ),
               ],
             ),
