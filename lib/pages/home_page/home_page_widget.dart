@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -34,19 +33,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
         FFAppState().insertAtIndexInChannelList(
-            0,
-            ChannelStruct(
-              msg: 'Local Session',
-              character: '-',
-              code: 23,
-              channel: 0,
-            ));
-        FFAppState().addToAuditList(AuditStruct(
-          datetime: getCurrentTimestamp,
-          data: 'This is my audit',
-          channel: 'Chan 02',
-          user: 'User-ID: Sysop',
-        ));
+            0, functions.parseChannelLog('[CHANNEL][2][Sysop][F][31]')!);
+        FFAppState().addToAuditList(functions.parseAuditLog(
+            '[AUDIT][20240716 154138][USER LOGOFF][Chan 02][User-ID: Sysop]')!);
         setState(() {});
       }
     });
@@ -472,26 +461,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    functions.parseAuditLog('test')?.data,
-                    'test',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Text(
-                  valueOrDefault<String>(
-                    functions.parseChannelLog('test')?.msg,
-                    'test',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0.0,
-                      ),
                 ),
               ],
             ),
