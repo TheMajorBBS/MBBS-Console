@@ -58,6 +58,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
             FFAppState().addToAuditList(AuditStruct(
               datetime: getCurrentTimestamp,
               data: 'This is my audit',
+              channel: 'Chan 02',
+              user: 'User-ID: Sysop',
             ));
             setState(() {});
             return Text('${snapshot.data}');
