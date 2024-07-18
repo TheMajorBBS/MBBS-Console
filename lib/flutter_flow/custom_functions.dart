@@ -24,8 +24,16 @@ AuditStruct parseAuditLog(String auditString) {
   final channel = matches.elementAt(3).group(1);
   final userId = matches.elementAt(4).group(1);
 
-  final dateFormat = DateFormat('yyyyMMdd HHmmss');
-  final timestamp = dateFormat.parse(timestampStr!);
+  int? year = int.parse(timestampStr!.substring(0, 4));
+  int? month = int.parse(timestampStr.substring(4, 6));
+  int? day = int.parse(timestampStr.substring(6, 8));
+  int? hour = int.parse(timestampStr.substring(9, 11));
+  int? minute = int.parse(timestampStr.substring(11, 13));
+  int? second = int.parse(timestampStr.substring(13, 15));
+
+  // Creating DateTime object
+  DateTime timestamp = DateTime(year, month, day, hour, minute, second);
+
   return AuditStruct(
       datetime: timestamp, data: action!, channel: channel!, user: userId!);
 }

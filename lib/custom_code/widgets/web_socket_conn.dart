@@ -18,12 +18,14 @@ class WebSocketConn extends StatefulWidget {
     this.height,
     this.systemIP,
     this.systemPort,
+    this.isSecure,
   });
 
   final double? width;
   final double? height;
   final String? systemIP;
   final int? systemPort;
+  final bool? isSecure;
 
   @override
   State<WebSocketConn> createState() => _WebSocketConnState();
@@ -31,13 +33,17 @@ class WebSocketConn extends StatefulWidget {
 
 class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
+  String myext = 'ws://';
   String myMessage = '';
   WebSocketChannel? _channel;
 
   @override
   void initState() {
     super.initState();
-    myUrl = 'ws://' + widget.systemIP! + ':' + widget.systemPort!.toString();
+    if (isSecure) {
+      myext = 'wss://';
+    }
+    myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
 
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
