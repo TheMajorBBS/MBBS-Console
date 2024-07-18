@@ -46,6 +46,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -515,6 +517,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       width: 1.0,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Text(
+                    'Version: ${FFAppState().version}',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Courier Prime',
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          letterSpacing: 0.0,
+                        ),
                   ),
                 ),
               ],

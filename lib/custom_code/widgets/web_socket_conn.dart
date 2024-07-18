@@ -40,7 +40,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   void initState() {
     super.initState();
-    if (isSecure) {
+    if (widget.isSecure) {
       myext = 'wss://';
     }
     myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
