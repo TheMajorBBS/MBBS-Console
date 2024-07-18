@@ -65,6 +65,9 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _auditList;
     });
+    _safeInit(() {
+      _isSecure = prefs.getBool('ff_isSecure') ?? _isSecure;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -201,6 +204,13 @@ class FFAppState extends ChangeNotifier {
     auditList.insert(index, value);
     prefs.setStringList(
         'ff_auditList', _auditList.map((x) => x.serialize()).toList());
+  }
+
+  bool _isSecure = false;
+  bool get isSecure => _isSecure;
+  set isSecure(bool value) {
+    _isSecure = value;
+    prefs.setBool('ff_isSecure', value);
   }
 }
 

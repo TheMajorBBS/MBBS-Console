@@ -107,62 +107,116 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     maxWidth: 600.0,
                   ),
                   decoration: const BoxDecoration(),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 25.0, 15.0, 25.0),
-                    child: TextFormField(
-                      controller: _model.textController1,
-                      focusNode: _model.textFieldFocusNode1,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: 'System IP',
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15.0, 25.0, 15.0, 25.0),
+                          child: TextFormField(
+                            controller: _model.textController1,
+                            focusNode: _model.textFieldFocusNode1,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'System IP or Hostname',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Courier Prime',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
                                   fontFamily: 'Courier Prime',
                                   letterSpacing: 0.0,
                                 ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
+                            validator: _model.textController1Validator
+                                .asValidator(context),
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Courier Prime',
-                            letterSpacing: 0.0,
+                      Text(
+                        'Secure',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Courier Prime',
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                      Theme(
+                        data: ThemeData(
+                          checkboxTheme: CheckboxThemeData(
+                            visualDensity: VisualDensity.compact,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
                           ),
-                      validator:
-                          _model.textController1Validator.asValidator(context),
-                    ),
+                          unselectedWidgetColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                        ),
+                        child: Checkbox(
+                          value: _model.checkboxValue ??= false,
+                          onChanged: (newValue) async {
+                            setState(() => _model.checkboxValue = newValue!);
+                            if (newValue!) {
+                              FFAppState().isSecure = true;
+                              setState(() {});
+                            } else {
+                              FFAppState().isSecure = false;
+                              setState(() {});
+                            }
+                          },
+                          side: BorderSide(
+                            width: 2,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                          ),
+                          activeColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          checkColor: FlutterFlowTheme.of(context).primary,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Container(
@@ -190,28 +244,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   fontFamily: 'Readex Pro',
                                   letterSpacing: 0.0,
                                 ),
-                        enabledBorder: UnderlineInputBorder(
+                        enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).alternate,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).primary,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        errorBorder: UnderlineInputBorder(
+                        errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        focusedErrorBorder: UnderlineInputBorder(
+                        focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).error,
                             width: 2.0,
