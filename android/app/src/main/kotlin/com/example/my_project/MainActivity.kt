@@ -1,4 +1,4 @@
-package com.mycompany.mbbsconsole
+package tech.abbadabba.mbbsconsole
 
 import io.flutter.embedding.android.FlutterActivity
 

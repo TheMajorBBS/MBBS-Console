@@ -22,6 +22,8 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ConsoleModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -74,6 +76,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                     height: 25.0,
                     systemIP: FFAppState().systemIP,
                     systemPort: FFAppState().systemPort,
+                    isSecure: FFAppState().isSecure,
                   ),
                 ),
                 Padding(

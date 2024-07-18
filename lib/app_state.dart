@@ -68,6 +68,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _isSecure = prefs.getBool('ff_isSecure') ?? _isSecure;
     });
+    _safeInit(() {
+      _version = prefs.getString('ff_version') ?? _version;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -211,6 +214,13 @@ class FFAppState extends ChangeNotifier {
   set isSecure(bool value) {
     _isSecure = value;
     prefs.setBool('ff_isSecure', value);
+  }
+
+  String _version = '0.1.1';
+  String get version => _version;
+  set version(String value) {
+    _version = value;
+    prefs.setString('ff_version', value);
   }
 }
 
