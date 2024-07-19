@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
@@ -32,11 +31,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentBG = FFAppState().defaultBG;
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
-        FFAppState().insertAtIndexInChannelList(
-            functions.getChannel('[CHANNEL][2][Sysop][F][31]'),
-            functions.parseChannelLog('[CHANNEL][2][Sysop][F][31]'));
-        FFAppState().addToAuditList(functions.parseAuditLog(
-            '[AUDIT][20240716 154138][USER LOGOFF][Chan 02][User-ID: Sysop]'));
         setState(() {});
       }
     });
