@@ -19,6 +19,9 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
+      _version = prefs.getString('ff_version') ?? _version;
+    });
+    _safeInit(() {
       _defaultBG =
           _colorFromIntValue(prefs.getInt('ff_defaultBG')) ?? _defaultBG;
     });
@@ -69,7 +72,7 @@ class FFAppState extends ChangeNotifier {
       _isSecure = prefs.getBool('ff_isSecure') ?? _isSecure;
     });
     _safeInit(() {
-      _version = prefs.getString('ff_version') ?? _version;
+      _wsMessage = prefs.getString('ff_wsMessage') ?? _wsMessage;
     });
   }
 
@@ -79,6 +82,13 @@ class FFAppState extends ChangeNotifier {
   }
 
   late SharedPreferences prefs;
+
+  String _version = '0.1.3';
+  String get version => _version;
+  set version(String value) {
+    _version = value;
+    prefs.setString('ff_version', value);
+  }
 
   Color _currentTxt = Colors.transparent;
   Color get currentTxt => _currentTxt;
@@ -127,7 +137,40 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_firstLoad', value);
   }
 
-  List<ChannelStruct> _channelList = [];
+  List<ChannelStruct> _channelList = [
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"0\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"1\",\"msg\":\"idel\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"2\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"3\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"4\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"5\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"6\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"7\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"8\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"9\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"10\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"11\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"12\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"13\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"14\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+    ChannelStruct.fromSerializableMap(jsonDecode(
+        '{\"channel\":\"15\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}'))
+  ];
   List<ChannelStruct> get channelList => _channelList;
   set channelList(List<ChannelStruct> value) {
     _channelList = value;
@@ -216,11 +259,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_isSecure', value);
   }
 
-  String _version = '0.1.1';
-  String get version => _version;
-  set version(String value) {
-    _version = value;
-    prefs.setString('ff_version', value);
+  String _wsMessage = '';
+  String get wsMessage => _wsMessage;
+  set wsMessage(String value) {
+    _wsMessage = value;
+    prefs.setString('ff_wsMessage', value);
   }
 }
 

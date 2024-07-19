@@ -57,6 +57,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             myMessage = '${snapshot.data}';
+            FFAppState().wsMessage = myMessage;
             myMessage.startsWith('[CHANNEL')
                 ? FFAppState().insertAtIndexInChannelList(
                     functions.getChannel(myMessage!)!,
@@ -66,9 +67,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                         .addToAuditList(functions.parseAuditLog(myMessage!))
                     : null;
             setState(() {});
-            return Text(myMessage);
+            return Text(FFAppState().wsMessage);
           } else {
-            return Text(myMessage);
+            return Text(FFAppState().wsMessage);
           }
         });
   }

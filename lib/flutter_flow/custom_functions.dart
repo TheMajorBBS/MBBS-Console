@@ -73,5 +73,5 @@ int getChannel(String channelString) {
   final character = matches.elementAt(3).group(1);
   final code = matches.elementAt(4).group(1);
 
-  return int.parse(channel!);
+  return int.parse(channel!, radix: 16);
 }
