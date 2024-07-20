@@ -1,7 +1,9 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'console_model.dart';
 export 'console_model.dart';
@@ -22,6 +24,17 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ConsoleModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().addToAuditList(AuditStruct(
+        datetime: getCurrentTimestamp,
+        data: 'Audit Log Starting',
+        channel: '0',
+        user: 'UserId: Sysop',
+      ));
+      setState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }

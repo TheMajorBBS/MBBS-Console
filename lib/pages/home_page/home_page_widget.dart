@@ -489,8 +489,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
                 FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    FFAppState().systemIP = _model.textController1.text;
+                    FFAppState().systemPort =
+                        int.parse(_model.textController2.text);
+                    setState(() {});
+
+                    context.goNamed('console');
                   },
                   text: 'Start Console',
                   options: FFButtonOptions(
