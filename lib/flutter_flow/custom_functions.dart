@@ -46,17 +46,21 @@ ChannelStruct parseChannelLog(String channelString) {
     throw FormatException('Unexpected log format');
   }
 
-  final type = matches.elementAt(0).group(1);
-  final channel = matches.elementAt(1).group(1);
-  final msg = matches.elementAt(2).group(1);
-  final character = matches.elementAt(3).group(1);
-  final code = matches.elementAt(4).group(1);
+  String? type = matches.elementAt(0).group(1);
+  String? channel = matches.elementAt(1).group(1);
+  String? msg = matches.elementAt(2).group(1);
+  String? character = matches.elementAt(3).group(1);
+  String? code = matches.elementAt(4).group(1);
+
+  if (code == 'a') {
+    msg = 'idle';
+  }
 
   return ChannelStruct(
       msg: msg!,
       character: character!,
       code: int.parse(code!),
-      channel: int.parse(channel!));
+      channel: int.parse(channel!, radix: 16));
 }
 
 int getChannel(String channelString) {
