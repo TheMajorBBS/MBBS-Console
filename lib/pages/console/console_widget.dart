@@ -552,7 +552,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                           children: [
                                             Container(
                                               width: 219.0,
-                                              height: 563.0,
+                                              height: 560.0,
                                               decoration: BoxDecoration(
                                                 color: valueOrDefault<Color>(
                                                   FFAppState().currentBG,
