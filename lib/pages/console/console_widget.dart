@@ -594,26 +594,30 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
-                                                            Text(
-                                                              channelStatusItem
-                                                                  .msg,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Courier Prime',
-                                                                    color: valueOrDefault<
-                                                                        Color>(
-                                                                      FFAppState()
-                                                                          .currentTxt,
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
+                                                            Container(
+                                                              width: 210.0,
+                                                              decoration:
+                                                                  const BoxDecoration(),
+                                                              child: Text(
+                                                                channelStatusItem
+                                                                    .msg,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Courier Prime',
+                                                                      color: valueOrDefault<
+                                                                          Color>(
+                                                                        FFAppState()
+                                                                            .currentTxt,
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                      ),
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                     ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
