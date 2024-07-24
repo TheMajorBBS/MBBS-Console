@@ -588,7 +588,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     4.0,
-                                                                    5.0,
+                                                                    10.0,
                                                                     5.0),
                                                         child: Row(
                                                           mainAxisSize:
