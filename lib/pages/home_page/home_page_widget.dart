@@ -32,13 +32,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
         setState(() {});
+      } else {
+        FFAppState().firstLoad = false;
+        setState(() {});
       }
     });
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??=
+        TextEditingController(text: FFAppState().systemIP);
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
+    _model.textController2 ??=
+        TextEditingController(text: FFAppState().systemPort.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));

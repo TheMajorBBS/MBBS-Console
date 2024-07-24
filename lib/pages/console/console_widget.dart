@@ -81,17 +81,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
-                  width: 300.0,
-                  height: 25.0,
-                  child: custom_widgets.WebSocketConn(
-                    width: 300.0,
-                    height: 25.0,
-                    systemIP: FFAppState().systemIP,
-                    systemPort: FFAppState().systemPort,
-                    isSecure: FFAppState().isSecure,
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                   child: Material(
@@ -709,8 +698,8 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                               children: [
                                                 Text(
                                                   valueOrDefault<String>(
-                                                    myAuditsItem.datetime
-                                                        ?.toString(),
+                                                    dateTimeFormat('M/d h:mm a',
+                                                        myAuditsItem.datetime),
                                                     '0',
                                                   ),
                                                   style: FlutterFlowTheme.of(
@@ -804,6 +793,20 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                           ),
                         ],
                       ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  child: SizedBox(
+                    width: 600.0,
+                    height: 25.0,
+                    child: custom_widgets.WebSocketConn(
+                      width: 600.0,
+                      height: 25.0,
+                      systemIP: FFAppState().systemIP,
+                      systemPort: FFAppState().systemPort,
+                      isSecure: FFAppState().isSecure,
                     ),
                   ),
                 ),

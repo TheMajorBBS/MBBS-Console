@@ -34,7 +34,7 @@ class WebSocketConn extends StatefulWidget {
 class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myext = 'ws://';
-  String myMessage = '';
+  String myMessage = 'Connecting...';
   WebSocketChannel? _channel;
 
   @override
@@ -57,6 +57,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             myMessage = '${snapshot.data}';
+            print(myMessage);
             FFAppState().wsMessage = myMessage;
             myMessage.startsWith('[CHANNEL')
                 ? FFAppState().insertAtIndexInChannelList(
@@ -67,9 +68,21 @@ class _WebSocketConnState extends State<WebSocketConn> {
                         .addToAuditList(functions.parseAuditLog(myMessage!))
                     : null;
             setState(() {});
-            return Text(FFAppState().wsMessage);
+            return Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ));
           } else {
-            return Text(FFAppState().wsMessage);
+            return Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ));
           }
         });
   }
