@@ -83,7 +83,7 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _version = '0.2.0';
+  String _version = '0.2.1';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -139,7 +139,7 @@ class FFAppState extends ChangeNotifier {
 
   List<ChannelStruct> _channelList = [
     ChannelStruct.fromSerializableMap(jsonDecode(
-        '{\"channel\":\"0\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
+        '{\"channel\":\"0\",\"msg\":\"Local Session\",\"character\":\"-\",\"code\":\"0\"}')),
     ChannelStruct.fromSerializableMap(jsonDecode(
         '{\"channel\":\"1\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
     ChannelStruct.fromSerializableMap(jsonDecode(
