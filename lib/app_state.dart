@@ -83,7 +83,7 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _version = '0.1.9';
+  String _version = '0.2.0';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -123,7 +123,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_systemIP', value);
   }
 
-  int _systemPort = 0;
+  int _systemPort = 8881;
   int get systemPort => _systemPort;
   set systemPort(int value) {
     _systemPort = value;
