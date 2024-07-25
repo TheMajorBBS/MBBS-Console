@@ -83,6 +83,20 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
               children: [
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  child: SizedBox(
+                    width: 600.0,
+                    height: 25.0,
+                    child: custom_widgets.WebSocketConn(
+                      width: 600.0,
+                      height: 25.0,
+                      systemIP: FFAppState().systemIP,
+                      systemPort: FFAppState().systemPort,
+                      isSecure: FFAppState().isSecure,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                   child: Material(
                     color: Colors.transparent,
                     elevation: 5.0,
@@ -797,20 +811,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                  child: SizedBox(
-                    width: 600.0,
-                    height: 25.0,
-                    child: custom_widgets.WebSocketConn(
-                      width: 600.0,
-                      height: 25.0,
-                      systemIP: FFAppState().systemIP,
-                      systemPort: FFAppState().systemPort,
-                      isSecure: FFAppState().isSecure,
                     ),
                   ),
                 ),

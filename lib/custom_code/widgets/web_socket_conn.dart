@@ -56,7 +56,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
     await _channel!.ready;
 
     _channel!.stream.listen((event) {
-      myMessage = '${event.data}';
+      print(event.toString());
+      myMessage = '${event}';
       print(myMessage);
       FFAppState().wsMessage = myMessage;
       myMessage.startsWith('[CHANNEL')
