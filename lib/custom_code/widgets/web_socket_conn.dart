@@ -38,7 +38,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   WebSocketChannel? _channel;
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
     if (widget.isSecure!) {
       myext = 'wss://';
@@ -48,6 +48,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
+
+    await _channel!.ready;
 
     _channel!.stream.listen((event) {
       myMessage = '${event.data}';
