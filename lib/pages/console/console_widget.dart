@@ -724,7 +724,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                             decoration: const BoxDecoration(),
                                             child: Padding(
                                               padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
