@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 
@@ -61,9 +63,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print(myMessage);
       FFAppState().wsMessage = myMessage;
       myMessage.startsWith('[CHANNEL')
-          ? FFAppState().insertAtIndexInChannelList(
+          ? FFAppState().updateChannelListAtIndex(
               functions.getChannel(myMessage!)!,
-              functions.parseChannelLog(myMessage!))
+              (_) => functions.parseChannelLog(myMessage!),
+            )
           : myMessage.startsWith('[AUDIT')
               ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
               : null;
