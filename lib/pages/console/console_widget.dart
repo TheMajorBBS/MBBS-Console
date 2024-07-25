@@ -622,7 +622,12 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                   const BoxDecoration(),
                                                               child: Text(
                                                                 channelStatusItem
-                                                                    .msg,
+                                                                    .msg
+                                                                    .maybeHandleOverflow(
+                                                                  maxChars: 16,
+                                                                  replacement:
+                                                                      '…',
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
