@@ -132,7 +132,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Container(
-                                  width: 250.0,
+                                  width: 275.0,
                                   height: 25.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -722,96 +722,154 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                               myAudits[myAuditsIndex];
                                           return Container(
                                             decoration: const BoxDecoration(),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Text(
-                                                  valueOrDefault<String>(
-                                                    dateTimeFormat('M/d h:mm a',
-                                                        myAuditsItem.datetime),
-                                                    '0',
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 100.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          dateTimeFormat(
+                                                              'M/d h:mm a',
+                                                              myAuditsItem
+                                                                  .datetime),
+                                                          '0',
+                                                        ),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Courier Prime',
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                FFAppState()
+                                                                    .currentTxt,
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
+                                                    ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Courier Prime',
-                                                        color: valueOrDefault<
-                                                            Color>(
-                                                          FFAppState()
-                                                              .currentTxt,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 250.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        myAuditsItem.data,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Courier Prime',
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                FFAppState()
+                                                                    .currentTxt,
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                       ),
-                                                ),
-                                                Text(
-                                                  myAuditsItem.data,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Courier Prime',
-                                                        color: valueOrDefault<
-                                                            Color>(
-                                                          FFAppState()
-                                                              .currentTxt,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 15.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        myAuditsItem.channel,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Courier Prime',
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                FFAppState()
+                                                                    .currentTxt,
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                       ),
-                                                ),
-                                                Text(
-                                                  myAuditsItem.channel,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Courier Prime',
-                                                        color: valueOrDefault<
-                                                            Color>(
-                                                          FFAppState()
-                                                              .currentTxt,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 50.0,
+                                                      decoration:
+                                                          const BoxDecoration(),
+                                                      child: Text(
+                                                        myAuditsItem.user,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Courier Prime',
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                FFAppState()
+                                                                    .currentTxt,
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
                                                       ),
-                                                ),
-                                                Text(
-                                                  myAuditsItem.user,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Courier Prime',
-                                                        color: valueOrDefault<
-                                                            Color>(
-                                                          FFAppState()
-                                                              .currentTxt,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                        ),
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
