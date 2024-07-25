@@ -48,43 +48,31 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
+
+    _channel!.stream.listen((event) {
+      myMessage = '${event.data}';
+      print(myMessage);
+      FFAppState().wsMessage = myMessage;
+      myMessage.startsWith('[CHANNEL')
+          ? FFAppState().insertAtIndexInChannelList(
+              functions.getChannel(myMessage!)!,
+              functions.parseChannelLog(myMessage!))
+          : myMessage.startsWith('[Audit')
+              ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
+              : null;
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: _channel!.stream,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            myMessage = '${snapshot.data}';
-            print(myMessage);
-            FFAppState().wsMessage = myMessage;
-            myMessage.startsWith('[CHANNEL')
-                ? FFAppState().insertAtIndexInChannelList(
-                    functions.getChannel(myMessage!)!,
-                    functions.parseChannelLog(myMessage!))
-                : myMessage.startsWith('[Audit')
-                    ? FFAppState()
-                        .addToAuditList(functions.parseAuditLog(myMessage!))
-                    : null;
-            setState(() {});
-            return Text(FFAppState().wsMessage,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 18,
-                      letterSpacing: 0,
-                    ));
-          } else {
-            return Text(FFAppState().wsMessage,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 18,
-                      letterSpacing: 0,
-                    ));
-          }
-        });
+    return Text(FFAppState().wsMessage,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: 'Courier Prime',
+              color: FlutterFlowTheme.of(context).secondaryText,
+              fontSize: 18,
+              letterSpacing: 0,
+            ));
   }
 
   @override
