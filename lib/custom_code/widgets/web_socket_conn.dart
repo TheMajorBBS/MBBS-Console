@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'index.dart'; // Imports other custom widgets
+import '../../pages/console/console_model.dart';
+export '../../pages/console/console_model.dart';
 
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -39,10 +41,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myext = 'ws://';
   String myMessage = 'Connecting...';
   WebSocketChannel? _channel;
+  late ConsoleModel _model;
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ConsoleModel());
     if (widget.isSecure!) {
       myext = 'wss://';
     }
@@ -63,12 +67,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
             print(myMessage);
             FFAppState().wsMessage = myMessage;
             myMessage.startsWith('[CHANNEL')
-                ? FFAppState().insertAtIndexInChannelList(
+                ? _model.insertAtIndexInChannelList(
                     functions.getChannel(myMessage!)!,
                     functions.parseChannelLog(myMessage!))
                 : myMessage.startsWith('[Audit')
-                    ? FFAppState()
-                        .addToAuditList(functions.parseAuditLog(myMessage!))
+                    ? _model.addToAuditList(functions.parseAuditLog(myMessage!))
                     : null;
             setState(() {});
             return Text(FFAppState().wsMessage,
