@@ -38,7 +38,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myext = 'ws://';
   String myMessage = 'Connecting...';
-  //WebSocketChannel? _channel;
+  WebSocketChannel? _channel;
 
   @override
   void initState() {
@@ -48,47 +48,51 @@ class _WebSocketConnState extends State<WebSocketConn> {
     }
     myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
 
-    startStream();
-  }
-
-  startStream() async {
-    final _channel = WebSocketChannel.connect(
+    _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
-
-    await _channel!.ready;
-
-    _channel!.stream.listen((event) {
-      //print(event.toString());
-      myMessage = '${event}';
-      print(myMessage);
-      FFAppState().wsMessage = myMessage;
-      myMessage.startsWith('[CHANNEL')
-          ? FFAppState().updateChannelListAtIndex(
-              functions.getChannel(myMessage!)!,
-              (_) => functions.parseChannelLog(myMessage!),
-            )
-          : myMessage.startsWith('[AUDIT')
-              ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
-              : null;
-      setState(() {});
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text(FFAppState().wsMessage,
-        style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Courier Prime',
-              color: FlutterFlowTheme.of(context).secondaryText,
-              fontSize: 18,
-              letterSpacing: 0,
-            ));
+    return StreamBuilder(
+        stream: _channel!.stream,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            myMessage = '${snapshot.data}';
+            print(myMessage);
+            FFAppState().wsMessage = myMessage;
+            myMessage.startsWith('[CHANNEL')
+                ? FFAppState().insertAtIndexInChannelList(
+                    functions.getChannel(myMessage!)!,
+                    functions.parseChannelLog(myMessage!))
+                : myMessage.startsWith('[Audit')
+                    ? FFAppState()
+                        .addToAuditList(functions.parseAuditLog(myMessage!))
+                    : null;
+            setState(() {});
+            return Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ));
+          } else {
+            return Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ));
+          }
+        });
   }
 
   @override
   void dispose() {
-    //_channel!.sink.close();
+    _channel!.sink.close();
     super.dispose();
   }
 }
