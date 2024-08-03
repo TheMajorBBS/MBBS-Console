@@ -48,15 +48,14 @@ class _WebSocketConnState extends State<WebSocketConn> {
     }
     myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
 
-    _channel = WebSocketChannel.connect(
-      Uri.parse(myUrl),
-    );
-
     startStream();
   }
 
   startStream() async {
-    await _channel!.ready;
+    //await _channel!.ready;
+    _channel = WebSocketChannel.connect(
+      Uri.parse(myUrl),
+    );
 
     _channel!.stream.listen((event) {
       //print(event.toString());
