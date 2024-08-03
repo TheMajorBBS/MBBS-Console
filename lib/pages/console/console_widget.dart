@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
@@ -29,18 +30,24 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().addToAuditList(AuditStruct(
+      _model.addToAuditList(AuditStruct(
         datetime: getCurrentTimestamp,
         data: 'Audit Log Starting',
         channel: '0',
-        user: 'UserId: Sysop',
+        user: 'Sysop',
       ));
+      _model.channelList =
+          FFAppState().channelList.toList().cast<ChannelStruct>();
       setState(() {});
       _model.stateTime = InstantTimer.periodic(
         duration: const Duration(milliseconds: 5000),
         callback: (timer) async {
-          await actions.consolePrint(
-            'TimerFired',
+          unawaited(
+            () async {
+              await actions.consolePrint(
+                'TimerFired',
+              );
+            }(),
           );
 
           setState(() {});
@@ -684,8 +691,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   child: Builder(
                                                     builder: (context) {
                                                       final channelStatus =
-                                                          FFAppState()
-                                                              .channelList
+                                                          _model.channelList
                                                               .toList();
 
                                                       return ListView.builder(
@@ -811,7 +817,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                       child: Builder(
                                         builder: (context) {
                                           final myAudits =
-                                              FFAppState().auditList.toList();
+                                              _model.auditList.toList();
 
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
