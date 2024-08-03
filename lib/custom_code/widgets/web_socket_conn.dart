@@ -38,7 +38,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myext = 'ws://';
   String myMessage = 'Connecting...';
-  WebSocketChannel? _channel;
+  //WebSocketChannel? _channel;
 
   @override
   void initState() {
@@ -52,10 +52,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   startStream() async {
-    //await _channel!.ready;
-    _channel = WebSocketChannel.connect(
+    final _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
+
+    await _channel!.ready;
 
     _channel!.stream.listen((event) {
       //print(event.toString());
@@ -87,7 +88,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   void dispose() {
-    _channel!.sink.close();
+    //_channel!.sink.close();
     super.dispose();
   }
 }
