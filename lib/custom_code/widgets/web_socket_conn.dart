@@ -10,11 +10,13 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'index.dart'; // Imports other custom widgets
-import '../../pages/console/console_model.dart';
-export '../../pages/console/console_model.dart';
+
+import 'index.dart'; // Imports other custom widgets
 
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '../../pages/console/console_model.dart';
+export 'console_model.dart';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -52,45 +54,42 @@ class _WebSocketConnState extends State<WebSocketConn> {
     }
     myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
 
+    startStream();
+  }
+
+  startStream() async {
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
+
+    await _channel!.ready;
+
+    _channel!.stream.listen((event) {
+      //print(event.toString());
+      myMessage = '${event}';
+      print(myMessage);
+      FFAppState().wsMessage = myMessage;
+      myMessage.startsWith('[CHANNEL')
+          ? _model.updateChannelListAtIndex(
+              functions.getChannel(myMessage!)!,
+              (_) => functions.parseChannelLog(myMessage!),
+            )
+          : myMessage.startsWith('[AUDIT')
+              ? _model.addToAuditList(functions.parseAuditLog(myMessage!))
+              : null;
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: _channel!.stream,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            myMessage = '${snapshot.data}';
-            print(myMessage);
-            FFAppState().wsMessage = myMessage;
-            myMessage.startsWith('[CHANNEL')
-                ? _model.insertAtIndexInChannelList(
-                    functions.getChannel(myMessage!)!,
-                    functions.parseChannelLog(myMessage!))
-                : myMessage.startsWith('[Audit')
-                    ? _model.addToAuditList(functions.parseAuditLog(myMessage!))
-                    : null;
-            setState(() {});
-            return Text(FFAppState().wsMessage,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 18,
-                      letterSpacing: 0,
-                    ));
-          } else {
-            return Text(FFAppState().wsMessage,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 18,
-                      letterSpacing: 0,
-                    ));
-          }
-        });
+    return Text(FFAppState().wsMessage,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: 'Courier Prime',
+              color: FlutterFlowTheme.of(context).secondaryText,
+              fontSize: 18,
+              letterSpacing: 0,
+            ));
   }
 
   @override
