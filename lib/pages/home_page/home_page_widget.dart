@@ -33,7 +33,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
         FFAppState().updateChannelListAtIndex(
-          0,
+          functions
+              .getChannel('[CHANNEL][1][Websocket client connected][W][31]'),
           (_) => functions.parseChannelLog(
               '[CHANNEL][1][Websocket client connected][W][31]'),
         );

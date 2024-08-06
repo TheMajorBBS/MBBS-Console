@@ -15,8 +15,6 @@ import 'index.dart'; // Imports other custom widgets
 
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import '../../pages/console/console_model.dart';
-export 'console_model.dart';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -43,12 +41,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myext = 'ws://';
   String myMessage = 'Connecting...';
   WebSocketChannel? _channel;
-  late ConsoleModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConsoleModel());
+    myMessage = 'Connecting...';
+    FFAppState().wsMessage = myMessage;
     if (widget.isSecure!) {
       myext = 'wss://';
     }
@@ -70,12 +68,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print(myMessage);
       FFAppState().wsMessage = myMessage;
       myMessage.startsWith('[CHANNEL')
-          ? _model.updateChannelListAtIndex(
+          ? FFAppState().updateChannelListAtIndex(
               functions.getChannel(myMessage!)!,
               (_) => functions.parseChannelLog(myMessage!),
             )
           : myMessage.startsWith('[AUDIT')
-              ? _model.addToAuditList(functions.parseAuditLog(myMessage!))
+              ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
               : null;
       setState(() {});
     });
