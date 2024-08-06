@@ -691,7 +691,8 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   child: Builder(
                                                     builder: (context) {
                                                       final channelStatus =
-                                                          _model.channelList
+                                                          FFAppState()
+                                                              .channelList
                                                               .toList();
 
                                                       return ListView.builder(
@@ -817,7 +818,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                       child: Builder(
                                         builder: (context) {
                                           final myAudits =
-                                              _model.auditList.toList();
+                                              FFAppState().auditList.toList();
 
                                           return ListView.builder(
                                             padding: EdgeInsets.zero,
