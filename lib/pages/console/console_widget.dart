@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -30,14 +29,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.addToAuditList(AuditStruct(
-        datetime: getCurrentTimestamp,
-        data: 'Audit Log Starting',
-        channel: '0',
-        user: 'Sysop',
-      ));
-      _model.channelList =
-          FFAppState().channelList.toList().cast<ChannelStruct>();
       setState(() {});
       _model.stateTime = InstantTimer.periodic(
         duration: const Duration(milliseconds: 5000),
@@ -71,9 +62,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -856,7 +845,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                             valueOrDefault<
                                                                 String>(
                                                               dateTimeFormat(
-                                                                  'M/d h:mm a',
+                                                                  "M/d h:mm a",
                                                                   myAuditsItem
                                                                       .datetime),
                                                               '0',
