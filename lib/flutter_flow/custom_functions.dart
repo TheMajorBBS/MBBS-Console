@@ -55,6 +55,9 @@ ChannelStruct parseChannelLog(String channelString) {
   if (code == 'a') {
     msg = 'idle';
   }
+  if (msg!.startsWith('TCP/IP channel ready')) {
+    msg = 'idle';
+  }
 
   return ChannelStruct(
       msg: msg!,
