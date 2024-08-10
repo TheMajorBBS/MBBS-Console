@@ -55,14 +55,21 @@ class _WebSocketConnState extends State<WebSocketConn> {
     startStream();
   }
 
+  @override
+  void dispose() {
+    _channel!.sink.close();
+    super.dispose();
+  }
+
   startStream() async {
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
 
     await _channel!.ready;
+    Stream stream = _channel!.stream;
 
-    _channel!.stream.listen((event) {
+    stream.listen((event) {
       //print(event.toString());
       myMessage = '${event}';
       print(myMessage);
@@ -76,6 +83,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
               ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
               : null;
       setState(() {});
+    }, onError: (e) {
+      print('WEBSCOKET ERROR:  $e');
+    }, onDone: () {
+      print('WEBSCOKET CLOSED');
     });
   }
 
@@ -88,11 +99,5 @@ class _WebSocketConnState extends State<WebSocketConn> {
               fontSize: 18,
               letterSpacing: 0,
             ));
-  }
-
-  @override
-  void dispose() {
-    _channel!.sink.close();
-    super.dispose();
   }
 }
