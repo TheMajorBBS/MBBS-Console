@@ -47,6 +47,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'console',
           path: '/console',
           builder: (context, params) => const ConsoleWidget(),
+        ),
+        FFRoute(
+          name: 'setupData',
+          path: '/setupData',
+          builder: (context, params) => const SetupDataWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

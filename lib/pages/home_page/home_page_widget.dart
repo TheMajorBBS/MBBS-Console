@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
@@ -32,12 +31,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentBG = FFAppState().defaultBG;
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
-        FFAppState().updateChannelListAtIndex(
-          functions
-              .getChannel('[CHANNEL][1][Websocket client connected][W][31]'),
-          (_) => functions.parseChannelLog(
-              '[CHANNEL][1][Websocket client connected][W][31]'),
-        );
         setState(() {});
       } else {
         FFAppState().firstLoad = false;
@@ -505,7 +498,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         int.parse(_model.textController2.text);
                     setState(() {});
 
-                    context.goNamed('console');
+                    context.goNamed('setupData');
                   },
                   text: 'Start Console',
                   options: FFButtonOptions(
