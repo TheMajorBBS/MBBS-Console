@@ -498,7 +498,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         int.parse(_model.textController2.text);
                     setState(() {});
 
-                    context.goNamed('console');
+                    context.goNamed('setupData');
                   },
                   text: 'Start Console',
                   options: FFButtonOptions(
