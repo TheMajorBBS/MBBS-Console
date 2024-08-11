@@ -44,6 +44,21 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _wsMessage = prefs.getString('ff_wsMessage') ?? _wsMessage;
     });
+    _safeInit(() {
+      _setChannelList = prefs
+              .getStringList('ff_setChannelList')
+              ?.map((x) {
+                try {
+                  return ChannelStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _setChannelList;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -107,7 +122,79 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_firstLoad', value);
   }
 
-  List<ChannelStruct> _channelList = [
+  bool _isSecure = false;
+  bool get isSecure => _isSecure;
+  set isSecure(bool value) {
+    _isSecure = value;
+    prefs.setBool('ff_isSecure', value);
+  }
+
+  String _wsMessage = '';
+  String get wsMessage => _wsMessage;
+  set wsMessage(String value) {
+    _wsMessage = value;
+    prefs.setString('ff_wsMessage', value);
+  }
+
+  List<ChannelStruct> _channelLogList = [];
+  List<ChannelStruct> get channelLogList => _channelLogList;
+  set channelLogList(List<ChannelStruct> value) {
+    _channelLogList = value;
+  }
+
+  void addToChannelLogList(ChannelStruct value) {
+    channelLogList.add(value);
+  }
+
+  void removeFromChannelLogList(ChannelStruct value) {
+    channelLogList.remove(value);
+  }
+
+  void removeAtIndexFromChannelLogList(int index) {
+    channelLogList.removeAt(index);
+  }
+
+  void updateChannelLogListAtIndex(
+    int index,
+    ChannelStruct Function(ChannelStruct) updateFn,
+  ) {
+    channelLogList[index] = updateFn(_channelLogList[index]);
+  }
+
+  void insertAtIndexInChannelLogList(int index, ChannelStruct value) {
+    channelLogList.insert(index, value);
+  }
+
+  List<AuditStruct> _auditLogList = [];
+  List<AuditStruct> get auditLogList => _auditLogList;
+  set auditLogList(List<AuditStruct> value) {
+    _auditLogList = value;
+  }
+
+  void addToAuditLogList(AuditStruct value) {
+    auditLogList.add(value);
+  }
+
+  void removeFromAuditLogList(AuditStruct value) {
+    auditLogList.remove(value);
+  }
+
+  void removeAtIndexFromAuditLogList(int index) {
+    auditLogList.removeAt(index);
+  }
+
+  void updateAuditLogListAtIndex(
+    int index,
+    AuditStruct Function(AuditStruct) updateFn,
+  ) {
+    auditLogList[index] = updateFn(_auditLogList[index]);
+  }
+
+  void insertAtIndexInAuditLogList(int index, AuditStruct value) {
+    auditLogList.insert(index, value);
+  }
+
+  List<ChannelStruct> _setChannelList = [
     ChannelStruct.fromSerializableMap(jsonDecode(
         '{\"channel\":\"0\",\"msg\":\"Local Session\",\"character\":\"-\",\"code\":\"0\"}')),
     ChannelStruct.fromSerializableMap(jsonDecode(
@@ -137,79 +224,46 @@ class FFAppState extends ChangeNotifier {
     ChannelStruct.fromSerializableMap(jsonDecode(
         '{\"channel\":\"13\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
     ChannelStruct.fromSerializableMap(jsonDecode(
-        '{\"channel\":\"14\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}')),
-    ChannelStruct.fromSerializableMap(jsonDecode(
-        '{\"channel\":\"15\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}'))
+        '{\"channel\":\"14\",\"msg\":\"idle\",\"character\":\"-\",\"code\":\"0\"}'))
   ];
-  List<ChannelStruct> get channelList => _channelList;
-  set channelList(List<ChannelStruct> value) {
-    _channelList = value;
+  List<ChannelStruct> get setChannelList => _setChannelList;
+  set setChannelList(List<ChannelStruct> value) {
+    _setChannelList = value;
+    prefs.setStringList(
+        'ff_setChannelList', value.map((x) => x.serialize()).toList());
   }
 
-  void addToChannelList(ChannelStruct value) {
-    channelList.add(value);
+  void addToSetChannelList(ChannelStruct value) {
+    setChannelList.add(value);
+    prefs.setStringList('ff_setChannelList',
+        _setChannelList.map((x) => x.serialize()).toList());
   }
 
-  void removeFromChannelList(ChannelStruct value) {
-    channelList.remove(value);
+  void removeFromSetChannelList(ChannelStruct value) {
+    setChannelList.remove(value);
+    prefs.setStringList('ff_setChannelList',
+        _setChannelList.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromChannelList(int index) {
-    channelList.removeAt(index);
+  void removeAtIndexFromSetChannelList(int index) {
+    setChannelList.removeAt(index);
+    prefs.setStringList('ff_setChannelList',
+        _setChannelList.map((x) => x.serialize()).toList());
   }
 
-  void updateChannelListAtIndex(
+  void updateSetChannelListAtIndex(
     int index,
     ChannelStruct Function(ChannelStruct) updateFn,
   ) {
-    channelList[index] = updateFn(_channelList[index]);
+    setChannelList[index] = updateFn(_setChannelList[index]);
+    prefs.setStringList('ff_setChannelList',
+        _setChannelList.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInChannelList(int index, ChannelStruct value) {
-    channelList.insert(index, value);
-  }
-
-  List<AuditStruct> _auditList = [];
-  List<AuditStruct> get auditList => _auditList;
-  set auditList(List<AuditStruct> value) {
-    _auditList = value;
-  }
-
-  void addToAuditList(AuditStruct value) {
-    auditList.add(value);
-  }
-
-  void removeFromAuditList(AuditStruct value) {
-    auditList.remove(value);
-  }
-
-  void removeAtIndexFromAuditList(int index) {
-    auditList.removeAt(index);
-  }
-
-  void updateAuditListAtIndex(
-    int index,
-    AuditStruct Function(AuditStruct) updateFn,
-  ) {
-    auditList[index] = updateFn(_auditList[index]);
-  }
-
-  void insertAtIndexInAuditList(int index, AuditStruct value) {
-    auditList.insert(index, value);
-  }
-
-  bool _isSecure = false;
-  bool get isSecure => _isSecure;
-  set isSecure(bool value) {
-    _isSecure = value;
-    prefs.setBool('ff_isSecure', value);
-  }
-
-  String _wsMessage = '';
-  String get wsMessage => _wsMessage;
-  set wsMessage(String value) {
-    _wsMessage = value;
-    prefs.setString('ff_wsMessage', value);
+  void insertAtIndexInSetChannelList(int index, ChannelStruct value) {
+    setChannelList.insert(index, value);
+    prefs.setStringList('ff_setChannelList',
+        _setChannelList.map((x) => x.serialize()).toList());
   }
 }
 

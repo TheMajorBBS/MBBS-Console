@@ -75,12 +75,13 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print(myMessage);
       FFAppState().wsMessage = myMessage;
       myMessage.startsWith('[CHANNEL')
-          ? FFAppState().updateChannelListAtIndex(
+          ? FFAppState().updateChannelLogListAtIndex(
               functions.getChannel(myMessage!)!,
               (_) => functions.parseChannelLog(myMessage!),
             )
           : myMessage.startsWith('[AUDIT')
-              ? FFAppState().addToAuditList(functions.parseAuditLog(myMessage!))
+              ? FFAppState()
+                  .addToAuditLogList(functions.parseAuditLog(myMessage!))
               : null;
       setState(() {});
     }, onError: (e) {
