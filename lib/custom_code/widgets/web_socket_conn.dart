@@ -66,7 +66,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
       Uri.parse(myUrl),
     );
 
-    await _channel!.ready;
+    try {
+      await _channel!.ready;
+    } on WebSocketChannelException catch (e) {
+      print('CHANNEL EXCEPTION: $e');
+    }
+
     Stream stream = _channel!.stream;
 
     stream.listen((event) {
