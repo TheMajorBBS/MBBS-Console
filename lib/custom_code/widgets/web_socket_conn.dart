@@ -18,6 +18,7 @@ import 'index.dart'; // Imports other custom widgets
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '../../flutter_flow/flutter_flow_widgets.dart';
+import 'package:web_socket_channel/status.dart' as status;
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -60,12 +61,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   void dispose() {
-    _channel.sink.close();
+    _channel.sink.close(status.goingAway);
     super.dispose();
   }
 
   closeConnect() {
-    _channel.sink.close();
+    _channel.sink.close(status.goingAway);
     FFAppState().connected = false;
   }
 
