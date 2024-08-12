@@ -265,6 +265,12 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
+
+  bool _connected = false;
+  bool get connected => _connected;
+  set connected(bool value) {
+    _connected = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
