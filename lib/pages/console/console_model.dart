@@ -4,6 +4,10 @@ import 'console_widget.dart' show ConsoleWidget;
 import 'package:flutter/material.dart';
 
 class ConsoleModel extends FlutterFlowModel<ConsoleWidget> {
+  ///  Local state fields for this page.
+
+  bool connected = false;
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? stateTime;
