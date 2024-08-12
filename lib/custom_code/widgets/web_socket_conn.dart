@@ -61,6 +61,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
     super.dispose();
   }
 
+  closeConnect() {
+    _channel!.sink.close();
+    FFAppState().connected = false;
+  }
+
   startStream() async {
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
@@ -68,6 +73,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
     try {
       await _channel!.ready;
+      FFAppState().connected = true;
     } on WebSocketChannelException catch (e) {
       print('CHANNEL EXCEPTION: $e');
     }
