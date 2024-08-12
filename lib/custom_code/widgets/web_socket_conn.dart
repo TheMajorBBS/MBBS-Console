@@ -43,7 +43,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myext = 'ws://';
   String myMessage = 'Connecting...';
-  WebSocketChannel? _channel;
+  late WebSocketChannel _channel;
 
   @override
   void initState() {
@@ -60,12 +60,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   void dispose() {
-    _channel!.sink.close();
+    _channel.sink.close();
     super.dispose();
   }
 
   closeConnect() {
-    _channel!.sink.close();
+    _channel.sink.close();
     FFAppState().connected = false;
   }
 
@@ -75,7 +75,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     );
 
     try {
-      await _channel!.ready;
+      await _channel.ready;
       FFAppState().connected = true;
     } on WebSocketChannelException catch (e) {
       print('CHANNEL EXCEPTION: ' + e.message!);
