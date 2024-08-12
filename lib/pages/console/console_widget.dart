@@ -96,10 +96,10 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                     child: SizedBox(
                       width: 600.0,
-                      height: 25.0,
+                      height: 100.0,
                       child: custom_widgets.WebSocketConn(
                         width: 600.0,
-                        height: 25.0,
+                        height: 100.0,
                         systemIP: FFAppState().systemIP,
                         systemPort: FFAppState().systemPort,
                         isSecure: FFAppState().isSecure,

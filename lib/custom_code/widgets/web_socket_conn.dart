@@ -13,8 +13,11 @@ import 'index.dart'; // Imports other custom widgets
 
 import 'index.dart'; // Imports other custom widgets
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '../../flutter_flow/flutter_flow_widgets.dart';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -104,12 +107,48 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FFAppState().wsMessage,
-        style: FlutterFlowTheme.of(context).bodyMedium.override(
-              fontFamily: 'Courier Prime',
-              color: FlutterFlowTheme.of(context).secondaryText,
-              fontSize: 18,
-              letterSpacing: 0,
-            ));
+    return Column(
+      children: [
+        Text(FFAppState().wsMessage,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Courier Prime',
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 18,
+                  letterSpacing: 0,
+                )),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+          child: FFButtonWidget(
+            onPressed: () async {
+              if (FFAppState().connected) {
+                closeConnect();
+                setState(() {});
+              } else {
+                startStream();
+                setState(() {});
+              }
+            },
+            text: FFAppState().connected ? 'Disconnect' : 'Connect',
+            options: FFButtonOptions(
+              height: 40.0,
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              color: FlutterFlowTheme.of(context).primary,
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Courier Prime',
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    letterSpacing: 0.0,
+                  ),
+              elevation: 3.0,
+              borderSide: BorderSide(
+                color: Colors.transparent,
+                width: 1.0,
+              ),
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          ),
+        )
+      ],
+    );
   }
 }
