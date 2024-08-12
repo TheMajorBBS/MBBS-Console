@@ -75,7 +75,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
       await _channel!.ready;
       FFAppState().connected = true;
     } on WebSocketChannelException catch (e) {
-      print('CHANNEL EXCEPTION: ' + e.message);
+      print('CHANNEL EXCEPTION: ' + e.message!);
     }
 
     Stream stream = _channel!.stream;
