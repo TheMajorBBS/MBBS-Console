@@ -101,13 +101,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
               ? FFAppState()
                   .addToAuditLogList(functions.parseAuditLog(myMessage!))
               : myMessage.startsWith('[INIT')
-                  ? unawaited(
-                      () async {
-                        await actions.processInitMessage(
-                          functions.parseInit(myMessage!),
-                        );
-                      }(),
-                    )
+                  ? () async {
+                      await actions.processInitMessage(
+                        functions.parseInit(myMessage!),
+                      );
+                    }()
                   : null;
       setState(() {});
     }, onError: (e) {
