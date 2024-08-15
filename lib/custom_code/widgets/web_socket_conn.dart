@@ -61,13 +61,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   void dispose() {
-    _channel.sink.close(status.goingAway);
+    _channel.sink.close(status.normalClosure);
     super.dispose();
   }
 
   closeConnect() {
-    _channel.sink.close(status.goingAway);
-    FFAppState().connected = false;
+    _channel.sink.close(status.normalClosure);
   }
 
   startStream() async {
@@ -103,6 +102,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print('WEBSCOKET ERROR:  $e');
     }, onDone: () {
       print('WEBSCOKET CLOSED');
+      FFAppState().connected = false;
     });
   }
 
