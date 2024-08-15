@@ -85,3 +85,30 @@ int getChannel(String channelString) {
 
   return channelConvert;
 }
+
+List<ChannelStruct> parseInit(String? initString) {
+  RegExp regExp = RegExp(r'\[([0-9A-F]{2}) (.)\]');
+
+  // Find all matches
+  Iterable<RegExpMatch> matches = regExp.allMatches(initString!);
+  List<ChannelStruct>? initMatches;
+  int maxChannels = 16;
+  int counter = 0;
+
+  // Iterate over matches and print the groups
+  for (var match in matches) {
+    if (counter < maxChannels) {
+      String hex = match.group(1)!;
+      String value = match.group(2)!;
+
+      initMatches!.add(ChannelStruct(
+          msg: 'init',
+          character: value,
+          code: 0,
+          channel: int.parse(hex, radix: 16)));
+    }
+    counter++;
+  }
+
+  return initMatches!;
+}
