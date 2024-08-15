@@ -61,7 +61,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   void dispose() {
-    _channel.sink.close(status.goingAway);
+    _channel.sink.close(status.normalClosure);
     super.dispose();
   }
 
