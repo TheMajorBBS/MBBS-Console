@@ -70,6 +70,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   startStream() async {
+    myMessage = 'Connecting...';
+    FFAppState().wsMessage = myMessage;
+    setState(() {});
     _channel = WebSocketChannel.connect(
       Uri.parse(myUrl),
     );
@@ -96,13 +99,24 @@ class _WebSocketConnState extends State<WebSocketConn> {
           : myMessage.startsWith('[AUDIT')
               ? FFAppState()
                   .addToAuditLogList(functions.parseAuditLog(myMessage!))
-              : null;
+              : myMessage.startsWith('[INIT')
+                  ? unawaited(
+                      () async {
+                        await actions.processInitMessage(
+                          functions.parseInit(myMessage!),
+                        );
+                      }(),
+                    )
+                  : null;
       setState(() {});
     }, onError: (e) {
       print('WEBSCOKET ERROR:  $e');
     }, onDone: () {
       print('WEBSCOKET CLOSED');
       FFAppState().connected = false;
+      myMessage = 'Disconnected';
+      FFAppState().wsMessage = myMessage;
+      setState(() {});
     });
   }
 
