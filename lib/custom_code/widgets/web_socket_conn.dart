@@ -71,7 +71,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   doInitMessage(String initMessage) async {
-    List<ChannelStruct> cs = await functions.parseInit(initMessage);
+    List<ChannelStruct> cs = functions.parseInit(initMessage);
     await actions.processInitMessage(
       cs,
     );

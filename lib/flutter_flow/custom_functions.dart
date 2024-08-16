@@ -109,6 +109,6 @@ List<ChannelStruct> parseInit(String? initString) {
     }
     counter++;
   }
-
+  print('INIT: ' + initMatches.toString());
   return initMatches!;
 }
