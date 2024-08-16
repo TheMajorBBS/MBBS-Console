@@ -102,16 +102,18 @@ class _WebSocketConnState extends State<WebSocketConn> {
                   .addToAuditLogList(functions.parseAuditLog(myMessage!))
               : myMessage.startsWith('[INIT')
                   ? () async {
+                      List<ChannelStruct> cs =
+                          await functions.parseInit(myMessage!);
                       await actions.processInitMessage(
-                        functions.parseInit(myMessage!),
+                        cs,
                       );
                     }()
                   : null;
       setState(() {});
     }, onError: (e) {
-      print('WEBSCOKET ERROR:  $e');
+      print('WEBSOCKET ERROR:  $e');
     }, onDone: () {
-      print('WEBSCOKET CLOSED');
+      print('WEBSOCKET CLOSED');
       FFAppState().connected = false;
       myMessage = 'Disconnected';
       FFAppState().wsMessage = myMessage;
