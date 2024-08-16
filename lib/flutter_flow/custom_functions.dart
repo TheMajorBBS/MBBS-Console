@@ -91,7 +91,7 @@ List<ChannelStruct> parseInit(String? initString) {
 
   // Find all matches
   Iterable<RegExpMatch> matches = regExp.allMatches(initString!);
-  List<ChannelStruct>? initMatches;
+  List<ChannelStruct> initMatches = [];
   int maxChannels = 16;
   int counter = 0;
 
@@ -101,7 +101,7 @@ List<ChannelStruct> parseInit(String? initString) {
       String hex = match.group(1)!;
       String value = match.group(2)!;
 
-      initMatches!.add(ChannelStruct(
+      initMatches.add(ChannelStruct(
           msg: 'init',
           character: value,
           code: 0,
@@ -110,5 +110,5 @@ List<ChannelStruct> parseInit(String? initString) {
     counter++;
   }
   print('INIT: ' + initMatches.toString());
-  return initMatches!;
+  return initMatches;
 }
