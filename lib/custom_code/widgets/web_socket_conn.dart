@@ -70,6 +70,13 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel.sink.close(status.normalClosure);
   }
 
+  doInitMessage(String initMessage) async {
+    List<ChannelStruct> cs = await functions.parseInit(initMessage);
+    await actions.processInitMessage(
+      cs,
+    );
+  }
+
   startStream() async {
     myMessage = 'Connecting...';
     FFAppState().wsMessage = myMessage;
@@ -101,13 +108,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
               ? FFAppState()
                   .addToAuditLogList(functions.parseAuditLog(myMessage!))
               : myMessage.startsWith('[INIT')
-                  ? () async {
-                      List<ChannelStruct> cs =
-                          await functions.parseInit(myMessage!);
-                      await actions.processInitMessage(
-                        cs,
-                      );
-                    }()
+                  ? doInitMessage(myMessage!)
                   : null;
       setState(() {});
     }, onError: (e) {
