@@ -100,9 +100,17 @@ List<ChannelStruct> parseInit(String? initString) {
     if (counter < maxChannels) {
       String hex = match.group(1)!;
       String value = match.group(2)!;
+      String nmsg = '';
+      if (value == '.' && hex != '0') {
+        nmsg = 'idle';
+      } else if (hex == '0') {
+        nmsg = 'Local Session';
+      } else {
+        nmsg = value;
+      }
 
       initMatches.add(ChannelStruct(
-          msg: 'init',
+          msg: nmsg,
           character: value,
           code: 0,
           channel: int.parse(hex, radix: 16)));
