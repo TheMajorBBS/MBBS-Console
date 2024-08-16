@@ -101,9 +101,9 @@ List<ChannelStruct> parseInit(String? initString) {
       String hex = match.group(1)!;
       String value = match.group(2)!;
       String nmsg = '';
-      if (value == '.' && hex != '0') {
+      if (value == '.' && hex != '00') {
         nmsg = 'idle';
-      } else if (hex == '0') {
+      } else if (hex == '00') {
         nmsg = 'Local Session';
       } else {
         nmsg = value;
@@ -117,6 +117,6 @@ List<ChannelStruct> parseInit(String? initString) {
     }
     counter++;
   }
-  print('INIT: ' + initMatches.toString());
+  //print('INIT: ' + initMatches.toString());
   return initMatches;
 }
