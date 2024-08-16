@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<int> processInitMessage(List<ChannelStruct>? initList) async {
+Future processInitMessage(List<ChannelStruct>? initList) async {
   // Add your function code here!
   int status = 0;
   for (var init in initList!) {
@@ -17,6 +17,4 @@ Future<int> processInitMessage(List<ChannelStruct>? initList) async {
       (_) => init,
     );
   }
-
-  return status;
 }
