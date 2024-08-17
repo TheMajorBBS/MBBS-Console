@@ -115,7 +115,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                       decoration: const BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
@@ -165,9 +165,9 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.consoleView == 'audit'
-                                  ? FlutterFlowTheme.of(context).primary
-                                  : FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                  ? FlutterFlowTheme.of(context)
+                                      .primaryBackground
+                                  : FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
