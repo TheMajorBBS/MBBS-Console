@@ -8,6 +8,8 @@ class ConsoleModel extends FlutterFlowModel<ConsoleWidget> {
 
   bool connected = false;
 
+  String consoleView = 'summary';
+
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? stateTime;
