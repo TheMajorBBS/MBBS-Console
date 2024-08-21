@@ -200,17 +200,17 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.consoleView == 'channels'
-                                  ? FlutterFlowTheme.of(context).primary
-                                  : FlutterFlowTheme.of(context)
-                                      .primaryBackground,
+                                  ? FlutterFlowTheme.of(context)
+                                      .primaryBackground
+                                  : FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: _model.consoleView == 'channels'
-                                        ? FlutterFlowTheme.of(context)
-                                            .primaryBackground
-                                        : FlutterFlowTheme.of(context).primary,
+                                        ? FlutterFlowTheme.of(context).primary
+                                        : FlutterFlowTheme.of(context)
+                                            .primaryBackground,
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
