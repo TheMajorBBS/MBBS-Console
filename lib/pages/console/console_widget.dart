@@ -843,15 +843,13 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                               .channelLogList
                                                               .toList();
 
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount: channelStatus
-                                                            .length,
-                                                        itemBuilder: (context,
-                                                            channelStatusIndex) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: List.generate(
+                                                            channelStatus
+                                                                .length,
+                                                            (channelStatusIndex) {
                                                           final channelStatusItem =
                                                               channelStatus[
                                                                   channelStatusIndex];
@@ -900,7 +898,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                               ],
                                                             ),
                                                           );
-                                                        },
+                                                        }),
                                                       );
                                                     },
                                                   ),
@@ -966,13 +964,12 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     .auditLogList
                                                     .toList();
 
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount: myAudits.length,
-                                                  itemBuilder:
-                                                      (context, myAuditsIndex) {
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      myAudits.length,
+                                                      (myAuditsIndex) {
                                                     final myAuditsItem =
                                                         myAudits[myAuditsIndex];
                                                     return Container(
@@ -1111,7 +1108,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                         ),
                                                       ),
                                                     );
-                                                  },
+                                                  }),
                                                 );
                                               },
                                             ),
