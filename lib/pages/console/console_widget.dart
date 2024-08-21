@@ -294,11 +294,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                             width: 275.0,
                                             height: 567.0,
                                             decoration: BoxDecoration(
-                                              color: valueOrDefault<Color>(
-                                                FFAppState().currentBG,
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                              ),
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -836,13 +831,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   width: 225.0,
                                                   height: 560.0,
                                                   decoration: BoxDecoration(
-                                                    color:
-                                                        valueOrDefault<Color>(
-                                                      FFAppState().currentBG,
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryBackground,
-                                                    ),
                                                     border: Border.all(
                                                       color: const Color(0xFF48D7F6),
                                                       width: 2.0,
@@ -965,11 +953,6 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                             width: 450.0,
                                             height: 567.0,
                                             decoration: BoxDecoration(
-                                              color: valueOrDefault<Color>(
-                                                FFAppState().currentBG,
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                              ),
                                               border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
