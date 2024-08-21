@@ -187,6 +187,40 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
+                          FFButtonWidget(
+                            onPressed: () async {
+                              _model.consoleView = 'channels';
+                              setState(() {});
+                            },
+                            text: 'Chennels',
+                            options: FFButtonOptions(
+                              height: 40.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 24.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: _model.consoleView == 'channels'
+                                  ? FlutterFlowTheme.of(context).primary
+                                  : FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: _model.consoleView == 'channels'
+                                        ? FlutterFlowTheme.of(context)
+                                            .primaryBackground
+                                        : FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -798,103 +832,89 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          2.0, 0.0, 2.0, 0.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Container(
-                                                        width: 225.0,
-                                                        height: 560.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: valueOrDefault<
-                                                              Color>(
-                                                            FFAppState()
-                                                                .currentBG,
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                          ),
-                                                          border: Border.all(
-                                                            color: const Color(
-                                                                0xFF48D7F6),
-                                                            width: 2.0,
-                                                          ),
-                                                        ),
-                                                        child: Builder(
-                                                          builder: (context) {
-                                                            final channelStatus =
-                                                                FFAppState()
-                                                                    .channelLogList
-                                                                    .toList();
+                                                Container(
+                                                  width: 225.0,
+                                                  height: 560.0,
+                                                  decoration: BoxDecoration(
+                                                    color:
+                                                        valueOrDefault<Color>(
+                                                      FFAppState().currentBG,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryBackground,
+                                                    ),
+                                                    border: Border.all(
+                                                      color: const Color(0xFF48D7F6),
+                                                      width: 2.0,
+                                                    ),
+                                                  ),
+                                                  child: Builder(
+                                                    builder: (context) {
+                                                      final channelStatus =
+                                                          FFAppState()
+                                                              .channelLogList
+                                                              .toList();
 
-                                                            return ListView
-                                                                .builder(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .zero,
-                                                              scrollDirection:
-                                                                  Axis.vertical,
-                                                              itemCount:
-                                                                  channelStatus
-                                                                      .length,
-                                                              itemBuilder: (context,
-                                                                  channelStatusIndex) {
-                                                                final channelStatusItem =
-                                                                    channelStatus[
-                                                                        channelStatusIndex];
-                                                                return Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          4.0,
-                                                                          5.0,
-                                                                          8.0),
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Container(
-                                                                        width:
-                                                                            200.0,
-                                                                        decoration:
-                                                                            const BoxDecoration(),
-                                                                        child:
-                                                                            Text(
-                                                                          channelStatusItem
-                                                                              .msg
-                                                                              .maybeHandleOverflow(
-                                                                            maxChars:
-                                                                                16,
-                                                                            replacement:
-                                                                                '…',
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount: channelStatus
+                                                            .length,
+                                                        itemBuilder: (context,
+                                                            channelStatusIndex) {
+                                                          final channelStatusItem =
+                                                              channelStatus[
+                                                                  channelStatusIndex];
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        4.0,
+                                                                        5.0,
+                                                                        8.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Container(
+                                                                  width: 200.0,
+                                                                  decoration:
+                                                                      const BoxDecoration(),
+                                                                  child: Text(
+                                                                    channelStatusItem
+                                                                        .msg
+                                                                        .maybeHandleOverflow(
+                                                                      maxChars:
+                                                                          16,
+                                                                      replacement:
+                                                                          '…',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Courier Prime',
+                                                                          color:
+                                                                              valueOrDefault<Color>(
+                                                                            FFAppState().currentTxt,
+                                                                            FlutterFlowTheme.of(context).primary,
                                                                           ),
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Courier Prime',
-                                                                                color: valueOrDefault<Color>(
-                                                                                  FFAppState().currentTxt,
-                                                                                  FlutterFlowTheme.of(context).primary,
-                                                                                ),
-                                                                                letterSpacing: 0.0,
-                                                                              ),
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                         ),
-                                                                      ),
-                                                                    ],
                                                                   ),
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ],
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+                                                    },
                                                   ),
                                                 ),
                                               ],
@@ -1122,7 +1142,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             ),
                           ),
                         );
-                      } else {
+                      } else if (_model.consoleView == 'audit') {
                         return Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
@@ -1273,6 +1293,178 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                               .primary,
                                                           letterSpacing: 0.0,
                                                         ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 5.0, 0.0, 0.0),
+                          child: Container(
+                            width: 800.0,
+                            height: 800.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(5.0),
+                                bottomRight: Radius.circular(5.0),
+                                topLeft: Radius.circular(5.0),
+                                topRight: Radius.circular(5.0),
+                              ),
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Channels',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Courier Prime',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 20.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 5.0, 5.0, 5.0),
+                                  child: Container(
+                                    height: 750.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final channelDetail = FFAppState()
+                                            .channelLogList
+                                            .toList();
+
+                                        return ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: channelDetail.length,
+                                          itemBuilder:
+                                              (context, channelDetailIndex) {
+                                            final channelDetailItem =
+                                                channelDetail[
+                                                    channelDetailIndex];
+                                            return Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 5.0, 0.0, 5.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Text(
+                                                      channelDetailItem.channel
+                                                          .toString(),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Courier Prime',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Text(
+                                                      channelDetailItem.msg,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Courier Prime',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Text(
+                                                      channelDetailItem
+                                                          .character,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Courier Prime',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Text(
+                                                      channelDetailItem.code
+                                                          .toString(),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Courier Prime',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                    ),
                                                   ),
                                                 ],
                                               ),
