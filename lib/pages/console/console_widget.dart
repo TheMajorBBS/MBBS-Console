@@ -1293,7 +1293,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               0.0, 5.0, 0.0, 0.0),
                           child: Container(
                             width: 800.0,
-                            height: 635.0,
+                            height: 640.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
