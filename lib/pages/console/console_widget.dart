@@ -1293,7 +1293,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                               0.0, 5.0, 0.0, 0.0),
                           child: Container(
                             width: 800.0,
-                            height: 800.0,
+                            height: 635.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -1304,8 +1304,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                 topRight: Radius.circular(5.0),
                               ),
                               border: Border.all(
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
+                                color: FlutterFlowTheme.of(context).secondary,
                                 width: 2.0,
                               ),
                             ),
@@ -1330,7 +1329,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 5.0),
                                   child: Container(
-                                    height: 750.0,
+                                    height: 600.0,
                                     decoration: BoxDecoration(
                                       color: FFAppState().currentBG,
                                     ),
@@ -1946,7 +1945,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   2.0, 0.0, 0.0, 0.0),
                                           child: Container(
-                                            width: 575.0,
+                                            width: 580.0,
                                             height: 600.0,
                                             decoration: BoxDecoration(
                                               border: Border.all(
