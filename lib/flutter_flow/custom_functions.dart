@@ -120,3 +120,7 @@ List<ChannelStruct> parseInit(String? initString) {
   //print('INIT: ' + initMatches.toString());
   return initMatches;
 }
+
+int? convertChannel(String? baseChannel) {
+  return int.parse(baseChannel!, radix: 16);
+}

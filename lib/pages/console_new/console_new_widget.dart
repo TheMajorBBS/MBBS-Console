@@ -5,6 +5,7 @@ import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -885,213 +886,6 @@ class _ConsoleNewWidgetState extends State<ConsoleNewWidget> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 1.0, 0.0, 0.0),
-                                    child: SingleChildScrollView(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 450.0,
-                                            height: 25.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Text(
-                                                'Audit Trail',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 450.0,
-                                            height: 567.0,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 3.0,
-                                              ),
-                                            ),
-                                            child: Builder(
-                                              builder: (context) {
-                                                final myAudits = FFAppState()
-                                                    .auditLogList
-                                                    .toList();
-
-                                                return Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: List.generate(
-                                                      myAudits.length,
-                                                      (myAuditsIndex) {
-                                                    final myAuditsItem =
-                                                        myAudits[myAuditsIndex];
-                                                    return Container(
-                                                      decoration:
-                                                          const BoxDecoration(),
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    0.0,
-                                                                    5.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Container(
-                                                                width: 100.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    dateTimeFormat(
-                                                                        "M/d h:mm a",
-                                                                        myAuditsItem
-                                                                            .datetime),
-                                                                    '0',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Courier Prime',
-                                                                        color: valueOrDefault<
-                                                                            Color>(
-                                                                          FFAppState()
-                                                                              .currentTxt,
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
-                                                                        ),
-                                                                        fontSize:
-                                                                            13.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Container(
-                                                                width: 250.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                child: Text(
-                                                                  myAuditsItem
-                                                                      .data,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Courier Prime',
-                                                                        color: valueOrDefault<
-                                                                            Color>(
-                                                                          FFAppState()
-                                                                              .currentTxt,
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
-                                                                        ),
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Container(
-                                                                width: 60.0,
-                                                                decoration:
-                                                                    const BoxDecoration(),
-                                                                child: Text(
-                                                                  myAuditsItem
-                                                                      .channel,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Courier Prime',
-                                                                        color: valueOrDefault<
-                                                                            Color>(
-                                                                          FFAppState()
-                                                                              .currentTxt,
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
-                                                                        ),
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  }),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),
@@ -1961,9 +1755,9 @@ class _ConsoleNewWidgetState extends State<ConsoleNewWidget> {
                                                           const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
+                                                                  4.0,
                                                                   5.0,
-                                                                  0.0,
-                                                                  5.0),
+                                                                  8.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1977,8 +1771,11 @@ class _ConsoleNewWidgetState extends State<ConsoleNewWidget> {
                                                                         10.0,
                                                                         0.0),
                                                             child: Text(
-                                                              channelDetailItem
-                                                                  .channel
+                                                              functions
+                                                                  .convertChannel(
+                                                                      channelDetailItem
+                                                                          .channel
+                                                                          .toString())
                                                                   .toString(),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
