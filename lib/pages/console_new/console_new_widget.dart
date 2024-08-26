@@ -8,25 +8,25 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'console_model.dart';
-export 'console_model.dart';
+import 'console_new_model.dart';
+export 'console_new_model.dart';
 
-class ConsoleWidget extends StatefulWidget {
-  const ConsoleWidget({super.key});
+class ConsoleNewWidget extends StatefulWidget {
+  const ConsoleNewWidget({super.key});
 
   @override
-  State<ConsoleWidget> createState() => _ConsoleWidgetState();
+  State<ConsoleNewWidget> createState() => _ConsoleNewWidgetState();
 }
 
-class _ConsoleWidgetState extends State<ConsoleWidget> {
-  late ConsoleModel _model;
+class _ConsoleNewWidgetState extends State<ConsoleNewWidget> {
+  late ConsoleNewModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ConsoleModel());
+    _model = createModel(context, () => ConsoleNewModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -868,6 +868,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                               children: [
                                                                 Container(
                                                                   width: 200.0,
+                                                                  height: 25.0,
                                                                   decoration:
                                                                       const BoxDecoration(),
                                                                   child: Text(
