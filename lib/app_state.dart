@@ -22,6 +22,10 @@ class FFAppState extends ChangeNotifier {
       _version = prefs.getString('ff_version') ?? _version;
     });
     _safeInit(() {
+      _currentTxt =
+          _colorFromIntValue(prefs.getInt('ff_currentTxt')) ?? _currentTxt;
+    });
+    _safeInit(() {
       _defaultBG =
           _colorFromIntValue(prefs.getInt('ff_defaultBG')) ?? _defaultBG;
     });
@@ -68,7 +72,7 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _version = '0.4.5';
+  String _version = '0.4.6';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -79,6 +83,7 @@ class FFAppState extends ChangeNotifier {
   Color get currentTxt => _currentTxt;
   set currentTxt(Color value) {
     _currentTxt = value;
+    prefs.setInt('ff_currentTxt', value.value);
   }
 
   Color _defaultBG = const Color(0xff2a6af5);

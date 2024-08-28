@@ -197,7 +197,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FlutterFlowTheme.of(context).secondaryText,
                         ),
                         child: Checkbox(
-                          value: _model.checkboxValue ??= false,
+                          value: _model.checkboxValue ??= FFAppState().isSecure,
                           onChanged: (newValue) async {
                             setState(() => _model.checkboxValue = newValue!);
                             if (newValue!) {
