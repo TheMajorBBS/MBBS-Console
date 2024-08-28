@@ -33,6 +33,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().firstLoad = false;
         setState(() {});
       } else {
+        FFAppState().currentBG = FFAppState().defaultBG;
+        FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
         setState(() {});
       }
