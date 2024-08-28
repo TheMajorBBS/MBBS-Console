@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
-import 'console_widget.dart' show ConsoleWidget;
+import 'console_new_widget.dart' show ConsoleNewWidget;
 import 'package:flutter/material.dart';
 
-class ConsoleModel extends FlutterFlowModel<ConsoleWidget> {
+class ConsoleNewModel extends FlutterFlowModel<ConsoleNewWidget> {
   ///  Local state fields for this page.
 
   bool connected = false;
