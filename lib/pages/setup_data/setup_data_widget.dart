@@ -37,7 +37,7 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
       ));
       setState(() {});
 
-      context.pushNamed('console');
+      context.pushNamed('consoleNew');
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
