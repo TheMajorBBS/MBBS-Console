@@ -31,12 +31,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().currentBG = FFAppState().defaultBG;
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
-        setState(() {});
+        safeSetState(() {});
       } else {
         FFAppState().currentBG = FFAppState().defaultBG;
         FFAppState().currentTxt = FFAppState().defaultTxt;
         FFAppState().firstLoad = false;
-        setState(() {});
+        safeSetState(() {});
       }
     });
 
@@ -48,7 +48,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         TextEditingController(text: FFAppState().systemPort.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -199,13 +199,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         child: Checkbox(
                           value: _model.checkboxValue ??= FFAppState().isSecure,
                           onChanged: (newValue) async {
-                            setState(() => _model.checkboxValue = newValue!);
+                            safeSetState(
+                                () => _model.checkboxValue = newValue!);
                             if (newValue!) {
                               FFAppState().isSecure = true;
-                              setState(() {});
+                              safeSetState(() {});
                             } else {
                               FFAppState().isSecure = false;
-                              setState(() {});
+                              safeSetState(() {});
                             }
                           },
                           side: BorderSide(
@@ -468,7 +469,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     onPressed: () async {
                       FFAppState().currentBG = FFAppState().defaultBG;
                       FFAppState().currentTxt = FFAppState().defaultTxt;
-                      setState(() {});
+                      safeSetState(() {});
                     },
                     text: 'Restore Default Colors',
                     options: FFButtonOptions(
@@ -498,7 +499,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     FFAppState().systemIP = _model.textController1.text;
                     FFAppState().systemPort =
                         int.parse(_model.textController2.text);
-                    setState(() {});
+                    safeSetState(() {});
 
                     context.goNamed('setupData');
                   },
@@ -525,13 +526,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Text(
-                    'Version: ${FFAppState().version}',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Courier Prime',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                        ),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed('mainConsole');
+                    },
+                    child: Text(
+                      'Version: ${FFAppState().version}',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Courier Prime',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
                   ),
                 ),
               ],

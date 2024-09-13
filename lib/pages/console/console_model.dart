@@ -12,7 +12,6 @@ class ConsoleModel extends FlutterFlowModel<ConsoleWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   InstantTimer? stateTime;
 
   @override

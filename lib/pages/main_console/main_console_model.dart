@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'setup_data_widget.dart' show SetupDataWidget;
+import 'main_console_widget.dart' show MainConsoleWidget;
 import 'package:flutter/material.dart';
 
-class SetupDataModel extends FlutterFlowModel<SetupDataWidget> {
+class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   @override
   void initState(BuildContext context) {}
 

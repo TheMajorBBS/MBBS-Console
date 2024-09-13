@@ -31,7 +31,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {});
+      safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
         duration: const Duration(milliseconds: 2000),
         callback: (timer) async {
@@ -43,13 +43,13 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
             }(),
           );
 
-          setState(() {});
+          safeSetState(() {});
         },
         startImmediately: true,
       );
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -121,7 +121,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               _model.consoleView = 'summary';
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             text: 'Summary',
                             options: FFButtonOptions(
@@ -156,7 +156,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               _model.consoleView = 'audit';
-                              setState(() {});
+                              safeSetState(() {});
                             },
                             text: 'Audit',
                             options: FFButtonOptions(
@@ -191,9 +191,9 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                           FFButtonWidget(
                             onPressed: () async {
                               _model.consoleView = 'channels';
-                              setState(() {});
+                              safeSetState(() {});
                             },
-                            text: 'Chennels',
+                            text: 'Channels',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: const EdgeInsetsDirectional.fromSTEB(
