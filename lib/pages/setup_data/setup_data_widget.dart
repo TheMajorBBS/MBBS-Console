@@ -35,12 +35,12 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
         channel: '0',
         user: 'Sysop',
       ));
-      setState(() {});
+      safeSetState(() {});
 
       context.pushNamed('console');
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
