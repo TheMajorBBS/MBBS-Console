@@ -31,7 +31,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.sideNav = 'summary';
       safeSetState(() {});
-
+      FFAppState().wsMessage = 'connecting...';
       safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
         duration: const Duration(milliseconds: 2000),
@@ -632,7 +632,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       0.0),
                                                           child: Text(
                                                             dateTimeFormat(
-                                                                "hh:mm M/d/y",
+                                                                "H:mm M/d/y",
                                                                 auditTrailLogsItem
                                                                     .datetime!),
                                                             style: FlutterFlowTheme
@@ -1896,14 +1896,16 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: SizedBox(
                     width: 600.0,
                     height: 100.0,
                     child: custom_widgets.WebSocketConn(
                       width: 600.0,
                       height: 100.0,
+                      systemIP: FFAppState().systemIP,
+                      systemPort: FFAppState().systemPort,
                       isSecure: false,
                     ),
                   ),

@@ -72,7 +72,7 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  String _version = '0.4.8';
+  String _version = '0.4.9';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -134,7 +134,7 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_isSecure', value);
   }
 
-  String _wsMessage = '';
+  String _wsMessage = 'connecting...';
   String get wsMessage => _wsMessage;
   set wsMessage(String value) {
     _wsMessage = value;
