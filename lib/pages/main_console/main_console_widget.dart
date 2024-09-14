@@ -156,7 +156,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          height: 445.0,
+                                          height: 442.0,
                                           decoration: const BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -535,7 +535,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
-                                                                    5.0,
+                                                                    4.0,
                                                                     5.0,
                                                                     8.0),
                                                         child: Row(
