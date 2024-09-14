@@ -1906,7 +1906,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                       height: 100.0,
                       systemIP: FFAppState().systemIP,
                       systemPort: FFAppState().systemPort,
-                      isSecure: false,
+                      isSecure: FFAppState().isSecure,
                     ),
                   ),
                 ),
