@@ -156,7 +156,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Container(
-                                          height: 442.0,
+                                          height: 440.0,
                                           decoration: const BoxDecoration(),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -479,7 +479,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                               Padding(
                                                 padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        2.0, 5.0, 2.0, 5.0),
+                                                        2.0, 5.0, 2.0, 3.0),
                                                 child: Text(
                                                   'F',
                                                   style: FlutterFlowTheme.of(
