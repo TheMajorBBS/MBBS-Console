@@ -1,3 +1,4 @@
+import '/components/channel_grid_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -71,7 +72,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primary,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
+          iconTheme: IconThemeData(
+              color: FlutterFlowTheme.of(context).primaryBackground),
+          automaticallyImplyLeading: true,
           title: Text(
             'The Major BBS',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -101,7 +104,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       border: Border.all(
-                        color: const Color(0xDE1797F8),
+                        color: const Color(0xFF57FFFF),
                         width: 2.0,
                       ),
                     ),
@@ -120,7 +123,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                 height: 475.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color: const Color(0xDE1797F8),
+                                    color: const Color(0xFF57FFFF),
                                     width: 1.0,
                                   ),
                                 ),
@@ -158,376 +161,20 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                         Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '0',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '1',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '2',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '3',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '4',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '5',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '6',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '7',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '8',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                '9',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                'A',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                'B',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                'C',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                'D',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 5.0),
-                                              child: Text(
-                                                'E',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(2.0, 5.0, 2.0, 0.0),
-                                              child: Text(
-                                                'F',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Courier Prime',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
                                             Container(
-                                              width: 170.0,
+                                              width: 195.0,
                                               height: 440.0,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
-                                                  color: const Color(0xDE1797F8),
+                                                  color: const Color(0xFF57FFFF),
                                                   width: 1.0,
                                                 ),
                                               ),
-                                              child: Builder(
-                                                builder: (context) {
-                                                  final channelLogList =
-                                                      FFAppState()
-                                                          .channelLogList
-                                                          .toList();
-
-                                                  return ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount:
-                                                        channelLogList.length,
-                                                    itemBuilder: (context,
-                                                        channelLogListIndex) {
-                                                      final channelLogListItem =
-                                                          channelLogList[
-                                                              channelLogListIndex];
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    5.0,
-                                                                    4.0,
-                                                                    5.0,
-                                                                    8.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              channelLogListItem
-                                                                  .character,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Courier Prime',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
+                                              child: wrapWithModel(
+                                                model: _model.channelGridModel,
+                                                updateCallback: () =>
+                                                    safeSetState(() {}),
+                                                child: const ChannelGridWidget(),
                                               ),
                                             ),
                                           ],
@@ -549,7 +196,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                     height: 320.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: const Color(0xDE1797F8),
+                                        color: const Color(0x0057FFFF),
                                         width: 1.0,
                                       ),
                                     ),
@@ -687,7 +334,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                            color: const Color(0xDE1797F8),
+                                            color: const Color(0xFF57FFFF),
                                             width: 1.0,
                                           ),
                                         ),
@@ -739,7 +386,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                            color: const Color(0xDE1797F8),
+                                            color: const Color(0xFF57FFFF),
                                             width: 1.0,
                                           ),
                                         ),
@@ -980,7 +627,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     .primaryBackground
                                                 : const Color(0x00000000),
                                             border: Border.all(
-                                              color: const Color(0xFFE5EE8C),
+                                              color: _model.sideNav == 'summary'
+                                                  ? const Color(0xFF57FFFF)
+                                                  : const Color(0xFFE5EE8C),
                                             ),
                                           ),
                                           child: Align(
@@ -1098,7 +747,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                         height: 50.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                            color: const Color(0xDE1797F8),
+                                            color: const Color(0xFF57FFFF),
                                             width: 1.0,
                                           ),
                                         ),
@@ -1134,7 +783,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                         height: 60.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
-                                            color: const Color(0xDE1797F8),
+                                            color: const Color(0xFF57FFFF),
                                             width: 1.0,
                                           ),
                                         ),
@@ -1149,7 +798,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1238,7 +887,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1327,7 +976,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1416,7 +1065,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1505,7 +1154,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1594,7 +1243,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1683,7 +1332,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1772,7 +1421,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1786,7 +1435,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -1800,7 +1449,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 height: 56.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xDE1797F8),
+                                                    color: const Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
