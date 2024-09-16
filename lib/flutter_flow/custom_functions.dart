@@ -131,7 +131,7 @@ List<ChannelStruct> initialChannelList() {
   for (count = 0; count <= 255; count++) {
     channelList.add(ChannelStruct(
       msg: "init",
-      character: "■",
+      character: "▪",
       code: 0,
       channel: count,
     ));
