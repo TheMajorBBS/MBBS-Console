@@ -124,3 +124,18 @@ List<ChannelStruct> parseInit(String? initString) {
 int? convertChannel(String? baseChannel) {
   return int.parse(baseChannel!, radix: 16);
 }
+
+List<ChannelStruct> initialChannelList() {
+  List<ChannelStruct> channelList = [];
+  int count = 0;
+  for (count = 0; count <= 255; count++) {
+    channelList.add(ChannelStruct(
+      msg: "init",
+      character: "■",
+      code: 0,
+      channel: count,
+    ));
+  }
+
+  return channelList!;
+}

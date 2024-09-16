@@ -1,6 +1,7 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -27,14 +28,16 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      FFAppState().channelLogList =
-          FFAppState().setChannelList.toList().cast<ChannelStruct>();
+      FFAppState().channelLogList = [];
       FFAppState().addToAuditLogList(AuditStruct(
         datetime: getCurrentTimestamp,
         data: 'Audit Log Started',
         channel: '0',
         user: 'Sysop',
       ));
+      safeSetState(() {});
+      FFAppState().channelLogList =
+          functions.initialChannelList().toList().cast<ChannelStruct>();
       safeSetState(() {});
 
       context.pushNamed('mainConsole');
