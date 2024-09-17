@@ -54,20 +54,28 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
               crossAxisCount: 16,
               crossAxisSpacing: 0.0,
               mainAxisSpacing: 0.0,
-              childAspectRatio: 0.25,
+              childAspectRatio: 1.0,
             ),
             scrollDirection: Axis.horizontal,
             itemCount: chnnelGridList.length,
             itemBuilder: (context, chnnelGridListIndex) {
               final chnnelGridListItem = chnnelGridList[chnnelGridListIndex];
-              return Text(
-                chnnelGridListItem.character,
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondary,
-                      fontSize: 10.0,
-                      letterSpacing: 0.0,
-                    ),
+              return Container(
+                width: 12.0,
+                height: 27.0,
+                decoration: const BoxDecoration(),
+                child: Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Text(
+                    chnnelGridListItem.character,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Courier Prime',
+                          color: FlutterFlowTheme.of(context).secondary,
+                          fontSize: 10.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                ),
               );
             },
           );
