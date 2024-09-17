@@ -54,7 +54,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
               crossAxisCount: 16,
               crossAxisSpacing: 0.0,
               mainAxisSpacing: 0.0,
-              childAspectRatio: 200 / 440,
+              childAspectRatio: 0.25,
             ),
             scrollDirection: Axis.horizontal,
             itemCount: chnnelGridList.length,
