@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
@@ -40,13 +41,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       }
     });
 
-    _model.textController1 ??=
-        TextEditingController(text: FFAppState().systemIP);
+    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??=
-        TextEditingController(text: FFAppState().systemPort.toString());
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??=
+        TextEditingController(text: FFAppState().systemIP);
+    _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.textController4 ??=
+        TextEditingController(text: FFAppState().systemPort.toString());
+    _model.textFieldFocusNode4 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -121,7 +128,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'System IP or Hostname',
+                              labelText: 'Username',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -170,6 +177,154 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.textController1Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 600.0,
+                  ),
+                  decoration: const BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15.0, 25.0, 15.0, 25.0),
+                          child: TextFormField(
+                            controller: _model.textController2,
+                            focusNode: _model.textFieldFocusNode2,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Password',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Courier Prime',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Courier Prime',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController2Validator
+                                .asValidator(context),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 600.0,
+                  ),
+                  decoration: const BoxDecoration(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              15.0, 25.0, 15.0, 25.0),
+                          child: TextFormField(
+                            controller: _model.textController3,
+                            focusNode: _model.textFieldFocusNode3,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'System IP or Hostname',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Courier Prime',
+                                    letterSpacing: 0.0,
+                                  ),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Courier Prime',
+                                  letterSpacing: 0.0,
+                                ),
+                            validator: _model.textController3Validator
                                 .asValidator(context),
                           ),
                         ),
@@ -230,8 +385,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 25.0),
                     child: TextFormField(
-                      controller: _model.textController2,
-                      focusNode: _model.textFieldFocusNode2,
+                      controller: _model.textController4,
+                      focusNode: _model.textFieldFocusNode4,
                       autofocus: true,
                       obscureText: false,
                       decoration: InputDecoration(
@@ -280,7 +435,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             letterSpacing: 0.0,
                           ),
                       validator:
-                          _model.textController2Validator.asValidator(context),
+                          _model.textController4Validator.asValidator(context),
                     ),
                   ),
                 ),
@@ -481,7 +636,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
+                                fontFamily: 'Courier Prime',
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),
@@ -496,12 +651,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 FFButtonWidget(
                   onPressed: () async {
-                    FFAppState().systemIP = _model.textController1.text;
+                    _model.conPass = await actions.convertPass(
+                      _model.textController2.text,
+                    );
+                    FFAppState().systemIP = _model.textController3.text;
                     FFAppState().systemPort =
-                        int.parse(_model.textController2.text);
+                        int.parse(_model.textController4.text);
+                    FFAppState().username = _model.textController1.text;
+                    FFAppState().password = _model.conPass!;
                     safeSetState(() {});
 
                     context.goNamed('setupData');
+
+                    safeSetState(() {});
                   },
                   text: 'Start Console',
                   options: FFButtonOptions(
@@ -512,7 +674,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
+                          fontFamily: 'Courier Prime',
                           color: Colors.white,
                           letterSpacing: 0.0,
                         ),
