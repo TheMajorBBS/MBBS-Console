@@ -91,7 +91,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
     try {
       await _channel.ready;
-      FFAppState().connected = true;
+      myMessage = 'Authenticating...';
+      FFAppState().wsMessage = myMessage;
+      setState(() {});
+      //FFAppState().connected = true;
     } on WebSocketChannelException catch (e) {
       print('CHANNEL EXCEPTION: ' + e.message!);
     }
