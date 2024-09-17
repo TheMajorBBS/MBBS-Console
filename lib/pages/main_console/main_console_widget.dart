@@ -1,4 +1,4 @@
-import '/components/channel_grid_widget.dart';
+import '/components/channel_grid/channel_grid_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
