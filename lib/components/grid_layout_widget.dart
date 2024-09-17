@@ -52,8 +52,8 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
             padding: EdgeInsets.zero,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 16,
-              crossAxisSpacing: 2.0,
-              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 0.0,
+              mainAxisSpacing: 0.0,
               childAspectRatio: 1.0,
             ),
             scrollDirection: Axis.horizontal,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:csv/csv.dart';
+import 'package:synchronized/synchronized.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
@@ -17,40 +19,47 @@ class FFAppState extends ChangeNotifier {
   }
 
   Future initializePersistedState() async {
-    prefs = await SharedPreferences.getInstance();
-    _safeInit(() {
-      _version = prefs.getString('ff_version') ?? _version;
+    secureStorage = const FlutterSecureStorage();
+    await _safeInitAsync(() async {
+      _version = await secureStorage.getString('ff_version') ?? _version;
     });
-    _safeInit(() {
+    await _safeInitAsync(() async {
       _currentTxt =
-          _colorFromIntValue(prefs.getInt('ff_currentTxt')) ?? _currentTxt;
+          _colorFromIntValue(await secureStorage.getInt('ff_currentTxt')) ??
+              _currentTxt;
     });
-    _safeInit(() {
+    await _safeInitAsync(() async {
       _defaultBG =
-          _colorFromIntValue(prefs.getInt('ff_defaultBG')) ?? _defaultBG;
+          _colorFromIntValue(await secureStorage.getInt('ff_defaultBG')) ??
+              _defaultBG;
     });
-    _safeInit(() {
+    await _safeInitAsync(() async {
       _currentBG =
-          _colorFromIntValue(prefs.getInt('ff_currentBG')) ?? _currentBG;
+          _colorFromIntValue(await secureStorage.getInt('ff_currentBG')) ??
+              _currentBG;
     });
-    _safeInit(() {
-      _systemIP = prefs.getString('ff_systemIP') ?? _systemIP;
+    await _safeInitAsync(() async {
+      _defaultTxt =
+          _colorFromIntValue(await secureStorage.getInt('ff_defaultTxt')) ??
+              _defaultTxt;
     });
-    _safeInit(() {
-      _systemPort = prefs.getInt('ff_systemPort') ?? _systemPort;
+    await _safeInitAsync(() async {
+      _systemIP = await secureStorage.getString('ff_systemIP') ?? _systemIP;
     });
-    _safeInit(() {
-      _firstLoad = prefs.getBool('ff_firstLoad') ?? _firstLoad;
+    await _safeInitAsync(() async {
+      _systemPort = await secureStorage.getInt('ff_systemPort') ?? _systemPort;
     });
-    _safeInit(() {
-      _isSecure = prefs.getBool('ff_isSecure') ?? _isSecure;
+    await _safeInitAsync(() async {
+      _firstLoad = await secureStorage.getBool('ff_firstLoad') ?? _firstLoad;
     });
-    _safeInit(() {
-      _wsMessage = prefs.getString('ff_wsMessage') ?? _wsMessage;
+    await _safeInitAsync(() async {
+      _isSecure = await secureStorage.getBool('ff_isSecure') ?? _isSecure;
     });
-    _safeInit(() {
-      _setChannelList = prefs
-              .getStringList('ff_setChannelList')
+    await _safeInitAsync(() async {
+      _wsMessage = await secureStorage.getString('ff_wsMessage') ?? _wsMessage;
+    });
+    await _safeInitAsync(() async {
+      _setChannelList = (await secureStorage.getStringList('ff_setChannelList'))
               ?.map((x) {
                 try {
                   return ChannelStruct.fromSerializableMap(jsonDecode(x));
@@ -63,6 +72,12 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _setChannelList;
     });
+    await _safeInitAsync(() async {
+      _username = await secureStorage.getString('ff_username') ?? _username;
+    });
+    await _safeInitAsync(() async {
+      _password = await secureStorage.getString('ff_password') ?? _password;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -70,75 +85,116 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  late SharedPreferences prefs;
+  late FlutterSecureStorage secureStorage;
 
-  String _version = '0.5.2';
+  String _version = '0.5.3';
   String get version => _version;
   set version(String value) {
     _version = value;
-    prefs.setString('ff_version', value);
+    secureStorage.setString('ff_version', value);
+  }
+
+  void deleteVersion() {
+    secureStorage.delete(key: 'ff_version');
   }
 
   Color _currentTxt = Colors.transparent;
   Color get currentTxt => _currentTxt;
   set currentTxt(Color value) {
     _currentTxt = value;
-    prefs.setInt('ff_currentTxt', value.value);
+    secureStorage.setInt('ff_currentTxt', value.value);
   }
 
-  Color _defaultBG = const Color(0xff2a6af5);
+  void deleteCurrentTxt() {
+    secureStorage.delete(key: 'ff_currentTxt');
+  }
+
+  Color _defaultBG = const Color(0xff0000ab);
   Color get defaultBG => _defaultBG;
   set defaultBG(Color value) {
     _defaultBG = value;
-    prefs.setInt('ff_defaultBG', value.value);
+    secureStorage.setInt('ff_defaultBG', value.value);
+  }
+
+  void deleteDefaultBG() {
+    secureStorage.delete(key: 'ff_defaultBG');
   }
 
   Color _currentBG = Colors.transparent;
   Color get currentBG => _currentBG;
   set currentBG(Color value) {
     _currentBG = value;
-    prefs.setInt('ff_currentBG', value.value);
+    secureStorage.setInt('ff_currentBG', value.value);
+  }
+
+  void deleteCurrentBG() {
+    secureStorage.delete(key: 'ff_currentBG');
   }
 
   Color _defaultTxt = const Color(0xffffffff);
   Color get defaultTxt => _defaultTxt;
   set defaultTxt(Color value) {
     _defaultTxt = value;
+    secureStorage.setInt('ff_defaultTxt', value.value);
+  }
+
+  void deleteDefaultTxt() {
+    secureStorage.delete(key: 'ff_defaultTxt');
   }
 
   String _systemIP = '';
   String get systemIP => _systemIP;
   set systemIP(String value) {
     _systemIP = value;
-    prefs.setString('ff_systemIP', value);
+    secureStorage.setString('ff_systemIP', value);
+  }
+
+  void deleteSystemIP() {
+    secureStorage.delete(key: 'ff_systemIP');
   }
 
   int _systemPort = 8881;
   int get systemPort => _systemPort;
   set systemPort(int value) {
     _systemPort = value;
-    prefs.setInt('ff_systemPort', value);
+    secureStorage.setInt('ff_systemPort', value);
+  }
+
+  void deleteSystemPort() {
+    secureStorage.delete(key: 'ff_systemPort');
   }
 
   bool _firstLoad = true;
   bool get firstLoad => _firstLoad;
   set firstLoad(bool value) {
     _firstLoad = value;
-    prefs.setBool('ff_firstLoad', value);
+    secureStorage.setBool('ff_firstLoad', value);
+  }
+
+  void deleteFirstLoad() {
+    secureStorage.delete(key: 'ff_firstLoad');
   }
 
   bool _isSecure = false;
   bool get isSecure => _isSecure;
   set isSecure(bool value) {
     _isSecure = value;
-    prefs.setBool('ff_isSecure', value);
+    secureStorage.setBool('ff_isSecure', value);
+  }
+
+  void deleteIsSecure() {
+    secureStorage.delete(key: 'ff_isSecure');
   }
 
   String _wsMessage = 'connecting...';
   String get wsMessage => _wsMessage;
   set wsMessage(String value) {
     _wsMessage = value;
-    prefs.setString('ff_wsMessage', value);
+    secureStorage.setString('ff_wsMessage', value);
+  }
+
+  void deleteWsMessage() {
+    secureStorage.delete(key: 'ff_wsMessage');
   }
 
   List<ChannelStruct> _channelLogList = [];
@@ -236,25 +292,29 @@ class FFAppState extends ChangeNotifier {
   List<ChannelStruct> get setChannelList => _setChannelList;
   set setChannelList(List<ChannelStruct> value) {
     _setChannelList = value;
-    prefs.setStringList(
+    secureStorage.setStringList(
         'ff_setChannelList', value.map((x) => x.serialize()).toList());
+  }
+
+  void deleteSetChannelList() {
+    secureStorage.delete(key: 'ff_setChannelList');
   }
 
   void addToSetChannelList(ChannelStruct value) {
     setChannelList.add(value);
-    prefs.setStringList('ff_setChannelList',
+    secureStorage.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
 
   void removeFromSetChannelList(ChannelStruct value) {
     setChannelList.remove(value);
-    prefs.setStringList('ff_setChannelList',
+    secureStorage.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
 
   void removeAtIndexFromSetChannelList(int index) {
     setChannelList.removeAt(index);
-    prefs.setStringList('ff_setChannelList',
+    secureStorage.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
 
@@ -263,13 +323,13 @@ class FFAppState extends ChangeNotifier {
     ChannelStruct Function(ChannelStruct) updateFn,
   ) {
     setChannelList[index] = updateFn(_setChannelList[index]);
-    prefs.setStringList('ff_setChannelList',
+    secureStorage.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
 
   void insertAtIndexInSetChannelList(int index, ChannelStruct value) {
     setChannelList.insert(index, value);
-    prefs.setStringList('ff_setChannelList',
+    secureStorage.setStringList('ff_setChannelList',
         _setChannelList.map((x) => x.serialize()).toList());
   }
 
@@ -277,6 +337,28 @@ class FFAppState extends ChangeNotifier {
   bool get connected => _connected;
   set connected(bool value) {
     _connected = value;
+  }
+
+  String _username = '';
+  String get username => _username;
+  set username(String value) {
+    _username = value;
+    secureStorage.setString('ff_username', value);
+  }
+
+  void deleteUsername() {
+    secureStorage.delete(key: 'ff_username');
+  }
+
+  String _password = '';
+  String get password => _password;
+  set password(String value) {
+    _password = value;
+    secureStorage.setString('ff_password', value);
+  }
+
+  void deletePassword() {
+    secureStorage.delete(key: 'ff_password');
   }
 }
 
@@ -297,4 +379,47 @@ Color? _colorFromIntValue(int? val) {
     return null;
   }
   return Color(val);
+}
+
+extension FlutterSecureStorageExtensions on FlutterSecureStorage {
+  static final _lock = Lock();
+
+  Future<void> writeSync({required String key, String? value}) async =>
+      await _lock.synchronized(() async {
+        await write(key: key, value: value);
+      });
+
+  void remove(String key) => delete(key: key);
+
+  Future<String?> getString(String key) async => await read(key: key);
+  Future<void> setString(String key, String value) async =>
+      await writeSync(key: key, value: value);
+
+  Future<bool?> getBool(String key) async => (await read(key: key)) == 'true';
+  Future<void> setBool(String key, bool value) async =>
+      await writeSync(key: key, value: value.toString());
+
+  Future<int?> getInt(String key) async =>
+      int.tryParse(await read(key: key) ?? '');
+  Future<void> setInt(String key, int value) async =>
+      await writeSync(key: key, value: value.toString());
+
+  Future<double?> getDouble(String key) async =>
+      double.tryParse(await read(key: key) ?? '');
+  Future<void> setDouble(String key, double value) async =>
+      await writeSync(key: key, value: value.toString());
+
+  Future<List<String>?> getStringList(String key) async =>
+      await read(key: key).then((result) {
+        if (result == null || result.isEmpty) {
+          return null;
+        }
+        return const CsvToListConverter()
+            .convert(result)
+            .first
+            .map((e) => e.toString())
+            .toList();
+      });
+  Future<void> setStringList(String key, List<String> value) async =>
+      await writeSync(key: key, value: const ListToCsvConverter().convert([value]));
 }

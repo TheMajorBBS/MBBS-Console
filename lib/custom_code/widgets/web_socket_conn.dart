@@ -45,12 +45,16 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myUrl = '';
   String myext = 'ws://';
   String myMessage = 'Connecting...';
+  String myuser = '';
+  String mypass = '';
   late WebSocketChannel _channel;
 
   @override
   void initState() {
     super.initState();
     myMessage = 'Connecting...';
+    myuser = FFAppState().username;
+    mypass = FFAppState().password;
     FFAppState().wsMessage = myMessage;
     if (widget.isSecure!) {
       myext = 'wss://';
@@ -92,6 +96,25 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print('CHANNEL EXCEPTION: ' + e.message!);
     }
 
+    processMessage(String s, String st) {
+      if (st == 'AUTHREQUEST') {
+        _channel.sink('[AUTHINFO][$myuser][$mypass]');
+      } else if (st == 'AUTHOK') {
+        FFAppState().connected = true;
+      } else if (st == 'AUTHFAIL') {
+        FFAppState().connected = false;
+      } else if (st == 'CHANNEL') {
+        FFAppState().updateChannelLogListAtIndex(
+            functions.getChannel(s), (_) => functions.parseChannelLog(s));
+      } else if (st == 'AUDIT') {
+        FFAppState().addToAuditLogList(functions.parseAuditLog(s));
+      } else if (st == 'INIT') {
+        doInitMessage(s);
+      } else {
+        FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
+      }
+    }
+
     Stream stream = _channel!.stream;
 
     stream.listen((event) {
@@ -99,17 +122,21 @@ class _WebSocketConnState extends State<WebSocketConn> {
       myMessage = '${event}';
       print(myMessage);
       FFAppState().wsMessage = myMessage;
-      myMessage.startsWith('[CHANNEL')
-          ? FFAppState().updateChannelLogListAtIndex(
-              functions.getChannel(myMessage!)!,
-              (_) => functions.parseChannelLog(myMessage!),
-            )
-          : myMessage.startsWith('[AUDIT')
-              ? FFAppState()
-                  .addToAuditLogList(functions.parseAuditLog(myMessage!))
-              : myMessage.startsWith('[INIT')
-                  ? doInitMessage(myMessage!)
-                  : null;
+
+      myMessage.startsWith('[AUTHREQUEST')
+          ? processMessage(myMessage, 'AUTHREQUEST')
+          : myMessage.startsWith('[AUTHOK')
+              ? processMessage(myMessage, 'AUTHOK')
+              : myMessage.startsWith('[AUTHFAIL')
+                  ? processMessage(myMessage, 'AUTHFAIL')
+                  : myMessage.startsWith('[CHANNEL')
+                      ? processMessage(myMessage, 'CHANNEL')
+                      : myMessage.startsWith('[AUDIT')
+                          ? processMessage(myMessage, 'AUDIT')
+                          : myMessage.startsWith('[INIT')
+                              ? processMessage(myMessage, 'INIT')
+                              : null;
+
       setState(() {});
     }, onError: (e) {
       print('WEBSOCKET ERROR:  $e');
