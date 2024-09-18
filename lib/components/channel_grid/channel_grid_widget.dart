@@ -61,7 +61,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 decoration: const BoxDecoration(),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 10.0),
                 child: Text(
                   '0',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -245,7 +245,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '0',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
