@@ -41,7 +41,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 320.0,
+      width: 324.0,
       height: 420.0,
       decoration: const BoxDecoration(),
       child: Builder(
@@ -61,8 +61,8 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
             itemBuilder: (context, chnnelGridListIndex) {
               final chnnelGridListItem = chnnelGridList[chnnelGridListIndex];
               return Container(
-                width: 11.0,
-                height: 26.0,
+                width: 5.0,
+                height: 20.0,
                 decoration: const BoxDecoration(),
                 child: Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),

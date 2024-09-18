@@ -119,7 +119,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   1.0, 5.0, 1.0, 1.0),
                               child: Container(
-                                width: 322.0,
+                                width: 326.0,
                                 height: 475.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -162,7 +162,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Container(
-                                              width: 320.0,
+                                              width: 327.0,
                                               height: 440.0,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
@@ -192,11 +192,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       1.0, 5.0, 1.0, 1.0),
                                   child: Container(
-                                    width: 371.0,
-                                    height: 320.0,
+                                    width: 368.0,
+                                    height: 325.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: const Color(0x0057FFFF),
+                                        color: const Color(0xFF57FFFF),
                                         width: 1.0,
                                       ),
                                     ),
@@ -330,7 +330,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 185.0,
+                                        width: 184.0,
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
@@ -382,7 +382,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 185.0,
+                                        width: 184.0,
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
