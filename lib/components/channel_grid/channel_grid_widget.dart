@@ -439,7 +439,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
               ),
               Flexible(
                 child: Container(
-                  width: 335.0,
+                  width: 300.0,
                   height: 420.0,
                   decoration: const BoxDecoration(),
                   child: wrapWithModel(
