@@ -100,7 +100,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     }
 
     processMessage(String s, String st) {
-      if (st == 'AUTHREQUEST') {
+      if (st == 'AUTHREQ') {
         _channel.sink.add('[AUTHINFO][$myuser][$mypass]');
       } else if (st == 'AUTHOK') {
         FFAppState().connected = true;
@@ -126,8 +126,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
       print(myMessage);
       FFAppState().wsMessage = myMessage;
 
-      myMessage.startsWith('[AUTHREQUEST')
-          ? processMessage(myMessage, 'AUTHREQUEST')
+      myMessage.startsWith('[AUTHREQ')
+          ? processMessage(myMessage, 'AUTHREQ')
           : myMessage.startsWith('[AUTHOK')
               ? processMessage(myMessage, 'AUTHOK')
               : myMessage.startsWith('[AUTHFAIL')
