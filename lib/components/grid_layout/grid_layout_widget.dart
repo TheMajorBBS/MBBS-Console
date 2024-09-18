@@ -67,7 +67,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Courier Prime',
                         color: FlutterFlowTheme.of(context).secondary,
-                        fontSize: 8.0,
+                        fontSize: 12.0,
                         letterSpacing: 0.0,
                       ),
                 ),

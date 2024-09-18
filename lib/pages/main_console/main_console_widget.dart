@@ -119,7 +119,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   1.0, 5.0, 1.0, 1.0),
                               child: Container(
-                                width: 375.0,
+                                width: 330.0,
                                 height: 475.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -192,7 +192,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       1.0, 5.0, 1.0, 1.0),
                                   child: Container(
-                                    width: 392.0,
+                                    width: 435.0,
                                     height: 325.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
@@ -330,7 +330,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 196.0,
+                                        width: 216.0,
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
@@ -382,7 +382,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 196.0,
+                                        width: 216.0,
                                         height: 148.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
