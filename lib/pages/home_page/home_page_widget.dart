@@ -200,7 +200,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             controller: _model.textController2,
                             focusNode: _model.textFieldFocusNode2,
                             autofocus: true,
-                            obscureText: false,
+                            obscureText: !_model.passwordVisibility,
                             decoration: InputDecoration(
                               labelText: 'Password',
                               labelStyle: FlutterFlowTheme.of(context)
@@ -242,6 +242,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              suffixIcon: InkWell(
+                                onTap: () => safeSetState(
+                                  () => _model.passwordVisibility =
+                                      !_model.passwordVisibility,
+                                ),
+                                focusNode: FocusNode(skipTraversal: true),
+                                child: Icon(
+                                  _model.passwordVisibility
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  size: 20.0,
+                                ),
                               ),
                             ),
                             style: FlutterFlowTheme.of(context)

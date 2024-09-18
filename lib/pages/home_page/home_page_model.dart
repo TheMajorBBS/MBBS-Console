@@ -12,6 +12,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
+  late bool passwordVisibility;
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
@@ -29,7 +30,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? conPass;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passwordVisibility = false;
+  }
 
   @override
   void dispose() {

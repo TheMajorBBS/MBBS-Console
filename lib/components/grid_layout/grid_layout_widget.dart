@@ -41,7 +41,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 324.0,
+      width: 348.0,
       height: 420.0,
       decoration: const BoxDecoration(),
       child: Builder(
