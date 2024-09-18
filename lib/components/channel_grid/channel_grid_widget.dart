@@ -39,7 +39,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 370.0,
+      width: 325.0,
       height: 440.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -376,10 +376,17 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                 ],
               ),
-              wrapWithModel(
-                model: _model.gridLayoutModel,
-                updateCallback: () => safeSetState(() {}),
-                child: const GridLayoutWidget(),
+              Flexible(
+                child: Container(
+                  width: 100.0,
+                  height: 100.0,
+                  decoration: const BoxDecoration(),
+                  child: wrapWithModel(
+                    model: _model.gridLayoutModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: const GridLayoutWidget(),
+                  ),
+                ),
               ),
             ],
           ),

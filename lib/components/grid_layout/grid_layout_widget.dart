@@ -40,47 +40,42 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: 369.0,
-      height: 420.0,
-      decoration: const BoxDecoration(),
-      child: Builder(
-        builder: (context) {
-          final chnnelGridList = FFAppState().channelLogList.toList();
+    return Builder(
+      builder: (context) {
+        final chnnelGridList = FFAppState().channelLogList.toList();
 
-          return GridView.builder(
-            padding: EdgeInsets.zero,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 16,
-              crossAxisSpacing: 0.0,
-              mainAxisSpacing: 0.0,
-              childAspectRatio: 400 / 325,
-            ),
-            scrollDirection: Axis.horizontal,
-            itemCount: chnnelGridList.length,
-            itemBuilder: (context, chnnelGridListIndex) {
-              final chnnelGridListItem = chnnelGridList[chnnelGridListIndex];
-              return Container(
-                width: 5.0,
-                height: 20.0,
-                decoration: const BoxDecoration(),
-                child: Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Text(
-                    chnnelGridListItem.character,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Courier Prime',
-                          color: FlutterFlowTheme.of(context).secondary,
-                          fontSize: 8.0,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
+        return GridView.builder(
+          padding: EdgeInsets.zero,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 16,
+            crossAxisSpacing: 0.0,
+            mainAxisSpacing: 0.0,
+            childAspectRatio: 400 / 325,
+          ),
+          scrollDirection: Axis.horizontal,
+          itemCount: chnnelGridList.length,
+          itemBuilder: (context, chnnelGridListIndex) {
+            final chnnelGridListItem = chnnelGridList[chnnelGridListIndex];
+            return Container(
+              width: 10.0,
+              height: 10.0,
+              decoration: const BoxDecoration(),
+              child: Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Text(
+                  chnnelGridListItem.character,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).secondary,
+                        fontSize: 8.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
-              );
-            },
-          );
-        },
-      ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
