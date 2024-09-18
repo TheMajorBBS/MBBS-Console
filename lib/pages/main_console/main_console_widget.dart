@@ -162,7 +162,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Container(
-                                              width: 372.0,
+                                              width: 328.0,
                                               height: 440.0,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
