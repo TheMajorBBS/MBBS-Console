@@ -97,7 +97,7 @@ List<ChannelStruct> parseInit(String? initString) {
 
   // Iterate over matches and print the groups
   for (var match in matches) {
-    if (counter < maxChannels) {
+    if (counter < matches.length) {
       String hex = match.group(1)!;
       String value = match.group(2)!;
       String nmsg = '';
