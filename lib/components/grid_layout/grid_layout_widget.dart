@@ -57,7 +57,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
           itemBuilder: (context, chnnelGridListIndex) {
             final chnnelGridListItem = chnnelGridList[chnnelGridListIndex];
             return Container(
-              width: 10.0,
+              width: 5.0,
               height: 10.0,
               decoration: const BoxDecoration(),
               child: Align(

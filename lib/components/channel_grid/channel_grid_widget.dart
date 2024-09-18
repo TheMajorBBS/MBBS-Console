@@ -39,7 +39,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350.0,
+      width: 360.0,
       height: 440.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
@@ -60,125 +60,170 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 height: 20.0,
                 decoration: const BoxDecoration(),
               ),
-              Text(
-                '0',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '0',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '1',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '1',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '2',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '2',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '3',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '3',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '4',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '4',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '5',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '5',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '6',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '6',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '7',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '7',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '8',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '8',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                '9',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  '9',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                'A',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  'A',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                'B',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  'B',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                'C',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  'C',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                'D',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  'D',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
-              Text(
-                'E',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).primary,
-                      letterSpacing: 0.0,
-                    ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                child: Text(
+                  'E',
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Courier Prime',
+                        color: FlutterFlowTheme.of(context).primary,
+                        letterSpacing: 0.0,
+                      ),
+                ),
               ),
               Text(
                 'F',
@@ -199,7 +244,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '0',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -210,7 +256,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -221,7 +268,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '2',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -232,7 +280,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '3',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -243,7 +292,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '4',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -254,7 +304,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '5',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -265,7 +316,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '6',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -276,7 +328,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '7',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -287,7 +340,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '8',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -298,7 +352,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '9',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -309,7 +364,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'A',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -320,7 +376,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'B',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -331,7 +388,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'C',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -342,7 +400,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'D',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -353,7 +412,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'E',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -364,7 +424,8 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'F',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -378,7 +439,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
               ),
               Flexible(
                 child: Container(
-                  width: 325.0,
+                  width: 335.0,
                   height: 420.0,
                   decoration: const BoxDecoration(),
                   child: wrapWithModel(
