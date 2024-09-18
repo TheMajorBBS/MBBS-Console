@@ -61,7 +61,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 decoration: const BoxDecoration(),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 10.0),
                 child: Text(
                   '0',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -245,7 +245,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(2.0, 0.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '0',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -441,7 +441,12 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 child: Container(
                   width: 300.0,
                   height: 420.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xFF57FFFF),
+                      width: 1.0,
+                    ),
+                  ),
                   child: wrapWithModel(
                     model: _model.gridLayoutModel,
                     updateCallback: () => safeSetState(() {}),
