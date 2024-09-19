@@ -41,7 +41,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       }
     });
 
-    _model.textController1 ??= TextEditingController();
+    _model.textController1 ??=
+        TextEditingController(text: FFAppState().username);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();
@@ -174,6 +175,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Courier Prime',
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.textController1Validator
@@ -207,6 +210,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   .labelMedium
                                   .override(
                                     fontFamily: 'Courier Prime',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     letterSpacing: 0.0,
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
@@ -263,6 +268,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Courier Prime',
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.textController2Validator
@@ -337,6 +344,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Courier Prime',
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                 ),
                             validator: _model.textController3Validator
@@ -447,6 +456,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Courier Prime',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             letterSpacing: 0.0,
                           ),
                       validator:

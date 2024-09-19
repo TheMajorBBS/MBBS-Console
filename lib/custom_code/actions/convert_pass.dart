@@ -14,8 +14,9 @@ import 'package:crypto/crypto.dart'; // For sha256
 Future<String> convertPass(String pass) async {
   // Add your function code here!
 
-  var bytes = utf8.encode(pass); // Convert the input string to bytes
-  var digest = await sha256.convert(bytes); // Get the SHA-256 hash
+  List<int> bytes = utf8.encode(pass);
+  String hash = sha256.convert(bytes).toString();
+  print(hash);
 
-  return digest.toString();
+  return hash;
 }
