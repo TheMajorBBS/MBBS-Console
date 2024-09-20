@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'grid_layout_model.dart';
@@ -63,7 +64,10 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
               child: Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Text(
-                  chnnelGridListItem.character,
+                  valueOrDefault<String>(
+                    functions.returnCharacter(chnnelGridListItem.character),
+                    '254',
+                  ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Courier Prime',
                         color: FlutterFlowTheme.of(context).secondary,
