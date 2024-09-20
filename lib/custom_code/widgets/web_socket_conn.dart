@@ -101,7 +101,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
     processMessage(String s, String st) {
       if (st == 'AUTHREQ') {
-        _channel.sink.add('[AUTHINFO][$myuser][$mypass]');
+        if (!connected) {
+          _channel.sink.add('[AUTHINFO][$myuser][$mypass]');
+        }
       } else if (st == 'AUTHOK') {
         FFAppState().connected = true;
       } else if (st == 'AUTHFAIL') {
@@ -156,13 +158,17 @@ class _WebSocketConnState extends State<WebSocketConn> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(FFAppState().wsMessage,
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Courier Prime',
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  fontSize: 18,
-                  letterSpacing: 0,
-                )),
+        Column(
+          children: [
+            Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ))
+          ],
+        ),
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
           child: FFButtonWidget(
