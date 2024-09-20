@@ -61,7 +61,7 @@ ChannelStruct parseChannelLog(String channelString) {
 
   return ChannelStruct(
       msg: msg!,
-      character: character!,
+      character: int.parse(character!),
       code: int.parse(code!),
       channel: int.parse(channel!, radix: 16));
 }
@@ -87,35 +87,28 @@ int getChannel(String channelString) {
 }
 
 List<ChannelStruct> parseInit(String? initString) {
-  RegExp regExp = RegExp(r'\[([0-9A-F]{2}) (.)\]');
+  RegExp regExp = RegExp(r'\[(.*?)\]');
 
   // Find all matches
   Iterable<RegExpMatch> matches = regExp.allMatches(initString!);
   List<ChannelStruct> initMatches = [];
-  int maxChannels = 16;
-  int counter = 0;
 
   // Iterate over matches and print the groups
   for (var match in matches) {
-    if (counter < matches.length) {
-      String hex = match.group(1)!;
-      String value = match.group(2)!;
-      String nmsg = '';
-      if (value == '.' && hex != '00') {
-        nmsg = 'idle';
-      } else if (hex == '00') {
-        nmsg = 'Local Session';
-      } else {
-        nmsg = value;
-      }
-
-      initMatches.add(ChannelStruct(
-          msg: nmsg,
-          character: value,
-          code: 0,
-          channel: int.parse(hex, radix: 16)));
+    String matchData = match.group(1)!;
+    String hex = '';
+    String char = '';
+    if (matchData.contains(':')) {
+      List<String> splitData = matchData.split(':');
+      hex = splitData[0];
+      char = splitData[1];
     }
-    counter++;
+
+    initMatches.add(ChannelStruct(
+        msg: 'init',
+        character: int.parse(char),
+        code: 0,
+        channel: int.parse(hex, radix: 16)));
   }
   //print('INIT: ' + initMatches.toString());
   return initMatches;
@@ -131,11 +124,15 @@ List<ChannelStruct> initialChannelList() {
   for (count = 0; count <= 255; count++) {
     channelList.add(ChannelStruct(
       msg: "init",
-      character: "▪",
+      character: 254,
       code: 0,
       channel: count,
     ));
   }
 
   return channelList!;
+}
+
+String? returnCharacter(int? charCode) {
+  return String.fromCharCode(charCode!);
 }

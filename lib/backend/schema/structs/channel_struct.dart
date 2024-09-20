@@ -9,12 +9,12 @@ class ChannelStruct extends BaseStruct {
   ChannelStruct({
     int? channel,
     String? msg,
-    String? character,
     int? code,
+    int? character,
   })  : _channel = channel,
         _msg = msg,
-        _character = character,
-        _code = code;
+        _code = code,
+        _character = character;
 
   // "channel" field.
   int? _channel;
@@ -32,13 +32,6 @@ class ChannelStruct extends BaseStruct {
 
   bool hasMsg() => _msg != null;
 
-  // "character" field.
-  String? _character;
-  String get character => _character ?? '';
-  set character(String? val) => _character = val;
-
-  bool hasCharacter() => _character != null;
-
   // "code" field.
   int? _code;
   int get code => _code ?? 0;
@@ -48,11 +41,20 @@ class ChannelStruct extends BaseStruct {
 
   bool hasCode() => _code != null;
 
+  // "character" field.
+  int? _character;
+  int get character => _character ?? 0;
+  set character(int? val) => _character = val;
+
+  void incrementCharacter(int amount) => character = character + amount;
+
+  bool hasCharacter() => _character != null;
+
   static ChannelStruct fromMap(Map<String, dynamic> data) => ChannelStruct(
         channel: castToType<int>(data['channel']),
         msg: data['msg'] as String?,
-        character: data['character'] as String?,
         code: castToType<int>(data['code']),
+        character: castToType<int>(data['character']),
       );
 
   static ChannelStruct? maybeFromMap(dynamic data) =>
@@ -61,8 +63,8 @@ class ChannelStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'channel': _channel,
         'msg': _msg,
-        'character': _character,
         'code': _code,
+        'character': _character,
       }.withoutNulls;
 
   @override
@@ -75,12 +77,12 @@ class ChannelStruct extends BaseStruct {
           _msg,
           ParamType.String,
         ),
-        'character': serializeParam(
-          _character,
-          ParamType.String,
-        ),
         'code': serializeParam(
           _code,
+          ParamType.int,
+        ),
+        'character': serializeParam(
+          _character,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -97,13 +99,13 @@ class ChannelStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        character: deserializeParam(
-          data['character'],
-          ParamType.String,
-          false,
-        ),
         code: deserializeParam(
           data['code'],
+          ParamType.int,
+          false,
+        ),
+        character: deserializeParam(
+          data['character'],
           ParamType.int,
           false,
         ),
@@ -117,24 +119,24 @@ class ChannelStruct extends BaseStruct {
     return other is ChannelStruct &&
         channel == other.channel &&
         msg == other.msg &&
-        character == other.character &&
-        code == other.code;
+        code == other.code &&
+        character == other.character;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([channel, msg, character, code]);
+      const ListEquality().hash([channel, msg, code, character]);
 }
 
 ChannelStruct createChannelStruct({
   int? channel,
   String? msg,
-  String? character,
   int? code,
+  int? character,
 }) =>
     ChannelStruct(
       channel: channel,
       msg: msg,
-      character: character,
       code: code,
+      character: character,
     );

@@ -1898,7 +1898,8 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                     const BoxDecoration(),
                                                                 child: Text(
                                                                   channelDetailOldItem
-                                                                      .character,
+                                                                      .character
+                                                                      .toString(),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -2037,7 +2038,8 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                         0.0),
                                                             child: Text(
                                                               channelDetailItem
-                                                                  .character,
+                                                                  .character
+                                                                  .toString(),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
