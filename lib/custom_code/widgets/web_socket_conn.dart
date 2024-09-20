@@ -101,7 +101,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
     processMessage(String s, String st) {
       if (st == 'AUTHREQ') {
-        if (!connected) {
+        if (!FFAppState().connected) {
           _channel.sink.add('[AUTHINFO][$myuser][$mypass]');
         }
       } else if (st == 'AUTHOK') {
