@@ -158,13 +158,17 @@ class _WebSocketConnState extends State<WebSocketConn> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(FFAppState().wsMessage,
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Courier Prime',
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  fontSize: 18,
-                  letterSpacing: 0,
-                )),
+        Column(
+          children: [
+            Text(FFAppState().wsMessage,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 18,
+                      letterSpacing: 0,
+                    ))
+          ],
+        ),
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
           child: FFButtonWidget(

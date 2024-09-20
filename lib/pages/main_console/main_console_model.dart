@@ -1,4 +1,3 @@
-import '/components/channel_grid/channel_grid_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'main_console_widget.dart' show MainConsoleWidget;
@@ -12,17 +11,12 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   ///  State fields for stateful widgets in this page.
 
   InstantTimer? stateTime;
-  // Model for channelGrid component.
-  late ChannelGridModel channelGridModel;
 
   @override
-  void initState(BuildContext context) {
-    channelGridModel = createModel(context, () => ChannelGridModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     stateTime?.cancel();
-    channelGridModel.dispose();
   }
 }

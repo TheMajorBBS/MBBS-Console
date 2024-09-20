@@ -49,7 +49,7 @@ ChannelStruct parseChannelLog(String channelString) {
   String? type = matches.elementAt(0).group(1);
   String? channel = matches.elementAt(1).group(1);
   String? msg = matches.elementAt(2).group(1);
-  String? character = matches.elementAt(3).group(1);
+  int? character = int.parse(matches.elementAt(3).group(1)!);
   String? code = matches.elementAt(4).group(1);
 
   if (code == 'a') {
@@ -61,7 +61,7 @@ ChannelStruct parseChannelLog(String channelString) {
 
   return ChannelStruct(
       msg: msg!,
-      character: int.parse(character!),
+      character: character,
       code: int.parse(code!),
       channel: int.parse(channel!, radix: 16));
 }
@@ -97,16 +97,16 @@ List<ChannelStruct> parseInit(String? initString) {
   for (var match in matches) {
     String matchData = match.group(1)!;
     String hex = '';
-    String char = '';
+    int? char;
     if (matchData.contains(':')) {
       List<String> splitData = matchData.split(':');
       hex = splitData[0];
-      char = splitData[1];
+      char = int.parse(splitData[1]!);
     }
 
     initMatches.add(ChannelStruct(
         msg: 'init',
-        character: int.parse(char),
+        character: char,
         code: 0,
         channel: int.parse(hex, radix: 16)));
   }
