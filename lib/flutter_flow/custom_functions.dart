@@ -104,13 +104,12 @@ List<ChannelStruct> parseInit(String? initString) {
       char = splitData[1];
       print('HEX: ' + hex);
       print('CHAR: ' + char);
+      initMatches.add(ChannelStruct(
+          msg: 'init',
+          character: int.parse(char),
+          code: 0,
+          channel: int.parse(hex, radix: 16)));
     }
-
-    initMatches.add(ChannelStruct(
-        msg: 'init',
-        character: int.parse(char),
-        code: 0,
-        channel: int.parse(hex, radix: 16)));
   }
   //print('INIT: ' + initMatches.toString());
   return initMatches;
