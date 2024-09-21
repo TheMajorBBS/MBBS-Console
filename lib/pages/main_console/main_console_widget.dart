@@ -99,7 +99,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Container(
-                    width: 875.0,
+                    width: 925.0,
                     height: 600.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primaryBackground,
@@ -1041,7 +1041,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           valueOrDefault<
                                                                               String>(
                                                                             functions.returnCharacter(chnnelGridListItem.character),
-                                                                            '254',
+                                                                            '9632',
                                                                           ),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
@@ -1081,8 +1081,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       1.0, 5.0, 1.0, 1.0),
                                   child: Container(
-                                    width: 435.0,
-                                    height: 325.0,
+                                    width: 485.0,
+                                    height: 275.0,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: const Color(0xFF57FFFF),
@@ -1219,8 +1219,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 216.0,
-                                        height: 148.0,
+                                        width: 241.0,
+                                        height: 198.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                             color: const Color(0xFF57FFFF),
@@ -1271,8 +1271,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 216.0,
-                                        height: 148.0,
+                                        width: 241.0,
+                                        height: 198.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                             color: const Color(0xFF57FFFF),
@@ -1308,6 +1308,320 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       ),
                                                 ),
                                               ),
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    dateTimeFormat("H:m M/d/y",
+                                                        getCurrentTimestamp),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Memory Avail:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .MySysVars
+                                                        .memory,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'HD room Avail:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState().MySysVars.hdd,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Response Time:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .MySysVars
+                                                        .response,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Active Accents:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .MySysVars
+                                                        .acctAct
+                                                        .toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Calls to Date:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .MySysVars
+                                                        .calls
+                                                        .toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          2.0, 0.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Total mail/Forum:',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 1.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .MySysVars
+                                                        .msgtot
+                                                        .toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Courier Prime',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .accent2,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -1632,7 +1946,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                       padding: const EdgeInsetsDirectional.fromSTEB(
                                           1.0, 1.0, 1.0, 1.0),
                                       child: Container(
-                                        width: 869.0,
+                                        width: 919.0,
                                         height: 50.0,
                                         decoration: BoxDecoration(
                                           border: Border.all(

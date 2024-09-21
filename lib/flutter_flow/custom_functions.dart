@@ -97,16 +97,18 @@ List<ChannelStruct> parseInit(String? initString) {
   for (var match in matches) {
     String matchData = match.group(1)!;
     String hex = '';
-    int? char;
+    String char = '';
     if (matchData.contains(':')) {
       List<String> splitData = matchData.split(':');
       hex = splitData[0];
-      char = int.parse(splitData[1]!);
+      char = splitData[1];
+      print('HEX: ' + hex);
+      print('CHAR: ' + char);
     }
 
     initMatches.add(ChannelStruct(
         msg: 'init',
-        character: char,
+        character: int.parse(char),
         code: 0,
         channel: int.parse(hex, radix: 16)));
   }
@@ -134,5 +136,14 @@ List<ChannelStruct> initialChannelList() {
 }
 
 String? returnCharacter(int? charCode) {
-  return String.fromCharCode(charCode!);
+  int? newCode;
+  if (charCode == 18) {
+    newCode = 8597;
+  } else if (charCode == 254) {
+    newCode = 9632;
+  } else {
+    newCode = charCode!;
+  }
+
+  return String.fromCharCode(newCode!);
 }
