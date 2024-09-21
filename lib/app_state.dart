@@ -78,6 +78,18 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _password = await secureStorage.getString('ff_password') ?? _password;
     });
+    await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_MySysVars') != null) {
+        try {
+          final serializedData =
+              await secureStorage.getString('ff_MySysVars') ?? '{}';
+          _MySysVars =
+              SysVarsStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -87,7 +99,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.6.3';
+  String _version = '0.6.5';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -359,6 +371,22 @@ class FFAppState extends ChangeNotifier {
 
   void deletePassword() {
     secureStorage.delete(key: 'ff_password');
+  }
+
+  SysVarsStruct _MySysVars = SysVarsStruct();
+  SysVarsStruct get MySysVars => _MySysVars;
+  set MySysVars(SysVarsStruct value) {
+    _MySysVars = value;
+    secureStorage.setString('ff_MySysVars', value.serialize());
+  }
+
+  void deleteMySysVars() {
+    secureStorage.delete(key: 'ff_MySysVars');
+  }
+
+  void updateMySysVarsStruct(Function(SysVarsStruct) updateFn) {
+    updateFn(_MySysVars);
+    secureStorage.setString('ff_MySysVars', _MySysVars.serialize());
   }
 }
 
