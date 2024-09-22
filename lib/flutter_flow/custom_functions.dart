@@ -102,8 +102,7 @@ List<ChannelStruct> parseInit(String? initString) {
       List<String> splitData = matchData.split(':');
       hex = splitData[0];
       char = splitData[1];
-      print('HEX: ' + hex);
-      print('CHAR: ' + char);
+
       initMatches.add(ChannelStruct(
           msg: 'init',
           character: int.parse(char),
