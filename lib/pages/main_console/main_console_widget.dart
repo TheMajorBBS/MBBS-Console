@@ -1495,7 +1495,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       .fromSTEB(
                                                           2.0, 0.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Active Accents:',
+                                                    'Active Accounts:',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
