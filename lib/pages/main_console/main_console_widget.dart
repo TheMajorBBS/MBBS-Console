@@ -1323,7 +1323,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           2.0, 0.0, 0.0, 0.0),
                                                   child: Text(
                                                     dateTimeFormat(
-                                                        "H:m M/d/y",
+                                                        "H:mm M/d/y",
                                                         FFAppState()
                                                             .MySysVars
                                                             .time),
