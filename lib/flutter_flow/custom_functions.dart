@@ -53,10 +53,10 @@ ChannelStruct parseChannelLog(String channelString) {
   String? code = matches.elementAt(4).group(1);
 
   if (code == 'a') {
-    msg = 'idle';
+    msg = 'TCP/IP channel ready...';
   }
   if (msg!.startsWith('TCP/IP channel ready')) {
-    msg = 'idle';
+    msg = 'TCP/IP channel ready...';
   }
 
   return ChannelStruct(
@@ -104,7 +104,7 @@ List<ChannelStruct> parseInit(String? initString) {
       char = splitData[1];
 
       initMatches.add(ChannelStruct(
-          msg: 'init',
+          msg: 'TCP/IP channel ready...',
           character: int.parse(char),
           code: 0,
           channel: int.parse(hex, radix: 16)));
