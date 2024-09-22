@@ -202,3 +202,9 @@ SysVarsStruct processSysVar(String myMessage) {
     time: DateTime.now(),
   );
 }
+
+String chanToHex(int channelInt) {
+  final myInt = channelInt;
+  final newHex = myInt.toRadixString(16);
+  return newHex;
+}
