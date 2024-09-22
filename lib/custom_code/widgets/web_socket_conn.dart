@@ -115,6 +115,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
         FFAppState().addToAuditLogList(functions.parseAuditLog(s));
       } else if (st == 'INIT') {
         doInitMessage(s);
+      } else if (st == 'SYSVAR') {
+        FFAppState().MySysVars = processSysVar(myMessage);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
       }
@@ -140,7 +142,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                           ? processMessage(myMessage, 'AUDIT')
                           : myMessage.startsWith('[INIT')
                               ? processMessage(myMessage, 'INIT')
-                              : null;
+                              : myMessage.startsWith('[SYSVARS')
+                                  ? processMessage(myMessage, 'SYSVAR')
+                                  : null;
 
       setState(() {});
     }, onError: (e) {

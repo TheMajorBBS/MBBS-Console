@@ -136,13 +136,70 @@ List<ChannelStruct> initialChannelList() {
 
 String? returnCharacter(int? charCode) {
   int? newCode;
+
   if (charCode == 18) {
     newCode = 8597;
   } else if (charCode == 254) {
     newCode = 9632;
+  } else if (charCode == 15) {
+    newCode == 9788;
+  } else if (charCode == 9) {
+    newCode == 927;
+  } else if (charCode == 21) {
+    newCode == 8869;
+  } else if (charCode == 50616) {
+    newCode == 402;
+  } else if (charCode == 24) {
+    newCode == 8593;
   } else {
     newCode = charCode!;
   }
 
   return String.fromCharCode(newCode!);
+}
+
+SysVarsStruct? processSysVar(String? myMessage) {
+  RegExp regExp = RegExp(r'\[(.*?)\]');
+  Iterable<Match> matches = regExp.allMatches(myMessage!);
+  String MEM = '';
+  String HDDS = '';
+  String RESPT = '';
+  int ACCTACC = 0;
+  int CALLS = 0;
+  int MSGTOT = 0;
+
+  for (var match in matches) {
+    String content = match.group(1)!; // Extract content inside []
+
+    // Check if it contains a colon
+    if (content.contains(':')) {
+      List<String> parts = content.split(':');
+      String key = parts[0].trim(); // Key before the colon
+      String value = parts[1].trim(); // Value after the colon
+      if (key == 'MEM') {
+        MEM = value;
+      } else if (key == 'HDDS') {
+        HDDS = value;
+      } else if (key == 'RESPT') {
+        RESPT = value;
+      } else if (key == 'ACCTACC') {
+        ACCTACC = int.parse(value);
+      } else if (key == 'CALLS') {
+        CALLS = int.parse(value);
+      } else if (key == 'MSGTOT') {
+        MSGTOT = int.parse(value);
+      } else {
+        print('NO VALUE');
+      }
+    }
+    return SysVarsStruct(
+      hdd: HDDS,
+      response: RESPT,
+      memory: MEM,
+      acctAct: ACCTACC,
+      calls: CALLS,
+      msgtot: MSGTOT,
+      time: DateTime.now(),
+    );
+  }
 }

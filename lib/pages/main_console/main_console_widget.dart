@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -32,6 +33,15 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       _model.sideNav = 'summary';
       safeSetState(() {});
       FFAppState().wsMessage = 'connecting...';
+      FFAppState().MySysVars = SysVarsStruct(
+        hdd: '1GB',
+        response: '5ms',
+        memory: '1GB',
+        acctAct: 7,
+        calls: 8,
+        msgtot: 9,
+        time: getCurrentTimestamp,
+      );
       safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
         duration: const Duration(milliseconds: 2000),
@@ -1312,8 +1322,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       .fromSTEB(
                                                           2.0, 0.0, 0.0, 0.0),
                                                   child: Text(
-                                                    dateTimeFormat("H:m M/d/y",
-                                                        getCurrentTimestamp),
+                                                    dateTimeFormat(
+                                                        "H:m M/d/y",
+                                                        FFAppState()
+                                                            .MySysVars
+                                                            .time),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
