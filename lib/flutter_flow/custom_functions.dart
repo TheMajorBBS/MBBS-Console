@@ -141,15 +141,15 @@ String? returnCharacter(int? charCode) {
   } else if (charCode == 254) {
     newCode = 9632;
   } else if (charCode == 15) {
-    newCode == 9788;
+    newCode = 9788;
   } else if (charCode == 9) {
-    newCode == 927;
+    newCode = 927;
   } else if (charCode == 21) {
-    newCode == 8869;
+    newCode = 8869;
   } else if (charCode == 50616) {
-    newCode == 402;
+    newCode = 402;
   } else if (charCode == 24) {
-    newCode == 8593;
+    newCode = 8593;
   } else {
     newCode = charCode!;
   }
