@@ -99,7 +99,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.6.7';
+  String _version = '0.6.8';
   String get version => _version;
   set version(String value) {
     _version = value;

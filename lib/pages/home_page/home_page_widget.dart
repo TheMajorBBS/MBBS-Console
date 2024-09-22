@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutterflow_colorpicker/flutterflow_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -272,6 +273,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       .primaryBackground,
                                   letterSpacing: 0.0,
                                 ),
+                            maxLength: 9,
+                            maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                            buildCounter: (context,
+                                    {required currentLength,
+                                    required isFocused,
+                                    maxLength}) =>
+                                null,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),
