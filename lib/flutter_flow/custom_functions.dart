@@ -158,7 +158,7 @@ String? returnCharacter(int? charCode) {
   return String.fromCharCode(newCode!);
 }
 
-SysVarsStruct? processSysVar(String? myMessage) {
+SysVarsStruct processSysVar(String myMessage) {
   RegExp regExp = RegExp(r'\[(.*?)\]');
   Iterable<Match> matches = regExp.allMatches(myMessage!);
   String MEM = '';
@@ -192,14 +192,14 @@ SysVarsStruct? processSysVar(String? myMessage) {
         print('NO VALUE');
       }
     }
-    return SysVarsStruct(
-      hdd: HDDS,
-      response: RESPT,
-      memory: MEM,
-      acctAct: ACCTACC,
-      calls: CALLS,
-      msgtot: MSGTOT,
-      time: DateTime.now(),
-    );
   }
+  return SysVarsStruct(
+    hdd: HDDS,
+    response: RESPT,
+    memory: MEM,
+    acctAct: ACCTACC,
+    calls: CALLS,
+    msgtot: MSGTOT,
+    time: DateTime.now(),
+  );
 }
