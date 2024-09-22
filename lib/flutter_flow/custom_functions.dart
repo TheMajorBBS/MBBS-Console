@@ -163,7 +163,7 @@ SysVarsStruct processSysVar(String myMessage) {
   String MEM = '';
   String HDDS = '';
   String RESPT = '';
-  int ACCTACC = 0;
+  int ACTACC = 0;
   int CALLS = 0;
   int MSGTOT = 0;
 
@@ -181,8 +181,8 @@ SysVarsStruct processSysVar(String myMessage) {
         HDDS = value;
       } else if (key == 'RESPT') {
         RESPT = value;
-      } else if (key == 'ACCTACC') {
-        ACCTACC = int.parse(value);
+      } else if (key == 'ACTACC') {
+        ACTACC = int.parse(value);
       } else if (key == 'CALLS') {
         CALLS = int.parse(value);
       } else if (key == 'MSGTOT') {
@@ -196,7 +196,7 @@ SysVarsStruct processSysVar(String myMessage) {
     hdd: HDDS,
     response: RESPT,
     memory: MEM,
-    acctAct: ACCTACC,
+    acctAct: ACTACC,
     calls: CALLS,
     msgtot: MSGTOT,
     time: DateTime.now(),
