@@ -116,7 +116,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
       } else if (st == 'INIT') {
         doInitMessage(s);
       } else if (st == 'SYSVAR') {
-        FFAppState().MySysVars = processSysVar(myMessage);
+        FFAppState().MySysVars = functions.processSysVar(myMessage);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
       }
