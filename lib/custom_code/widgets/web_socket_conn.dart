@@ -142,7 +142,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
                           ? processMessage(myMessage, 'AUDIT')
                           : myMessage.startsWith('[INIT')
                               ? processMessage(myMessage, 'INIT')
-                              : myMessage.startsWith('[SYSVARS')
+                              : myMessage.startsWith('[SYSVAR')
                                   ? processMessage(myMessage, 'SYSVAR')
                                   : null;
 
