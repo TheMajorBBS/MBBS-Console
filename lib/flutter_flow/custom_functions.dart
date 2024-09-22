@@ -123,7 +123,7 @@ List<ChannelStruct> initialChannelList() {
   int count = 0;
   for (count = 0; count <= 255; count++) {
     channelList.add(ChannelStruct(
-      msg: "init",
+      msg: "TCP/IP channel ready...",
       character: 254,
       code: 0,
       channel: count,
@@ -206,5 +206,6 @@ SysVarsStruct processSysVar(String myMessage) {
 String chanToHex(int channelInt) {
   final myInt = channelInt;
   final newHex = myInt.toRadixString(16);
-  return newHex;
+  final padHex = newHex.padLeft(2, '0');
+  return padHex.toUpperCase();
 }
