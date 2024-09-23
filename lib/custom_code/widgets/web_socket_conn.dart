@@ -108,6 +108,19 @@ class _WebSocketConnState extends State<WebSocketConn> {
         FFAppState().connected = true;
       } else if (st == 'AUTHFAIL') {
         FFAppState().connected = false;
+        context.goNamed('HomePage');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Authentication Failed',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primary,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          ),
+        );
       } else if (st == 'CHANNEL') {
         FFAppState().updateChannelLogListAtIndex(
             functions.getChannel(s), (_) => functions.parseChannelLog(s));
