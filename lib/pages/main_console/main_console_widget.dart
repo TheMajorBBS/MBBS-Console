@@ -5281,7 +5281,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      color: chnnelGridListItem.character == 254 ? FlutterFlowTheme.of(context).secondary : FlutterFlowTheme.of(context).primary,
                                                                                       fontSize: 12.0,
                                                                                       letterSpacing: 0.0,
                                                                                     ),
@@ -5793,26 +5793,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                 border: Border.all(
                                                   color: const Color(0xFF57FFFF),
                                                   width: 1.0,
-                                                ),
-                                              ),
-                                              child: Align(
-                                                alignment: const AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Text(
-                                                  FFAppState().wsMessage,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Courier Prime',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        fontSize: 18.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
                                                 ),
                                               ),
                                             ),
