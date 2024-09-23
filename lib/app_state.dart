@@ -401,7 +401,7 @@ class FFAppState extends ChangeNotifier {
     secureStorage.setString('ff_MySysVars', _MySysVars.serialize());
   }
 
-  List<double> _usey = [0.0, 0.0, 0.0, 25.0];
+  List<double> _usey = [0.0, 0.0, 0.0, 0.0];
   List<double> get usey => _usey;
   set usey(List<double> value) {
     _usey = value;
