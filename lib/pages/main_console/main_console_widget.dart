@@ -2992,7 +2992,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     .fromSTEB(
                                                         10.0, 5.0, 5.0, 0.0),
                                                 child: Container(
-                                                  width: 810.0,
+                                                  width: 700.0,
                                                   height: 425.0,
                                                   decoration: const BoxDecoration(),
                                                   child: Builder(
@@ -3024,6 +3024,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
