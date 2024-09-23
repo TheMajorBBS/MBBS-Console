@@ -32,7 +32,7 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
       FFAppState().addToAuditLogList(AuditStruct(
         datetime: getCurrentTimestamp,
         data: 'Audit Log Started',
-        channel: '0',
+        channel: 'Chan 00',
         user: 'Sysop',
       ));
       safeSetState(() {});
