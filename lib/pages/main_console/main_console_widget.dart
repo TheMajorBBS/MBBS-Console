@@ -2992,7 +2992,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     .fromSTEB(
                                                         10.0, 5.0, 5.0, 0.0),
                                                 child: Container(
-                                                  width: 700.0,
+                                                  width: 800.0,
                                                   height: 425.0,
                                                   decoration: const BoxDecoration(),
                                                   child: Builder(
@@ -3026,7 +3026,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         .max,
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
-                                                                        .spaceBetween,
+                                                                        .start,
                                                                 children: [
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
@@ -3053,20 +3053,28 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                  Text(
-                                                                    auditTrailLogsItem
-                                                                        .data,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Courier Prime',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            50.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      auditTrailLogsItem
+                                                                          .data,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Courier Prime',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
+                                                                    ),
                                                                   ),
                                                                   Text(
                                                                     auditTrailLogsItem
