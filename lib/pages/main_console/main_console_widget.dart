@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
@@ -7,6 +8,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main_console_model.dart';
 export 'main_console_model.dart';
@@ -1269,6 +1271,82 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       0.0,
                                                                 ),
                                                           ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 5.0,
+                                                                0.0, 0.0),
+                                                    child: SizedBox(
+                                                      width: 220.0,
+                                                      height: 160.0,
+                                                      child:
+                                                          FlutterFlowLineChart(
+                                                        data: [
+                                                          FFLineChartData(
+                                                            xData: FFAppState()
+                                                                .usex,
+                                                            yData: FFAppState()
+                                                                .usey,
+                                                            settings:
+                                                                LineChartBarData(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              barWidth: 2.0,
+                                                              isCurved: true,
+                                                              preventCurveOverShooting:
+                                                                  true,
+                                                            ),
+                                                          )
+                                                        ],
+                                                        chartStylingInfo:
+                                                            ChartStylingInfo(
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primaryBackground,
+                                                          showGrid: true,
+                                                          showBorder: false,
+                                                        ),
+                                                        axisBounds: const AxisBounds(
+                                                          minX: 0.0,
+                                                          minY: 0.0,
+                                                          maxX: 45.0,
+                                                          maxY: 100.0,
+                                                        ),
+                                                        xAxisLabelInfo:
+                                                            AxisLabelInfo(
+                                                          showLabels: true,
+                                                          labelTextStyle:
+                                                              GoogleFonts
+                                                                  .getFont(
+                                                            'Courier Prime',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            fontSize: 12.0,
+                                                          ),
+                                                          labelInterval: 10.0,
+                                                          reservedSize: 32.0,
+                                                        ),
+                                                        yAxisLabelInfo:
+                                                            AxisLabelInfo(
+                                                          showLabels: true,
+                                                          labelTextStyle:
+                                                              GoogleFonts
+                                                                  .getFont(
+                                                            'Courier Prime',
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            fontSize: 10.0,
+                                                          ),
+                                                          labelInterval: 10.0,
+                                                          reservedSize: 40.0,
                                                         ),
                                                       ),
                                                     ),

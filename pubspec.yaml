@@ -30,6 +30,7 @@ dependencies:
   collection: 1.18.0
   crypto: ^3.0.0
   csv: 6.0.0
+  fl_chart: 0.68.0
   flutter_animate: 4.5.0
   flutter_cache_manager: 3.3.1
   flutter_secure_storage: 9.2.2

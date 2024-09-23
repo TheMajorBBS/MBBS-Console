@@ -90,6 +90,12 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    await _safeInitAsync(() async {
+      _usey = (await secureStorage.getStringList('ff_usey'))
+              ?.map(double.parse)
+              .toList() ??
+          _usey;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -99,7 +105,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.7.1';
+  String _version = '0.7.2';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -387,6 +393,80 @@ class FFAppState extends ChangeNotifier {
   void updateMySysVarsStruct(Function(SysVarsStruct) updateFn) {
     updateFn(_MySysVars);
     secureStorage.setString('ff_MySysVars', _MySysVars.serialize());
+  }
+
+  List<double> _usey = [];
+  List<double> get usey => _usey;
+  set usey(List<double> value) {
+    _usey = value;
+    secureStorage.setStringList(
+        'ff_usey', value.map((x) => x.toString()).toList());
+  }
+
+  void deleteUsey() {
+    secureStorage.delete(key: 'ff_usey');
+  }
+
+  void addToUsey(double value) {
+    usey.add(value);
+    secureStorage.setStringList(
+        'ff_usey', _usey.map((x) => x.toString()).toList());
+  }
+
+  void removeFromUsey(double value) {
+    usey.remove(value);
+    secureStorage.setStringList(
+        'ff_usey', _usey.map((x) => x.toString()).toList());
+  }
+
+  void removeAtIndexFromUsey(int index) {
+    usey.removeAt(index);
+    secureStorage.setStringList(
+        'ff_usey', _usey.map((x) => x.toString()).toList());
+  }
+
+  void updateUseyAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    usey[index] = updateFn(_usey[index]);
+    secureStorage.setStringList(
+        'ff_usey', _usey.map((x) => x.toString()).toList());
+  }
+
+  void insertAtIndexInUsey(int index, double value) {
+    usey.insert(index, value);
+    secureStorage.setStringList(
+        'ff_usey', _usey.map((x) => x.toString()).toList());
+  }
+
+  List<double> _usex = [];
+  List<double> get usex => _usex;
+  set usex(List<double> value) {
+    _usex = value;
+  }
+
+  void addToUsex(double value) {
+    usex.add(value);
+  }
+
+  void removeFromUsex(double value) {
+    usex.remove(value);
+  }
+
+  void removeAtIndexFromUsex(int index) {
+    usex.removeAt(index);
+  }
+
+  void updateUsexAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    usex[index] = updateFn(_usex[index]);
+  }
+
+  void insertAtIndexInUsex(int index, double value) {
+    usex.insert(index, value);
   }
 }
 
