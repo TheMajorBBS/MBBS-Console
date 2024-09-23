@@ -96,6 +96,12 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _usey;
     });
+    await _safeInitAsync(() async {
+      _usex = (await secureStorage.getStringList('ff_usex'))
+              ?.map(double.parse)
+              .toList() ??
+          _usex;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -395,7 +401,7 @@ class FFAppState extends ChangeNotifier {
     secureStorage.setString('ff_MySysVars', _MySysVars.serialize());
   }
 
-  List<double> _usey = [];
+  List<double> _usey = [0.0, 0.0, 0.0, 0.0];
   List<double> get usey => _usey;
   set usey(List<double> value) {
     _usey = value;
@@ -440,22 +446,34 @@ class FFAppState extends ChangeNotifier {
         'ff_usey', _usey.map((x) => x.toString()).toList());
   }
 
-  List<double> _usex = [];
+  List<double> _usex = [0.0, 15.0, 30.0, 45.0];
   List<double> get usex => _usex;
   set usex(List<double> value) {
     _usex = value;
+    secureStorage.setStringList(
+        'ff_usex', value.map((x) => x.toString()).toList());
+  }
+
+  void deleteUsex() {
+    secureStorage.delete(key: 'ff_usex');
   }
 
   void addToUsex(double value) {
     usex.add(value);
+    secureStorage.setStringList(
+        'ff_usex', _usex.map((x) => x.toString()).toList());
   }
 
   void removeFromUsex(double value) {
     usex.remove(value);
+    secureStorage.setStringList(
+        'ff_usex', _usex.map((x) => x.toString()).toList());
   }
 
   void removeAtIndexFromUsex(int index) {
     usex.removeAt(index);
+    secureStorage.setStringList(
+        'ff_usex', _usex.map((x) => x.toString()).toList());
   }
 
   void updateUsexAtIndex(
@@ -463,10 +481,14 @@ class FFAppState extends ChangeNotifier {
     double Function(double) updateFn,
   ) {
     usex[index] = updateFn(_usex[index]);
+    secureStorage.setStringList(
+        'ff_usex', _usex.map((x) => x.toString()).toList());
   }
 
   void insertAtIndexInUsex(int index, double value) {
     usex.insert(index, value);
+    secureStorage.setStringList(
+        'ff_usex', _usex.map((x) => x.toString()).toList());
   }
 }
 

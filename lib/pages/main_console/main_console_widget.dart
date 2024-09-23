@@ -1331,6 +1331,17 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             fontSize: 12.0,
                                                           ),
                                                           labelInterval: 10.0,
+                                                          labelFormatter:
+                                                              LabelFormatter(
+                                                            numberFormat:
+                                                                (val) =>
+                                                                    formatNumber(
+                                                              val,
+                                                              formatType:
+                                                                  FormatType
+                                                                      .compact,
+                                                            ),
+                                                          ),
                                                           reservedSize: 32.0,
                                                         ),
                                                         yAxisLabelInfo:
