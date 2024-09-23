@@ -1315,7 +1315,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         axisBounds: const AxisBounds(
                                                           minX: 0.0,
                                                           minY: 0.0,
-                                                          maxX: 45.0,
+                                                          maxX: 30.0,
                                                           maxY: 100.0,
                                                         ),
                                                         xAxisLabelInfo:
@@ -3139,7 +3139,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         .max,
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
-                                                                        .start,
+                                                                        .spaceBetween,
                                                                 children: [
                                                                   Padding(
                                                                     padding: const EdgeInsetsDirectional
@@ -3171,7 +3171,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
-                                                                            50.0,
+                                                                            100.0,
                                                                             0.0),
                                                                     child: Text(
                                                                       auditTrailLogsItem
@@ -3189,20 +3189,34 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                     ),
                                                                   ),
-                                                                  Text(
-                                                                    auditTrailLogsItem
-                                                                        .channel,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Courier Prime',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                          letterSpacing:
-                                                                              0.0,
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .end,
+                                                                      children: [
+                                                                        Text(
+                                                                          auditTrailLogsItem
+                                                                              .channel,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Courier Prime',
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                letterSpacing: 0.0,
+                                                                              ),
                                                                         ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ],
                                                               ),

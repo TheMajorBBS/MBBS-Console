@@ -41,6 +41,12 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
       safeSetState(() {});
 
       context.pushNamed('mainConsole');
+
+      FFAppState().updateUseyAtIndex(
+        0,
+        (_) => 0.0,
+      );
+      safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

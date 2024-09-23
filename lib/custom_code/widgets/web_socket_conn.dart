@@ -81,6 +81,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
     );
   }
 
+  doSysUse(String sysUseMessage) async {
+    double su = functions.parseSysUse(sysUseMessage);
+    await actions.processSysUse(su);
+  }
+
   startStream() async {
     myMessage = 'Connecting...';
     FFAppState().wsMessage = myMessage;
@@ -130,6 +135,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
         doInitMessage(s);
       } else if (st == 'SYSVAR') {
         FFAppState().MySysVars = functions.processSysVar(myMessage);
+      } else if (st == 'SYSUSE') {
+        doSysUse(s);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
       }
@@ -157,7 +164,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                               ? processMessage(myMessage, 'INIT')
                               : myMessage.startsWith('[SYSVAR')
                                   ? processMessage(myMessage, 'SYSVAR')
-                                  : null;
+                                  : myMessage.startsWith('[SYSUSE')
+                                      ? processMessage(myMessage, 'SYSUSE')
+                                      : null;
 
       setState(() {});
     }, onError: (e) {
