@@ -1315,7 +1315,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         axisBounds: const AxisBounds(
                                                           minX: 0.0,
                                                           minY: 0.0,
-                                                          maxX: 30.0,
+                                                          maxX: 45.0,
                                                           maxY: 100.0,
                                                         ),
                                                         xAxisLabelInfo:
