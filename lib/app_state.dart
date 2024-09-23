@@ -111,7 +111,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.7.2';
+  String _version = '0.7.3';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -401,7 +401,7 @@ class FFAppState extends ChangeNotifier {
     secureStorage.setString('ff_MySysVars', _MySysVars.serialize());
   }
 
-  List<double> _usey = [0.0, 0.0, 0.0, 0.0];
+  List<double> _usey = [0.0, 0.0, 0.0, 25.0];
   List<double> get usey => _usey;
   set usey(List<double> value) {
     _usey = value;

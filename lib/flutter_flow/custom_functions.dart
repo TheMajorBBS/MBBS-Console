@@ -121,9 +121,15 @@ int? convertChannel(String? baseChannel) {
 List<ChannelStruct> initialChannelList() {
   List<ChannelStruct> channelList = [];
   int count = 0;
+  String mymsg = '';
   for (count = 0; count <= 255; count++) {
+    if (count == 0) {
+      mymsg = "Local Session";
+    } else {
+      mymsg = "TCP/IP channel ready...";
+    }
     channelList.add(ChannelStruct(
-      msg: "TCP/IP channel ready...",
+      msg: mymsg,
       character: 254,
       code: 0,
       channel: count,
@@ -208,4 +214,22 @@ String chanToHex(int channelInt) {
   final newHex = myInt.toRadixString(16);
   final padHex = newHex.padLeft(2, '0');
   return padHex.toUpperCase();
+}
+
+double parseSysUse(String sysString) {
+  RegExp regExp = RegExp(r'\[(.*?)\]');
+  Iterable<RegExpMatch> matches = regExp.allMatches(sysString);
+  double myuse = 0.0;
+
+  for (var match in matches) {
+    String content = match.group(1)!; // Extract content inside the brackets
+    if (content.contains(':')) {
+      // If content contains ':', split it
+      List<String> parts = content.split(':');
+      String key = parts[0];
+      String value = parts[1];
+      myuse = double.parse(value);
+    }
+  }
+  return myuse;
 }
