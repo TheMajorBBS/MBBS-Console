@@ -79,15 +79,39 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           iconTheme: IconThemeData(
               color: FlutterFlowTheme.of(context).primaryBackground),
-          automaticallyImplyLeading: true,
-          title: Text(
-            'The Major BBS',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Courier Prime',
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w600,
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 25.0, 0.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.goNamed('HomePage');
+                  },
+                  child: Icon(
+                    Icons.home_filled,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                    size: 26.0,
+                  ),
                 ),
+              ),
+              Text(
+                'The Major BBS',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Courier Prime',
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      letterSpacing: 0.0,
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ],
           ),
           actions: const [],
           centerTitle: false,
