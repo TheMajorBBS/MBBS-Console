@@ -94,14 +94,17 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         ): VoidCallbackIntent(() async {
           await showModalBottomSheet(
             isScrollControlled: true,
-            backgroundColor: FlutterFlowTheme.of(context).primary,
+            backgroundColor: Colors.transparent,
             context: context,
             builder: (context) {
               return GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Padding(
                   padding: MediaQuery.viewInsetsOf(context),
-                  child: const SocketLogCompWidget(),
+                  child: const SizedBox(
+                    height: 500.0,
+                    child: SocketLogCompWidget(),
+                  ),
                 ),
               );
             },
@@ -968,6 +971,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Padding(
                                                             padding:
