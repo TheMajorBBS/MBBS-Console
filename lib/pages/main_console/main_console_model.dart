@@ -10,10 +10,13 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final shortcutsFocusNode = FocusNode();
   InstantTimer? stateTime;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    shortcutsFocusNode.requestFocus();
+  }
 
   @override
   void dispose() {

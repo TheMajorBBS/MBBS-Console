@@ -111,7 +111,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.7.3';
+  String _version = '0.7.4';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -489,6 +489,41 @@ class FFAppState extends ChangeNotifier {
     usex.insert(index, value);
     secureStorage.setStringList(
         'ff_usex', _usex.map((x) => x.toString()).toList());
+  }
+
+  List<String> _socketMessageLog = [];
+  List<String> get socketMessageLog => _socketMessageLog;
+  set socketMessageLog(List<String> value) {
+    _socketMessageLog = value;
+  }
+
+  void addToSocketMessageLog(String value) {
+    socketMessageLog.add(value);
+  }
+
+  void removeFromSocketMessageLog(String value) {
+    socketMessageLog.remove(value);
+  }
+
+  void removeAtIndexFromSocketMessageLog(int index) {
+    socketMessageLog.removeAt(index);
+  }
+
+  void updateSocketMessageLogAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    socketMessageLog[index] = updateFn(_socketMessageLog[index]);
+  }
+
+  void insertAtIndexInSocketMessageLog(int index, String value) {
+    socketMessageLog.insert(index, value);
+  }
+
+  bool _showUserSearch = false;
+  bool get showUserSearch => _showUserSearch;
+  set showUserSearch(bool value) {
+    _showUserSearch = value;
   }
 }
 

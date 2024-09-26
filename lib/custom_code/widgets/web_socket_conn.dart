@@ -48,6 +48,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myuser = '';
   String mypass = '';
   late WebSocketChannel _channel;
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
 
   @override
   void initState() {
@@ -56,6 +58,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     myuser = FFAppState().username;
     mypass = FFAppState().password;
     FFAppState().wsMessage = myMessage;
+    FFAppState().addToSocketMessageLog(myMessage);
     if (widget.isSecure!) {
       myext = 'wss://';
     }
@@ -84,6 +87,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
   doSysUse(String sysUseMessage) async {
     double su = functions.parseSysUse(sysUseMessage);
     await actions.processSysUse(su);
+  }
+
+  sendUserSearch(String u) async {
+    _channel.sink.add('[ACCREQ][$u]');
+    FFAppState().showUserSearch = false;
   }
 
   startStream() async {
@@ -182,19 +190,79 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        Column(
-          children: [
-            Text(FFAppState().wsMessage,
+        // Generated code for this TextField Widget...
+        Visibility(
+          visible: FFAppState().showUserSearch,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 2.0, 200.0, 0.0),
+            child: Container(
+              width: 200.0,
+              child: TextFormField(
+                controller: textController,
+                focusNode: textFieldFocusNode,
+                onFieldSubmitted: (_) async {
+                  FFAppState().addToSocketMessageLog(
+                      'Search username: ${textController.text}');
+                  sendUserSearch(textController.text);
+                  safeSetState(() {});
+                },
+                autofocus: false,
+                obscureText: false,
+                decoration: InputDecoration(
+                  isDense: true,
+                  labelText: 'User Lookup',
+                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Courier Prime',
+                        letterSpacing: 0.0,
+                      ),
+                  hintText: 'Look up a user',
+                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily: 'Courier Prime',
+                        letterSpacing: 0.0,
+                      ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0x00000000),
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).error,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  filled: true,
+                  fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                ),
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Courier Prime',
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      fontSize: 18,
-                      letterSpacing: 0,
-                    ))
-          ],
+                      fontFamily: 'Readex Pro',
+                      letterSpacing: 0.0,
+                    ),
+                cursorColor: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+          ),
         ),
+
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
           child: FFButtonWidget(
