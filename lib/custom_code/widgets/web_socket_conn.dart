@@ -91,6 +91,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   sendUserSearch(String u) async {
     _channel.sink.add('[ACCREQ][$u]');
+    FFAppState().addToSocketMessageLog('Sent: [ACCREQ][$u]');
     FFAppState().showUserSearch = false;
   }
 
@@ -106,6 +107,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
       await _channel.ready;
       myMessage = 'Authenticating...';
       FFAppState().wsMessage = myMessage;
+      FFAppState().addToSocketMessageLog(myMessage);
       setState(() {});
       //FFAppState().connected = true;
     } on WebSocketChannelException catch (e) {
@@ -157,6 +159,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
       myMessage = '${event}';
       print(myMessage);
       FFAppState().wsMessage = myMessage;
+      FFAppState().addToSocketMessageLog(myMessage);
 
       myMessage.startsWith('[AUTHREQ')
           ? processMessage(myMessage, 'AUTHREQ')
@@ -191,20 +194,19 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // Generated code for this TextField Widget...
         Visibility(
           visible: FFAppState().showUserSearch,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 2.0, 200.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(10.0, 2.0, 100.0, 0.0),
             child: Container(
               width: 200.0,
               child: TextFormField(
                 controller: textController,
                 focusNode: textFieldFocusNode,
                 onFieldSubmitted: (_) async {
-                  FFAppState().addToSocketMessageLog(
-                      'Search username: ${textController.text}');
                   sendUserSearch(textController.text);
                   safeSetState(() {});
                 },
@@ -264,7 +266,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
         ),
 
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
           child: FFButtonWidget(
             onPressed: () async {
               if (FFAppState().connected) {
@@ -278,7 +280,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
             text: FFAppState().connected ? 'Disconnect' : 'Connect',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 5.0, 0.0),
               iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
