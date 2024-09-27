@@ -585,7 +585,9 @@ class FFAppState extends ChangeNotifier {
         'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
   }
 
-  UserRecordStruct _currentSearchUser = UserRecordStruct();
+  UserRecordStruct _currentSearchUser = UserRecordStruct.fromSerializableMap(
+      jsonDecode(
+          '{\"Name\":\"Test User\",\"Addr2\":\"123 Test Street\",\"Addr3\":\"Test, CA, 90210\",\"Phone\":\"1234567890\",\"Born\":\"1727461560000\",\"Sex\":\"M\",\"DefaultEditor\":\"FSE\",\"System\":\"IBM-PC\",\"Screen\":\"80 x 24  (page @ 24)---(page @ 2 for continuous)\",\"UserClass\":\"USER\",\"Passwd\":\"abba123\",\"CreditAvail\":\"0\",\"CreditTotal\":\"0\",\"CreditsPaid\":\"0\",\"HasMaster\":\"NO\",\"Suspended\":\"NO\",\"TagForKill\":\"NO\",\"Protected\":\"NO\",\"Username\":\"testuser\",\"AcctCreated\":\"1727461680000\",\"LastCall\":\"1727461680000\",\"DayUsage\":\"25.0\"}'));
   UserRecordStruct get currentSearchUser => _currentSearchUser;
   set currentSearchUser(UserRecordStruct value) {
     _currentSearchUser = value;
