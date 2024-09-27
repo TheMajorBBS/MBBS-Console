@@ -98,13 +98,19 @@ List<ChannelStruct> parseInit(String? initString) {
     String matchData = match.group(1)!;
     String hex = '';
     String char = '';
+    String mymsg = '';
     if (matchData.contains(':')) {
       List<String> splitData = matchData.split(':');
       hex = splitData[0];
       char = splitData[1];
+      if (char == '45') {
+        mymsg = 'Local Session';
+      } else {
+        mymsg = 'TCP/IP channel ready...';
+      }
 
       initMatches.add(ChannelStruct(
-          msg: 'TCP/IP channel ready...',
+          msg: mymsg,
           character: int.parse(char),
           code: 0,
           channel: int.parse(hex, radix: 16)));
