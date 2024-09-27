@@ -202,7 +202,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(10.0, 2.0, 100.0, 0.0),
             child: Container(
-              width: 200.0,
+              width: 400.0,
               child: TextFormField(
                 controller: textController,
                 focusNode: textFieldFocusNode,
@@ -280,7 +280,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
             text: FFAppState().connected ? 'Disconnect' : 'Connect',
             options: FFButtonOptions(
               height: 40.0,
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
               iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(

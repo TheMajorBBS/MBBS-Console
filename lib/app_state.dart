@@ -102,6 +102,20 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _usex;
     });
+    await _safeInitAsync(() async {
+      _SystemUsers = (await secureStorage.getStringList('ff_SystemUsers'))
+              ?.map((x) {
+                try {
+                  return UserRecordStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _SystemUsers;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -524,6 +538,61 @@ class FFAppState extends ChangeNotifier {
   bool get showUserSearch => _showUserSearch;
   set showUserSearch(bool value) {
     _showUserSearch = value;
+  }
+
+  List<UserRecordStruct> _SystemUsers = [];
+  List<UserRecordStruct> get SystemUsers => _SystemUsers;
+  set SystemUsers(List<UserRecordStruct> value) {
+    _SystemUsers = value;
+    secureStorage.setStringList(
+        'ff_SystemUsers', value.map((x) => x.serialize()).toList());
+  }
+
+  void deleteSystemUsers() {
+    secureStorage.delete(key: 'ff_SystemUsers');
+  }
+
+  void addToSystemUsers(UserRecordStruct value) {
+    SystemUsers.add(value);
+    secureStorage.setStringList(
+        'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromSystemUsers(UserRecordStruct value) {
+    SystemUsers.remove(value);
+    secureStorage.setStringList(
+        'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromSystemUsers(int index) {
+    SystemUsers.removeAt(index);
+    secureStorage.setStringList(
+        'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
+  }
+
+  void updateSystemUsersAtIndex(
+    int index,
+    UserRecordStruct Function(UserRecordStruct) updateFn,
+  ) {
+    SystemUsers[index] = updateFn(_SystemUsers[index]);
+    secureStorage.setStringList(
+        'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInSystemUsers(int index, UserRecordStruct value) {
+    SystemUsers.insert(index, value);
+    secureStorage.setStringList(
+        'ff_SystemUsers', _SystemUsers.map((x) => x.serialize()).toList());
+  }
+
+  UserRecordStruct _currentSearchUser = UserRecordStruct();
+  UserRecordStruct get currentSearchUser => _currentSearchUser;
+  set currentSearchUser(UserRecordStruct value) {
+    _currentSearchUser = value;
+  }
+
+  void updateCurrentSearchUserStruct(Function(UserRecordStruct) updateFn) {
+    updateFn(_currentSearchUser);
   }
 }
 
