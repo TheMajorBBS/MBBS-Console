@@ -1499,37 +1499,67 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       1.0,
                                                                       0.0,
                                                                       1.0),
-                                                          child: Container(
-                                                            width: 100.0,
-                                                            height: 48.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border:
-                                                                  Border.all(
-                                                                color: const Color(
-                                                                    0xFFE5EE8C),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              _model.sideNav =
+                                                                  'account';
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            child: Container(
+                                                              width: 100.0,
+                                                              height: 48.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: _model
+                                                                            .sideNav ==
+                                                                        'account'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground
+                                                                    : const Color(
+                                                                        0x00000000),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: _model
+                                                                              .sideNav ==
+                                                                          'account'
+                                                                      ? const Color(
+                                                                          0xFF57FFFF)
+                                                                      : const Color(
+                                                                          0xFFE5EE8C),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            child: Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                'Account',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Courier Prime',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                              child: Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  'Account',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Courier Prime',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -2159,37 +2189,67 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       1.0,
                                                                       0.0,
                                                                       1.0),
-                                                          child: Container(
-                                                            width: 100.0,
-                                                            height: 48.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border:
-                                                                  Border.all(
-                                                                color: const Color(
-                                                                    0xFFE5EE8C),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              _model.sideNav =
+                                                                  'account';
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            child: Container(
+                                                              width: 100.0,
+                                                              height: 48.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: _model
+                                                                            .sideNav ==
+                                                                        'account'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground
+                                                                    : const Color(
+                                                                        0x00000000),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: _model
+                                                                              .sideNav ==
+                                                                          'account'
+                                                                      ? const Color(
+                                                                          0xFF57FFFF)
+                                                                      : const Color(
+                                                                          0xFFE5EE8C),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            child: Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                'Account',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Courier Prime',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                              child: Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  'Account',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Courier Prime',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -3284,37 +3344,67 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       1.0,
                                                                       0.0,
                                                                       1.0),
-                                                          child: Container(
-                                                            width: 100.0,
-                                                            height: 48.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border:
-                                                                  Border.all(
-                                                                color: const Color(
-                                                                    0xFFE5EE8C),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              _model.sideNav =
+                                                                  'account';
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            child: Container(
+                                                              width: 100.0,
+                                                              height: 48.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: _model
+                                                                            .sideNav ==
+                                                                        'account'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground
+                                                                    : const Color(
+                                                                        0x00000000),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: _model
+                                                                              .sideNav ==
+                                                                          'account'
+                                                                      ? const Color(
+                                                                          0xFF57FFFF)
+                                                                      : const Color(
+                                                                          0xFFE5EE8C),
+                                                                ),
                                                               ),
-                                                            ),
-                                                            child: Align(
-                                                              alignment:
-                                                                  const AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Text(
-                                                                'Account',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Courier Prime',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          18.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
+                                                              child: Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  'Account',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Courier Prime',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
