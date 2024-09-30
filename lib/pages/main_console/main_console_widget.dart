@@ -46,6 +46,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         msgtot: 9,
         time: getCurrentTimestamp,
       );
+      FFAppState().sideNavMC = 'summary';
       safeSetState(() {});
       FFAppState().addToSocketMessageLog('testMessage');
       safeSetState(() {});
@@ -205,7 +206,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                   alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
-                                      if (_model.sideNav == 'summary') {
+                                      if (FFAppState().sideNavMC == 'summary') {
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -1510,7 +1511,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'account';
                                                               safeSetState(
                                                                   () {});
@@ -1520,8 +1522,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'account'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -1530,8 +1532,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'account'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -1583,7 +1585,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
@@ -1593,8 +1596,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'audit'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -1603,8 +1606,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'audit'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -1785,7 +1788,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
@@ -1795,8 +1799,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'summary'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -1805,8 +1809,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'summary'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -1858,7 +1862,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
@@ -1868,8 +1873,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'channels'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -1878,8 +1883,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'channels'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -1963,7 +1968,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                             ),
                                           ],
                                         );
-                                      } else if (_model.sideNav == 'audit') {
+                                      } else if (FFAppState().sideNavMC ==
+                                          'audit') {
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -2200,7 +2206,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'account';
                                                               safeSetState(
                                                                   () {});
@@ -2210,8 +2217,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'account'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -2220,8 +2227,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'account'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -2273,7 +2280,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
@@ -2283,8 +2291,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'audit'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -2293,8 +2301,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'audit'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -2475,7 +2483,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
@@ -2485,8 +2494,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'summary'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -2495,8 +2504,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'summary'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -2548,7 +2557,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
@@ -2558,8 +2568,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'channels'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -2568,8 +2578,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'channels'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -2653,7 +2663,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                             ),
                                           ],
                                         );
-                                      } else if (_model.sideNav == 'channels') {
+                                      } else if (FFAppState().sideNavMC ==
+                                          'channels') {
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -3355,7 +3366,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'account';
                                                               safeSetState(
                                                                   () {});
@@ -3365,8 +3377,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'account'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -3375,8 +3387,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'account'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -3428,7 +3440,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
@@ -3438,8 +3451,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'audit'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -3448,8 +3461,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'audit'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -3630,7 +3643,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
@@ -3640,8 +3654,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'summary'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -3650,8 +3664,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'summary'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -3703,7 +3717,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
@@ -3713,8 +3728,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'channels'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -3723,8 +3738,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'channels'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -3808,7 +3823,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                             ),
                                           ],
                                         );
-                                      } else if (_model.sideNav == 'account') {
+                                      } else if (FFAppState().sideNavMC ==
+                                          'account') {
                                         return Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -4522,7 +4538,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 const BoxDecoration(),
                                                                             child:
                                                                                 Text(
-                                                                              FFAppState().currentSearchUser.screen,
+                                                                              '${FFAppState().currentSearchUser.screen}  ${FFAppState().currentSearchUser.screen2}---${FFAppState().currentSearchUser.screen3}',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Courier Prime',
                                                                                     color: FlutterFlowTheme.of(context).secondary,
@@ -5046,7 +5062,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'account';
                                                               safeSetState(
                                                                   () {});
@@ -5056,8 +5073,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'account'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -5066,8 +5083,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'account'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -5119,7 +5136,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
@@ -5129,8 +5147,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'audit'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -5139,8 +5157,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'audit'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -5321,7 +5339,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
@@ -5331,8 +5350,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'summary'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -5341,8 +5360,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'summary'
                                                                       ? const Color(
                                                                           0xFF57FFFF)
@@ -5394,7 +5413,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              _model.sideNav =
+                                                              FFAppState()
+                                                                      .sideNavMC =
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
@@ -5404,8 +5424,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               height: 48.0,
                                                               decoration:
                                                                   BoxDecoration(
-                                                                color: _model
-                                                                            .sideNav ==
+                                                                color: FFAppState()
+                                                                            .sideNavMC ==
                                                                         'channels'
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -5414,8 +5434,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
-                                                                  color: _model
-                                                                              .sideNav ==
+                                                                  color: FFAppState()
+                                                                              .sideNavMC ==
                                                                           'channels'
                                                                       ? const Color(
                                                                           0xFF57FFFF)

@@ -125,7 +125,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.7.5';
+  String _version = '0.7.6';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -595,6 +595,12 @@ class FFAppState extends ChangeNotifier {
 
   void updateCurrentSearchUserStruct(Function(UserRecordStruct) updateFn) {
     updateFn(_currentSearchUser);
+  }
+
+  String _sideNavMC = 'summary';
+  String get sideNavMC => _sideNavMC;
+  set sideNavMC(String value) {
+    _sideNavMC = value;
   }
 }
 
