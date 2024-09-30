@@ -93,6 +93,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel.sink.add('[ACCREQ][$u]');
     FFAppState().addToSocketMessageLog('Sent: [ACCREQ][$u]');
     FFAppState().showUserSearch = false;
+    FFAppState().sideNavMC = 'account';
   }
 
   startStream() async {
