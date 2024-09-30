@@ -147,6 +147,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
         FFAppState().MySysVars = functions.processSysVar(myMessage);
       } else if (st == 'SYSUSE') {
         doSysUse(s);
+      } else if (st == 'ACCDET') {
+        FFAppState().currentSearchUser = functions.parseAccDet(s);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
       }
@@ -177,7 +179,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                                   ? processMessage(myMessage, 'SYSVAR')
                                   : myMessage.startsWith('[SYSUSE')
                                       ? processMessage(myMessage, 'SYSUSE')
-                                      : null;
+                                      : myMessage.startsWith('[ACCDET')
+                                          ? processMessage(myMessage, 'ACCDET')
+                                          : null;
 
       setState(() {});
     }, onError: (e) {

@@ -39,6 +39,35 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
       FFAppState().channelLogList =
           functions.initialChannelList().toList().cast<ChannelStruct>();
       safeSetState(() {});
+      FFAppState().currentSearchUser = UserRecordStruct(
+        name: 'Robert',
+        addr1: 'FLIPNET',
+        addr2: '123 Test Street',
+        addr3: 'Gainesville, GA 30506',
+        addr4: 'A',
+        phone: '6781234567',
+        born: DateTime.fromMicrosecondsSinceEpoch(1727668800000000),
+        sex: 'M',
+        defaultEditor: 'FSE',
+        system: 'IBM PC',
+        screen: '80 x 24',
+        screen2: 'A',
+        screen3: 'A',
+        userClass: 'USER',
+        passwd: '*********',
+        creditAvail: 0,
+        creditTotal: 0,
+        creditsPaid: 0,
+        hasMaster: 'NO',
+        suspended: 'NO',
+        tagForKill: 'NO',
+        protected: 'NO',
+        username: 'compguy',
+        acctCreated: DateTime.fromMicrosecondsSinceEpoch(1727668800000000),
+        lastCall: DateTime.fromMicrosecondsSinceEpoch(1727668800000000),
+        dayUsage: 0.0,
+      );
+      safeSetState(() {});
 
       context.pushNamed('mainConsole');
 

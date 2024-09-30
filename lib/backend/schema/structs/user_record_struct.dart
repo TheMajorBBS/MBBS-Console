@@ -18,6 +18,8 @@ class UserRecordStruct extends BaseStruct {
     String? defaultEditor,
     String? system,
     String? screen,
+    String? screen2,
+    String? screen3,
     String? userClass,
     String? passwd,
     int? creditAvail,
@@ -42,6 +44,8 @@ class UserRecordStruct extends BaseStruct {
         _defaultEditor = defaultEditor,
         _system = system,
         _screen = screen,
+        _screen2 = screen2,
+        _screen3 = screen3,
         _userClass = userClass,
         _passwd = passwd,
         _creditAvail = creditAvail,
@@ -132,6 +136,20 @@ class UserRecordStruct extends BaseStruct {
   set screen(String? val) => _screen = val;
 
   bool hasScreen() => _screen != null;
+
+  // "Screen2" field.
+  String? _screen2;
+  String get screen2 => _screen2 ?? '';
+  set screen2(String? val) => _screen2 = val;
+
+  bool hasScreen2() => _screen2 != null;
+
+  // "Screen3" field.
+  String? _screen3;
+  String get screen3 => _screen3 ?? '';
+  set screen3(String? val) => _screen3 = val;
+
+  bool hasScreen3() => _screen3 != null;
 
   // "UserClass" field.
   String? _userClass;
@@ -245,6 +263,8 @@ class UserRecordStruct extends BaseStruct {
         defaultEditor: data['DefaultEditor'] as String?,
         system: data['System'] as String?,
         screen: data['Screen'] as String?,
+        screen2: data['Screen2'] as String?,
+        screen3: data['Screen3'] as String?,
         userClass: data['UserClass'] as String?,
         passwd: data['Passwd'] as String?,
         creditAvail: castToType<int>(data['CreditAvail']),
@@ -276,6 +296,8 @@ class UserRecordStruct extends BaseStruct {
         'DefaultEditor': _defaultEditor,
         'System': _system,
         'Screen': _screen,
+        'Screen2': _screen2,
+        'Screen3': _screen3,
         'UserClass': _userClass,
         'Passwd': _passwd,
         'CreditAvail': _creditAvail,
@@ -335,6 +357,14 @@ class UserRecordStruct extends BaseStruct {
         ),
         'Screen': serializeParam(
           _screen,
+          ParamType.String,
+        ),
+        'Screen2': serializeParam(
+          _screen2,
+          ParamType.String,
+        ),
+        'Screen3': serializeParam(
+          _screen3,
           ParamType.String,
         ),
         'UserClass': serializeParam(
@@ -448,6 +478,16 @@ class UserRecordStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        screen2: deserializeParam(
+          data['Screen2'],
+          ParamType.String,
+          false,
+        ),
+        screen3: deserializeParam(
+          data['Screen3'],
+          ParamType.String,
+          false,
+        ),
         userClass: deserializeParam(
           data['UserClass'],
           ParamType.String,
@@ -532,6 +572,8 @@ class UserRecordStruct extends BaseStruct {
         defaultEditor == other.defaultEditor &&
         system == other.system &&
         screen == other.screen &&
+        screen2 == other.screen2 &&
+        screen3 == other.screen3 &&
         userClass == other.userClass &&
         passwd == other.passwd &&
         creditAvail == other.creditAvail &&
@@ -560,6 +602,8 @@ class UserRecordStruct extends BaseStruct {
         defaultEditor,
         system,
         screen,
+        screen2,
+        screen3,
         userClass,
         passwd,
         creditAvail,
@@ -588,6 +632,8 @@ UserRecordStruct createUserRecordStruct({
   String? defaultEditor,
   String? system,
   String? screen,
+  String? screen2,
+  String? screen3,
   String? userClass,
   String? passwd,
   int? creditAvail,
@@ -614,6 +660,8 @@ UserRecordStruct createUserRecordStruct({
       defaultEditor: defaultEditor,
       system: system,
       screen: screen,
+      screen2: screen2,
+      screen3: screen3,
       userClass: userClass,
       passwd: passwd,
       creditAvail: creditAvail,

@@ -4522,7 +4522,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 const BoxDecoration(),
                                                                             child:
                                                                                 Text(
-                                                                              FFAppState().currentSearchUser.screen,
+                                                                              '${FFAppState().currentSearchUser.screen}  ${FFAppState().currentSearchUser.screen2}---${FFAppState().currentSearchUser.screen3}',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Courier Prime',
                                                                                     color: FlutterFlowTheme.of(context).secondary,

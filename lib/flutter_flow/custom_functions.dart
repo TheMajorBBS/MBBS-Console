@@ -239,3 +239,146 @@ double parseSysUse(String sysString) {
   }
   return myuse;
 }
+
+UserRecordStruct parseAccDet(String accDetString) {
+  RegExp regExp = RegExp(r'\[([A-Z0-9]+):([^\]]*)\]');
+  Map<String, String> parsedData = {};
+  String name = '';
+  String addr1 = '';
+  String addr2 = '';
+  String addr3 = '';
+  String addr4 = '';
+  String phone = '';
+  DateTime born = DateTime.now();
+  String sex = '';
+  String defaultEditor = '';
+  String system = '';
+  String screen = '';
+  String screen2 = '';
+  String screen3 = '';
+  String userClass = '';
+  String passwd = '*********';
+  int creditAvail = 0;
+  int creditTotal = 0;
+  int creditsPaid = 0;
+  String hasMaster = '';
+  String suspended = '';
+  String tagForKill = '';
+  String protected = '';
+  String username = '';
+  DateTime acctCreated = DateTime.now();
+  DateTime lastCall = DateTime.now();
+  double dayUsage = 0.0;
+
+  processKey(String s, String v) {
+    if (s == 'NAME') {
+      name = v;
+    } else if (s == 'ADD1') {
+      addr1 = v;
+    } else if (s == 'ADD2') {
+      addr2 = v;
+    } else if (s == 'ADD3') {
+      addr3 = v;
+    } else if (s == 'ADD4') {
+      addr4 = v;
+    } else if (s == 'PHONE') {
+      phone = v;
+    } else if (s == 'DOB') {
+      int? year = int.parse(v!.substring(0, 4));
+      int? month = int.parse(v.substring(4, 6));
+      int? day = int.parse(v.substring(6, 8));
+      DateTime timestamp = DateTime(year, month, day);
+      born = timestamp;
+    } else if (s == 'DEFEDT') {
+      if (v == '0') {
+        defaultEditor = 'FSE';
+      } else {
+        defaultEditor = 'LINE';
+      }
+    } else if (s == 'SYSTYP') {
+      if (v == '0') {
+        system = 'IBM PC';
+      } else {
+        system = 'OTHER';
+      }
+    } else if (s == 'SCNWID') {
+      screen = v + ' x';
+    } else if (s == 'SCNLEN') {
+      screen2 = v;
+    } else if (s == 'CLASS') {
+      userClass = v;
+    } else if (s == 'CREDAVL') {
+      creditAvail = int.parse(v);
+    } else if (s == 'CREDTOT') {
+      creditTotal = int.parse(v);
+    } else if (s == 'CREDPAID') {
+      creditsPaid = int.parse(v);
+    } else if (s == 'ACCCRE') {
+      acctCreated = DateTime.parse(v);
+    } else if (s == 'LASTUSE') {
+      lastCall = DateTime.parse(v);
+    } else if (s == 'USEDTOD') {
+      dayUsage = double.parse(v);
+    } else if (s == 'MASTER') {
+      if (v == '0') {
+        hasMaster = 'NO';
+      } else {
+        hasMaster = 'YES';
+      }
+    } else if (s == 'SUSP') {
+      if (v == '0') {
+        suspended = 'NO';
+      } else {
+        suspended = 'YES';
+      }
+    } else if (s == 'TAGKILL') {
+      if (v == '0') {
+        tagForKill = 'NO';
+      } else {
+        tagForKill = 'YES';
+      }
+    } else if (s == 'PROT') {
+      if (v == '0') {
+        protected = 'NO';
+      } else {
+        protected = 'YES';
+      }
+    }
+  }
+
+  Iterable<RegExpMatch> matches = regExp.allMatches(accDetString);
+
+  for (var match in matches) {
+    String key = match.group(1) ?? '';
+    String value = match.group(2) ?? '';
+    processKey(key, value);
+  }
+  return UserRecordStruct(
+    name: name,
+    addr1: addr1,
+    addr2: addr2,
+    addr3: addr3,
+    addr4: addr4,
+    phone: phone,
+    born: born,
+    sex: sex,
+    defaultEditor: defaultEditor,
+    system: system,
+    screen: screen,
+    screen2: screen2,
+    screen3: screen3,
+    userClass: userClass,
+    passwd: '*********',
+    creditAvail: creditAvail,
+    creditTotal: creditTotal,
+    creditsPaid: creditsPaid,
+    hasMaster: hasMaster,
+    suspended: suspended,
+    tagForKill: tagForKill,
+    protected: protected,
+    username: username,
+    acctCreated: acctCreated,
+    lastCall: lastCall,
+    dayUsage: dayUsage,
+  );
+}
