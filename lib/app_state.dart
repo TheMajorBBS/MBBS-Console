@@ -596,6 +596,12 @@ class FFAppState extends ChangeNotifier {
   void updateCurrentSearchUserStruct(Function(UserRecordStruct) updateFn) {
     updateFn(_currentSearchUser);
   }
+
+  String _sideNavMC = 'summary';
+  String get sideNavMC => _sideNavMC;
+  set sideNavMC(String value) {
+    _sideNavMC = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {
