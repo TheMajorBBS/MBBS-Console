@@ -198,6 +198,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   Widget build(BuildContext context) {
+    late TextEditingController textController;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
