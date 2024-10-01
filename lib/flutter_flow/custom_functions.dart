@@ -300,9 +300,9 @@ UserRecordStruct parseAccDet(String accDetString) {
     } else if (s == 'SYSTYP') {
       if (v == '0') {
         system = 'OTHER';
-      } else if (v == 1) {
+      } else if (v == '1') {
         system = 'IBM-PC';
-      } else if (v == 2) {
+      } else if (v == '2') {
         system = 'Macintosh';
       } else {
         system = 'Apple/non-Mac';

@@ -199,6 +199,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   Widget build(BuildContext context) {
     final textController = TextEditingController();
+    final FocusNode textFieldFocusNode = FocusNode();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
