@@ -283,6 +283,8 @@ UserRecordStruct parseAccDet(String accDetString) {
       addr4 = v;
     } else if (s == 'PHONE') {
       phone = v;
+    } else if (s == 'USRID') {
+      username = v;
     } else if (s == 'DOB') {
       int? year = int.parse(v!.substring(0, 4));
       int? month = int.parse(v.substring(4, 6));
@@ -297,9 +299,13 @@ UserRecordStruct parseAccDet(String accDetString) {
       }
     } else if (s == 'SYSTYP') {
       if (v == '0') {
-        system = 'IBM PC';
-      } else {
         system = 'OTHER';
+      } else if (v == 1) {
+        system = 'IBM-PC';
+      } else if (v == 2) {
+        system = 'Macintosh';
+      } else {
+        system = 'Apple/non-Mac';
       }
     } else if (s == 'SCNWID') {
       screen = v + ' x';
