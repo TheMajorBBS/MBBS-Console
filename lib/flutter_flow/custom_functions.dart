@@ -314,9 +314,17 @@ UserRecordStruct parseAccDet(String accDetString) {
     } else if (s == 'CREDPAID') {
       creditsPaid = int.parse(v);
     } else if (s == 'ACCCRE') {
-      acctCreated = DateTime.parse(v);
+      List<String> dateParts = v.split('/');
+      int month = int.parse(dateParts[0]);
+      int day = int.parse(dateParts[1]);
+      int year = int.parse(dateParts[2]);
+      acctCreated = DateTime(year, month, day);
     } else if (s == 'LASTUSE') {
-      lastCall = DateTime.parse(v);
+      List<String> dateParts = v.split('/');
+      int month = int.parse(dateParts[0]);
+      int day = int.parse(dateParts[1]);
+      int year = int.parse(dateParts[2]);
+      lastCall = DateTime(year, month, day);
     } else if (s == 'USEDTOD') {
       dayUsage = double.parse(v);
     } else if (s == 'MASTER') {
