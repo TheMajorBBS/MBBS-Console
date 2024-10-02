@@ -218,7 +218,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
                   sendUserSearch(textController.text);
                   safeSetState(() {});
                 },
-                autofocus: false,
                 obscureText: false,
                 decoration: InputDecoration(
                   isDense: true,
