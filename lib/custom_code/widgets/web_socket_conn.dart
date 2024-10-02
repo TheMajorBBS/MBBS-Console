@@ -49,12 +49,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String mypass = '';
   late WebSocketChannel _channel;
   late FocusNode textFieldFocusNode;
-  TextEditingController? textController;
+  late TextEditingController textController;
 
   @override
   void initState() {
     super.initState();
-    textFieldFocusNode.FocusNode();
+    textFieldFocusNode = FocusNode();
     myMessage = 'Connecting...';
     myuser = FFAppState().username;
     mypass = FFAppState().password;
@@ -200,8 +200,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
-    //final FocusNode textFieldFocusNode = FocusNode();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
