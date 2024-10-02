@@ -55,6 +55,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   void initState() {
     super.initState();
     textFieldFocusNode = FocusNode();
+    textController = TextEditingController();
     myMessage = 'Connecting...';
     myuser = FFAppState().username;
     mypass = FFAppState().password;
