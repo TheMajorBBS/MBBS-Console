@@ -213,7 +213,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
               width: 400.0,
               child: TextFormField(
                 controller: textController,
-                autofocus: true,
+                //autofocus: true,
                 focusNode: textFieldFocusNode,
                 onFieldSubmitted: (_) async {
                   sendUserSearch(textController.text);

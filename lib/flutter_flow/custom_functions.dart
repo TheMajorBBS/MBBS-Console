@@ -289,6 +289,8 @@ UserRecordStruct parseAccDet(String accDetString) {
       phone = v;
     } else if (s == 'USRID') {
       username = v;
+    } else if (s == 'SEX') {
+      sex = v;
     } else if (s == 'DOB') {
       int? year = int.parse(v!.substring(0, 4));
       int? month = int.parse(v.substring(4, 6));
