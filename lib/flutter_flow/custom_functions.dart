@@ -107,6 +107,8 @@ List<ChannelStruct> parseInit(String? initString) {
         mymsg = 'Local Session';
       } else if (char == '254') {
         mymsg = 'Channel not defined...';
+      } else if (char == '77') {
+        mymsg = 'MajorLink Connected';
       } else {
         mymsg = 'TCP/IP channel ready...';
       }
