@@ -188,6 +188,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
                                           : null;
 
       setState(() {});
+      textFieldFocusNode.requestFocus();
     }, onError: (e) {
       print('WEBSOCKET ERROR:  $e');
     }, onDone: () {
