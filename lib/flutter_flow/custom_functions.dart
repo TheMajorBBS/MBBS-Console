@@ -105,6 +105,8 @@ List<ChannelStruct> parseInit(String? initString) {
       char = splitData[1];
       if (char == '45') {
         mymsg = 'Local Session';
+      } else if (char == '254') {
+        mymsg = 'Channel not defined...';
       } else {
         mymsg = 'TCP/IP channel ready...';
       }
@@ -132,7 +134,7 @@ List<ChannelStruct> initialChannelList() {
     if (count == 0) {
       mymsg = "Local Session";
     } else {
-      mymsg = "TCP/IP channel ready...";
+      mymsg = "Channel not defined...";
     }
     channelList.add(ChannelStruct(
       msg: mymsg,
