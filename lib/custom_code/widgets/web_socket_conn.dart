@@ -199,7 +199,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   Widget build(BuildContext context) {
     final textController = TextEditingController();
-    final FocusNode textFieldFocusNode = FocusNode();
+    //final FocusNode textFieldFocusNode = FocusNode();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -212,7 +212,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
               width: 400.0,
               child: TextFormField(
                 controller: textController,
-                focusNode: textFieldFocusNode,
+                autofocus: true,
+                //focusNode: textFieldFocusNode,
                 onFieldSubmitted: (_) async {
                   sendUserSearch(textController.text);
                   safeSetState(() {});
