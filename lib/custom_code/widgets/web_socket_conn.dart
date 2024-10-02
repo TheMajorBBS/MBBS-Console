@@ -48,12 +48,13 @@ class _WebSocketConnState extends State<WebSocketConn> {
   String myuser = '';
   String mypass = '';
   late WebSocketChannel _channel;
-  FocusNode? textFieldFocusNode;
+  late FocusNode textFieldFocusNode;
   TextEditingController? textController;
 
   @override
   void initState() {
     super.initState();
+    textFieldFocusNode.FocusNode();
     myMessage = 'Connecting...';
     myuser = FFAppState().username;
     mypass = FFAppState().password;
@@ -70,6 +71,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
   @override
   void dispose() {
     _channel.sink.close(status.normalClosure);
+    textFieldFocusNode.dispose();
     super.dispose();
   }
 
@@ -213,7 +215,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
               child: TextFormField(
                 controller: textController,
                 autofocus: true,
-                //focusNode: textFieldFocusNode,
+                focusNode: textFieldFocusNode,
                 onFieldSubmitted: (_) async {
                   sendUserSearch(textController.text);
                   safeSetState(() {});
