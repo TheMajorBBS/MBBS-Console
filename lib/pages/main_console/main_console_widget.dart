@@ -6047,32 +6047,75 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           5.0,
                                                                           0.0,
                                                                           0.0),
-                                                              child: Container(
-                                                                width: 50.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .alternate,
-                                                                ),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'F5',
-                                                                    style: FlutterFlowTheme.of(
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  if (FFAppState()
+                                                                      .showUserSearch) {
+                                                                    FFAppState()
+                                                                            .showUserSearch =
+                                                                        false;
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  } else {
+                                                                    FFAppState()
+                                                                            .showUserSearch =
+                                                                        true;
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  }
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  width: 50.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Courier Prime',
-                                                                          fontSize:
-                                                                              16.0,
-                                                                          letterSpacing:
+                                                                        .alternate,
+                                                                  ),
+                                                                  child: Stack(
+                                                                    children: [
+                                                                      if ('1' ==
+                                                                          '2')
+                                                                        Align(
+                                                                          alignment: const AlignmentDirectional(
                                                                               0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Text(
+                                                                            'F5',
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Courier Prime',
+                                                                                  fontSize: 16.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          ),
                                                                         ),
+                                                                      Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .search_sharp,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                               ),
