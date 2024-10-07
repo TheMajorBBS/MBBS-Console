@@ -111,6 +111,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             },
           ).then((value) => safeSetState(() {}));
         }),
+        const SingleActivator(
+          LogicalKeyboardKey.keyF,
+          control: true,
+        ): VoidCallbackIntent(() async {
+          if (FFAppState().showUserSearch) {
+            FFAppState().showUserSearch = false;
+            safeSetState(() {});
+          } else {
+            FFAppState().showUserSearch = true;
+            safeSetState(() {});
+          }
+        }),
       },
       child: Actions(
         actions: {
