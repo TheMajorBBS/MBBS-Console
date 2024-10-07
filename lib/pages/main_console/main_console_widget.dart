@@ -1058,7 +1058,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               12.0,
                                                                         ),
                                                                         labelInterval:
-                                                                            10.0,
+                                                                            15.0,
                                                                         labelFormatter:
                                                                             LabelFormatter(
                                                                           numberFormat: (val) =>
@@ -1084,7 +1084,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               10.0,
                                                                         ),
                                                                         labelInterval:
-                                                                            10.0,
+                                                                            20.0,
                                                                         labelFormatter:
                                                                             LabelFormatter(
                                                                           numberFormat: (val) =>
