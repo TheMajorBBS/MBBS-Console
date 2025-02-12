@@ -93,8 +93,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   sendUserSearch(String u) async {
-    _channel.sink.add('[ACCREQ][$u]');
-    FFAppState().addToSocketMessageLog('Sent: [ACCREQ][$u]');
+    _channel.sink.add('[ACCDETREQ][$u]');
+    FFAppState().addToSocketMessageLog('Sent: [ACCDETREQ][$u]');
     FFAppState().showUserSearch = false;
     FFAppState().sideNavMC = 'account';
   }
@@ -151,7 +151,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
         FFAppState().MySysVars = functions.processSysVar(myMessage);
       } else if (st == 'SYSUSE') {
         doSysUse(s);
-      } else if (st == 'ACCDET') {
+      } else if (st == 'ACCDETRESP') {
         FFAppState().currentSearchUser = functions.parseAccDet(s);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
@@ -183,8 +183,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                                   ? processMessage(myMessage, 'SYSVAR')
                                   : myMessage.startsWith('[SYSUSE')
                                       ? processMessage(myMessage, 'SYSUSE')
-                                      : myMessage.startsWith('[ACCDET')
-                                          ? processMessage(myMessage, 'ACCDET')
+                                      : myMessage.startsWith('[ACCDETRESP')
+                                          ? processMessage(
+                                              myMessage, 'ACCDETRESP')
                                           : null;
 
       setState(() {});

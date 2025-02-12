@@ -74,7 +74,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -91,21 +94,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   fontWeight: FontWeight.w600,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Text(
                       'Console Configuration',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -117,16 +120,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 600.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 25.0, 15.0, 25.0),
                             child: TextFormField(
                               controller: _model.textController1,
@@ -194,16 +197,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 600.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 25.0, 15.0, 25.0),
                             child: TextFormField(
                               controller: _model.textController2,
@@ -296,16 +299,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 600.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 25.0, 15.0, 25.0),
                             child: TextFormField(
                               controller: _model.textController3,
@@ -423,13 +426,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 600.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 25.0),
+                          EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 25.0),
                       child: TextFormField(
                         controller: _model.textController4,
                         focusNode: _model.textFieldFocusNode4,
@@ -488,21 +491,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Container(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxWidth: 600.0,
                     ),
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 600.0,
                       ),
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -528,7 +531,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final colorPicked1Color =
+                                final _colorPicked1Color =
                                     await showFFColorPicker(
                                   context,
                                   currentColor: _model.colorPicked1 ??=
@@ -551,9 +554,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   displayAsBottomSheet: isMobileWidth(context),
                                 );
 
-                                if (colorPicked1Color != null) {
+                                if (_colorPicked1Color != null) {
                                   safeSetState(() =>
-                                      _model.colorPicked1 = colorPicked1Color);
+                                      _model.colorPicked1 = _colorPicked1Color);
                                 }
                               },
                               child: Container(
@@ -565,7 +568,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(5.0),
                                     bottomRight: Radius.circular(5.0),
                                     topLeft: Radius.circular(5.0),
@@ -585,14 +588,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Container(
-                      constraints: const BoxConstraints(
+                      constraints: BoxConstraints(
                         maxWidth: 600.0,
                       ),
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -618,7 +621,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                final colorPicked2Color =
+                                final _colorPicked2Color =
                                     await showFFColorPicker(
                                   context,
                                   currentColor: _model.colorPicked2 ??=
@@ -641,9 +644,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   displayAsBottomSheet: isMobileWidth(context),
                                 );
 
-                                if (colorPicked2Color != null) {
+                                if (_colorPicked2Color != null) {
                                   safeSetState(() =>
-                                      _model.colorPicked2 = colorPicked2Color);
+                                      _model.colorPicked2 = _colorPicked2Color);
                                 }
                               },
                               child: Container(
@@ -654,7 +657,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     FFAppState().currentTxt,
                                     FlutterFlowTheme.of(context).primary,
                                   ),
-                                  borderRadius: const BorderRadius.only(
+                                  borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(5.0),
                                     bottomRight: Radius.circular(5.0),
                                     topLeft: Radius.circular(5.0),
@@ -674,7 +677,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         FFAppState().currentBG = FFAppState().defaultBG;
@@ -684,10 +687,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       text: 'Restore Default Colors',
                       options: FFButtonOptions(
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 0.0, 24.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryBackground,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
@@ -696,7 +699,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3.0,
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -724,9 +727,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -735,7 +738,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),
@@ -744,7 +747,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,

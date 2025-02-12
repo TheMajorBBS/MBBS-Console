@@ -19,7 +19,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   Future initializePersistedState() async {
-    secureStorage = const FlutterSecureStorage();
+    secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
       _version = await secureStorage.getString('ff_version') ?? _version;
     });
@@ -125,7 +125,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.8.1';
+  String _version = '0.8.2';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -147,7 +147,7 @@ class FFAppState extends ChangeNotifier {
     secureStorage.delete(key: 'ff_currentTxt');
   }
 
-  Color _defaultBG = const Color(0xff0000ab);
+  Color _defaultBG = Color(4278190251);
   Color get defaultBG => _defaultBG;
   set defaultBG(Color value) {
     _defaultBG = value;
@@ -169,7 +169,7 @@ class FFAppState extends ChangeNotifier {
     secureStorage.delete(key: 'ff_currentBG');
   }
 
-  Color _defaultTxt = const Color(0xffffffff);
+  Color _defaultTxt = Color(4294967295);
   Color get defaultTxt => _defaultTxt;
   set defaultTxt(Color value) {
     _defaultTxt = value;
@@ -656,12 +656,12 @@ extension FlutterSecureStorageExtensions on FlutterSecureStorage {
         if (result == null || result.isEmpty) {
           return null;
         }
-        return const CsvToListConverter()
+        return CsvToListConverter()
             .convert(result)
             .first
             .map((e) => e.toString())
             .toList();
       });
   Future<void> setStringList(String key, List<String> value) async =>
-      await writeSync(key: key, value: const ListToCsvConverter().convert([value]));
+      await writeSync(key: key, value: ListToCsvConverter().convert([value]));
 }
