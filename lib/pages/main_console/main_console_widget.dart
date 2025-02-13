@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -131,12 +132,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         ): VoidCallbackIntent(() async {
           FFAppState().doPgUp = true;
           safeSetState(() {});
+          await actions.consolePrint(
+            'PAGE UP',
+          );
         }),
         SingleActivator(
           LogicalKeyboardKey.pageDown,
         ): VoidCallbackIntent(() async {
           FFAppState().doPgDown = true;
           safeSetState(() {});
+          await actions.consolePrint(
+            'PAGE DOWN',
+          );
         }),
       },
       child: Actions(
