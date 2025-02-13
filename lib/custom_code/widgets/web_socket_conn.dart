@@ -90,10 +90,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
     setState(() {
       _state = state;
       if (FFAppState().doPgUp) {
-        print('APPSTATE: ' + PGUP);
+        print('APPSTATE: PGUP');
+        FFAppState().doPgUp = false;
       }
       if (FFAppState().doPgDown) {
-        print('APPSTATE: ' + PGDOWN);
+        print('APPSTATE: PGDOWN');
+        FFAppState().doPgDown = false;
       }
       print('STATE:' + _state.toString());
     });
