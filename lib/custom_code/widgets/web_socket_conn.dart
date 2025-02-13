@@ -51,18 +51,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
   late WebSocketChannel _channel;
   late FocusNode textFieldFocusNode;
   late TextEditingController textController;
-  late final AppLifecycleListener _listener;
-  late AppLifecycleState? _state;
 
   @override
   void initState() {
     super.initState();
-    _state = SchedulerBinding.instance.lifecycleState;
-    _listener = AppLifecycleListener(
-      // This fires for each state change. Callbacks above fire only for
-      // specific state transitions.
-      onStateChange: _handleStateChange,
-    );
     textFieldFocusNode = FocusNode();
     textController = TextEditingController();
     myMessage = 'Connecting...';
@@ -74,7 +66,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
       myext = 'wss://';
     }
     myUrl = myext + widget.systemIP! + ':' + widget.systemPort!.toString();
-
     startStream();
   }
 
@@ -84,21 +75,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
     textFieldFocusNode.dispose();
     _listener.dispose();
     super.dispose();
-  }
-
-  void _handleStateChange(AppLifecycleState state) {
-    setState(() {
-      _state = state;
-      if (FFAppState().doPgUp) {
-        print('APPSTATE: PGUP');
-        FFAppState().doPgUp = false;
-      }
-      if (FFAppState().doPgDown) {
-        print('APPSTATE: PGDOWN');
-        FFAppState().doPgDown = false;
-      }
-      print('STATE:' + _state.toString());
-    });
   }
 
   closeConnect() {
@@ -187,6 +163,20 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
     stream.listen((event) {
       //print(event.toString());
+      Timer.periodic(const Duration(seconds: 1), (timer) {
+        if (FFAppState().doPgUp) {
+          FFAppState().doPgUp = false;
+          _channel.sink.add('[ACCDETREQNEXT]');
+        }
+        if (FFAppState().doPgDown) {
+          FFAppState().doPgDown = false;
+          _channel.sink.add('[ACCDETREQPREV]');
+        }
+        if (FFAppState().getFirstAcct) {
+          FFAppState().getFirstAcct = false;
+          _channel.sink.add('[ACCDETREQFIRST]');
+        }
+      });
       myMessage = '${event}';
       print(myMessage);
       FFAppState().wsMessage = myMessage;

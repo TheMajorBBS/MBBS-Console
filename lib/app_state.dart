@@ -125,7 +125,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.8.5';
+  String _version = '0.8.6';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -613,6 +613,12 @@ class FFAppState extends ChangeNotifier {
   bool get doPgDown => _doPgDown;
   set doPgDown(bool value) {
     _doPgDown = value;
+  }
+
+  bool _getFirstAcct = false;
+  bool get getFirstAcct => _getFirstAcct;
+  set getFirstAcct(bool value) {
+    _getFirstAcct = value;
   }
 }
 

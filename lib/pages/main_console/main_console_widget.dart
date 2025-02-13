@@ -52,7 +52,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       FFAppState().addToSocketMessageLog('testMessage');
       safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
-        duration: Duration(milliseconds: 2000),
+        duration: Duration(milliseconds: 1000),
         callback: (timer) async {
           unawaited(
             () async {}(),
@@ -130,20 +130,24 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         SingleActivator(
           LogicalKeyboardKey.pageUp,
         ): VoidCallbackIntent(() async {
-          FFAppState().doPgUp = true;
-          safeSetState(() {});
-          await actions.consolePrint(
-            'PAGE UP',
-          );
+          if (FFAppState().sideNavMC == 'account') {
+            FFAppState().doPgUp = true;
+            safeSetState(() {});
+            await actions.consolePrint(
+              'PAGE UP PRESSED',
+            );
+          }
         }),
         SingleActivator(
           LogicalKeyboardKey.pageDown,
         ): VoidCallbackIntent(() async {
-          FFAppState().doPgDown = true;
-          safeSetState(() {});
-          await actions.consolePrint(
-            'PAGE DOWN',
-          );
+          if (FFAppState().sideNavMC == 'account') {
+            FFAppState().doPgDown = true;
+            safeSetState(() {});
+            await actions.consolePrint(
+              'PAGE DOWN PRESSED',
+            );
+          }
         }),
       },
       child: Actions(
@@ -5104,6 +5108,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               FFAppState()
                                                                       .sideNavMC =
                                                                   'account';
+                                                              FFAppState()
+                                                                      .getFirstAcct =
+                                                                  true;
                                                               safeSetState(
                                                                   () {});
                                                             },
