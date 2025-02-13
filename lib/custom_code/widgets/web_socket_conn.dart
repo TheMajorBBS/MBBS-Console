@@ -89,7 +89,13 @@ class _WebSocketConnState extends State<WebSocketConn> {
   void _handleStateChange(AppLifecycleState state) {
     setState(() {
       _state = state;
-      print(_state.toString());
+      if (FFAppState().doPgUp) {
+        print('APPSTATE: ' + PGUP);
+      }
+      if (FFAppState().doPgDown) {
+        print('APPSTATE: ' + PGDOWN);
+      }
+      print('STATE:' + _state.toString());
     });
   }
 
