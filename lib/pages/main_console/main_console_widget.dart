@@ -126,6 +126,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             safeSetState(() {});
           }
         }),
+        SingleActivator(
+          LogicalKeyboardKey.pageUp,
+        ): VoidCallbackIntent(() async {
+          FFAppState().doPgUp = true;
+          safeSetState(() {});
+        }),
+        SingleActivator(
+          LogicalKeyboardKey.pageDown,
+        ): VoidCallbackIntent(() async {
+          FFAppState().doPgDown = true;
+          safeSetState(() {});
+        }),
       },
       child: Actions(
         actions: {
