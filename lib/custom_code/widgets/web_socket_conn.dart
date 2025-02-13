@@ -20,6 +20,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'package:web_socket_channel/status.dart' as status;
+import 'package:flutter/scheduler.dart';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -50,10 +51,18 @@ class _WebSocketConnState extends State<WebSocketConn> {
   late WebSocketChannel _channel;
   late FocusNode textFieldFocusNode;
   late TextEditingController textController;
+  late final AppLifecycleListener _listener;
+  late AppLifecycleState? _state;
 
   @override
   void initState() {
     super.initState();
+    _state = SchedulerBinding.instance.lifecycleState;
+    _listener = AppLifecycleListener(
+      // This fires for each state change. Callbacks above fire only for
+      // specific state transitions.
+      onStateChange: _handleStateChange,
+    );
     textFieldFocusNode = FocusNode();
     textController = TextEditingController();
     myMessage = 'Connecting...';
@@ -73,7 +82,15 @@ class _WebSocketConnState extends State<WebSocketConn> {
   void dispose() {
     _channel.sink.close(status.normalClosure);
     textFieldFocusNode.dispose();
+    _listener.dispose();
     super.dispose();
+  }
+
+  void _handleStateChange(AppLifecycleState state) {
+    setState(() {
+      _state = state;
+      print(_state.toString());
+    });
   }
 
   closeConnect() {
