@@ -20,6 +20,7 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'package:web_socket_channel/status.dart' as status;
+import 'package:flutter/scheduler.dart';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -50,10 +51,18 @@ class _WebSocketConnState extends State<WebSocketConn> {
   late WebSocketChannel _channel;
   late FocusNode textFieldFocusNode;
   late TextEditingController textController;
+  late final AppLifecycleListener _listener;
+  late AppLifecycleState? _state;
 
   @override
   void initState() {
     super.initState();
+    _state = SchedulerBinding.instance.lifecycleState;
+    _listener = AppLifecycleListener(
+      // This fires for each state change. Callbacks above fire only for
+      // specific state transitions.
+      onStateChange: _handleStateChange,
+    );
     textFieldFocusNode = FocusNode();
     textController = TextEditingController();
     myMessage = 'Connecting...';
@@ -73,7 +82,15 @@ class _WebSocketConnState extends State<WebSocketConn> {
   void dispose() {
     _channel.sink.close(status.normalClosure);
     textFieldFocusNode.dispose();
+    _listener.dispose();
     super.dispose();
+  }
+
+  void _handleStateChange(AppLifecycleState state) {
+    setState(() {
+      _state = state;
+      print(_state.toString());
+    });
   }
 
   closeConnect() {
@@ -93,8 +110,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   sendUserSearch(String u) async {
-    _channel.sink.add('[ACCREQ][$u]');
-    FFAppState().addToSocketMessageLog('Sent: [ACCREQ][$u]');
+    _channel.sink.add('[ACCDETREQ][$u]');
+    FFAppState().addToSocketMessageLog('Sent: [ACCDETREQ][$u]');
     FFAppState().showUserSearch = false;
     FFAppState().sideNavMC = 'account';
   }
@@ -151,7 +168,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
         FFAppState().MySysVars = functions.processSysVar(myMessage);
       } else if (st == 'SYSUSE') {
         doSysUse(s);
-      } else if (st == 'ACCDET') {
+      } else if (st == 'ACCDETRESP') {
         FFAppState().currentSearchUser = functions.parseAccDet(s);
       } else {
         FFAppState().wsMessage = 'MESSAGE NOT RECOGNIZED';
@@ -183,8 +200,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
                                   ? processMessage(myMessage, 'SYSVAR')
                                   : myMessage.startsWith('[SYSUSE')
                                       ? processMessage(myMessage, 'SYSUSE')
-                                      : myMessage.startsWith('[ACCDET')
-                                          ? processMessage(myMessage, 'ACCDET')
+                                      : myMessage.startsWith('[ACCDETRESP')
+                                          ? processMessage(
+                                              myMessage, 'ACCDETRESP')
                                           : null;
 
       setState(() {});

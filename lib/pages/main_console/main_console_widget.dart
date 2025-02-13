@@ -51,7 +51,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       FFAppState().addToSocketMessageLog('testMessage');
       safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 2000),
+        duration: Duration(milliseconds: 2000),
         callback: (timer) async {
           unawaited(
             () async {}(),
@@ -79,7 +79,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
     return Shortcuts(
       shortcuts: {
-        const SingleActivator(
+        SingleActivator(
           LogicalKeyboardKey.f5,
         ): VoidCallbackIntent(() async {
           if (FFAppState().showUserSearch) {
@@ -90,7 +90,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             safeSetState(() {});
           }
         }),
-        const SingleActivator(
+        SingleActivator(
           LogicalKeyboardKey.f8,
         ): VoidCallbackIntent(() async {
           await showModalBottomSheet(
@@ -99,10 +99,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             context: context,
             builder: (context) {
               return GestureDetector(
-                onTap: () => FocusScope.of(context).unfocus(),
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
                 child: Padding(
                   padding: MediaQuery.viewInsetsOf(context),
-                  child: const SizedBox(
+                  child: Container(
                     height: 600.0,
                     child: SocketLogCompWidget(),
                   ),
@@ -111,7 +114,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             },
           ).then((value) => safeSetState(() {}));
         }),
-        const SingleActivator(
+        SingleActivator(
           LogicalKeyboardKey.keyF,
           control: true,
         ): VoidCallbackIntent(() async {
@@ -134,11 +137,16 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             autofocus: isShortcutsSupported,
             focusNode: _model.shortcutsFocusNode,
             child: GestureDetector(
-              onTap: () => isShortcutsSupported &&
-                      _model.shortcutsFocusNode.canRequestFocus
-                  ? FocusScope.of(context)
-                      .requestFocus(_model.shortcutsFocusNode)
-                  : FocusScope.of(context).unfocus(),
+              onTap: () {
+                if (isShortcutsSupported &&
+                    _model.shortcutsFocusNode.canRequestFocus) {
+                  FocusScope.of(context)
+                      .requestFocus(_model.shortcutsFocusNode);
+                } else {
+                  FocusScope.of(context).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                }
+              },
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -153,7 +161,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 25.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -185,17 +193,17 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                       ),
                     ],
                   ),
-                  actions: const [],
+                  actions: [],
                   centerTitle: false,
                   elevation: 2.0,
                 ),
                 body: SafeArea(
                   top: true,
                   child: Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -207,7 +215,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
                               border: Border.all(
-                                color: const Color(0xFF57FFFF),
+                                color: Color(0xFF57FFFF),
                                 width: 2.0,
                               ),
                             ),
@@ -215,7 +223,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
                                       if (FFAppState().sideNavMC == 'summary') {
@@ -228,7 +236,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -237,7 +245,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     decoration: BoxDecoration(
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFF57FFFF),
+                                                            Color(0xFF57FFFF),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -250,7 +258,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -265,7 +273,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           5.0,
@@ -303,7 +311,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     border:
                                                                         Border
                                                                             .all(
-                                                                      color: const Color(
+                                                                      color: Color(
                                                                           0xFF57FFFF),
                                                                       width:
                                                                           1.0,
@@ -323,7 +331,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       border:
                                                                           Border
                                                                               .all(
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFF57FFFF),
                                                                         width:
                                                                             1.0,
@@ -344,10 +352,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             Container(
                                                                               width: 20.0,
                                                                               height: 20.0,
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '0',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -358,7 +366,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '1',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -369,7 +377,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '2',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -380,7 +388,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '3',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -391,7 +399,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '4',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -402,7 +410,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '5',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -413,7 +421,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '6',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -424,7 +432,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '7',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -435,7 +443,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '8',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -446,7 +454,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '9',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -457,7 +465,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'A',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -468,7 +476,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'B',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -479,7 +487,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'C',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -490,7 +498,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'D',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -501,7 +509,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'E',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -532,7 +540,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '0',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -543,7 +551,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '1',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -554,7 +562,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '2',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -565,7 +573,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '3',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -576,7 +584,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '4',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -587,7 +595,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '5',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -598,7 +606,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '6',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -609,7 +617,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '7',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -620,7 +628,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '8',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -631,7 +639,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '9',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -642,7 +650,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'A',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -653,7 +661,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'B',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -664,7 +672,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'C',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -675,7 +683,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'D',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -686,7 +694,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'E',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -697,7 +705,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'F',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -715,7 +723,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 height: 420.0,
                                                                                 decoration: BoxDecoration(
                                                                                   border: Border.all(
-                                                                                    color: const Color(0xFF57FFFF),
+                                                                                    color: Color(0xFF57FFFF),
                                                                                     width: 1.0,
                                                                                   ),
                                                                                 ),
@@ -725,7 +733,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
                                                                                     return GridView.builder(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 16,
                                                                                         crossAxisSpacing: 0.0,
                                                                                         mainAxisSpacing: 0.0,
@@ -738,9 +746,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         return Container(
                                                                                           width: 5.0,
                                                                                           height: 10.0,
-                                                                                          decoration: const BoxDecoration(),
+                                                                                          decoration: BoxDecoration(),
                                                                                           child: Align(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             child: Text(
                                                                                               valueOrDefault<String>(
                                                                                                 functions.returnCharacter(chnnelGridListItem.character),
@@ -781,7 +789,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   1.0,
                                                                   5.0,
@@ -793,7 +801,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -814,7 +822,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -830,7 +838,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
@@ -852,7 +860,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           5.0,
@@ -862,7 +870,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 width: 496.0,
                                                                 height: 240.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) {
@@ -891,7 +899,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                               child: Text(
                                                                                 dateTimeFormat("H:mm M/d/y", auditTrailLogsItem.datetime!),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -927,7 +935,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       1.0,
                                                                       1.0,
@@ -940,7 +948,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFF57FFFF),
                                                                 width: 1.0,
                                                               ),
@@ -952,12 +960,12 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -972,7 +980,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             5.0,
                                                                             5.0,
                                                                             5.0,
@@ -992,14 +1000,14 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
                                                                           0.0,
                                                                           0.0),
                                                                   child:
-                                                                      SizedBox(
+                                                                      Container(
                                                                     width:
                                                                         220.0,
                                                                     height:
@@ -1035,7 +1043,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             false,
                                                                       ),
                                                                       axisBounds:
-                                                                          const AxisBounds(
+                                                                          AxisBounds(
                                                                         minX:
                                                                             0.0,
                                                                         minY:
@@ -1102,7 +1110,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       1.0,
                                                                       1.0,
@@ -1115,7 +1123,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFF57FFFF),
                                                                 width: 1.0,
                                                               ),
@@ -1134,7 +1142,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             5.0,
@@ -1162,7 +1170,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1192,7 +1200,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1210,7 +1218,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1240,7 +1248,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1258,7 +1266,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1288,7 +1296,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1306,7 +1314,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1336,7 +1344,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1354,7 +1362,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1385,7 +1393,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1403,7 +1411,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1434,7 +1442,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           2.0,
                                                                           0.0,
                                                                           0.0,
@@ -1452,7 +1460,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           1.0,
@@ -1483,7 +1491,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -1496,7 +1504,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               .primaryText,
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFFE5EE8C),
+                                                            Color(0xFFE5EE8C),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -1506,7 +1514,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1540,22 +1548,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'account'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1580,7 +1588,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1614,22 +1622,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'audit'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1654,7 +1662,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1667,13 +1675,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Emulate',
@@ -1697,7 +1705,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1710,13 +1718,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Stats',
@@ -1740,7 +1748,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1753,13 +1761,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Monitor',
@@ -1783,7 +1791,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1817,22 +1825,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'summary'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1857,7 +1865,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1891,22 +1899,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'channels'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1931,7 +1939,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -1944,13 +1952,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'About',
@@ -1996,7 +2004,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   1.0,
                                                                   5.0,
@@ -2008,7 +2016,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -2026,7 +2034,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -2042,7 +2050,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
@@ -2064,7 +2072,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           5.0,
@@ -2074,7 +2082,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 width: 800.0,
                                                                 height: 425.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) {
@@ -2107,7 +2115,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                   child: Text(
                                                                                     dateTimeFormat("H:mm M/d/y", auditTrailLogsItem.datetime!),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2118,7 +2126,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 100.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 100.0, 0.0),
                                                                                   child: Text(
                                                                                     auditTrailLogsItem.data,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2129,7 +2137,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Row(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -2151,7 +2159,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     auditTrailLogsItem.user,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2178,7 +2186,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -2191,7 +2199,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               .primaryText,
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFFE5EE8C),
+                                                            Color(0xFFE5EE8C),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -2201,7 +2209,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2235,22 +2243,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'account'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -2275,7 +2283,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2309,22 +2317,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'audit'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -2349,7 +2357,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2362,13 +2370,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Emulate',
@@ -2392,7 +2400,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2405,13 +2413,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Stats',
@@ -2435,7 +2443,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2448,13 +2456,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Monitor',
@@ -2478,7 +2486,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2512,22 +2520,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'summary'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -2552,7 +2560,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2586,22 +2594,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'channels'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -2626,7 +2634,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -2639,13 +2647,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'About',
@@ -2686,7 +2694,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -2695,7 +2703,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     decoration: BoxDecoration(
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFF57FFFF),
+                                                            Color(0xFF57FFFF),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -2708,7 +2716,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -2723,7 +2731,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           5.0,
@@ -2761,7 +2769,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     border:
                                                                         Border
                                                                             .all(
-                                                                      color: const Color(
+                                                                      color: Color(
                                                                           0xFF57FFFF),
                                                                       width:
                                                                           1.0,
@@ -2781,7 +2789,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       border:
                                                                           Border
                                                                               .all(
-                                                                        color: const Color(
+                                                                        color: Color(
                                                                             0xFF57FFFF),
                                                                         width:
                                                                             1.0,
@@ -2802,10 +2810,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             Container(
                                                                               width: 20.0,
                                                                               height: 20.0,
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '0',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2816,7 +2824,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '1',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2827,7 +2835,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '2',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2838,7 +2846,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '3',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2849,7 +2857,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '4',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2860,7 +2868,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '5',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2871,7 +2879,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '6',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2882,7 +2890,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '7',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2893,7 +2901,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '8',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2904,7 +2912,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 '9',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2915,7 +2923,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'A',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2926,7 +2934,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'B',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2937,7 +2945,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'C',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2948,7 +2956,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'D',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2959,7 +2967,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                                                                               child: Text(
                                                                                 'E',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2990,7 +2998,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '0',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3001,7 +3009,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '1',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3012,7 +3020,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '2',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3023,7 +3031,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '3',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3034,7 +3042,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '4',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3045,7 +3053,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '5',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3056,7 +3064,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '6',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3067,7 +3075,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '7',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3078,7 +3086,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '8',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3089,7 +3097,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     '9',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3100,7 +3108,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'A',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3111,7 +3119,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'B',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3122,7 +3130,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'C',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3133,7 +3141,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'D',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3144,7 +3152,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'E',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3155,7 +3163,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'F',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3173,7 +3181,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 height: 420.0,
                                                                                 decoration: BoxDecoration(
                                                                                   border: Border.all(
-                                                                                    color: const Color(0xFF57FFFF),
+                                                                                    color: Color(0xFF57FFFF),
                                                                                     width: 1.0,
                                                                                   ),
                                                                                 ),
@@ -3183,7 +3191,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
                                                                                     return GridView.builder(
                                                                                       padding: EdgeInsets.zero,
-                                                                                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                                                         crossAxisCount: 16,
                                                                                         crossAxisSpacing: 0.0,
                                                                                         mainAxisSpacing: 0.0,
@@ -3196,9 +3204,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         return Container(
                                                                                           width: 5.0,
                                                                                           height: 10.0,
-                                                                                          decoration: const BoxDecoration(),
+                                                                                          decoration: BoxDecoration(),
                                                                                           child: Align(
-                                                                                            alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                            alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             child: Text(
                                                                                               valueOrDefault<String>(
                                                                                                 functions.returnCharacter(chnnelGridListItem.character),
@@ -3239,7 +3247,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   1.0,
                                                                   5.0,
@@ -3251,7 +3259,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -3265,7 +3273,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           5.0,
@@ -3275,7 +3283,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 width: 496.0,
                                                                 height: 450.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) {
@@ -3304,7 +3312,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                               child: Text(
                                                                                 functions.chanToHex(channelLogEntriesItem.channel),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3338,7 +3346,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -3351,7 +3359,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               .primaryText,
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFFE5EE8C),
+                                                            Color(0xFFE5EE8C),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -3361,7 +3369,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3395,22 +3403,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'account'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -3435,7 +3443,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3469,22 +3477,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'audit'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -3509,7 +3517,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3522,13 +3530,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Emulate',
@@ -3552,7 +3560,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3565,13 +3573,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Stats',
@@ -3595,7 +3603,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3608,13 +3616,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Monitor',
@@ -3638,7 +3646,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3672,22 +3680,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'summary'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -3712,7 +3720,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3746,22 +3754,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'channels'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -3786,7 +3794,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -3799,13 +3807,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'About',
@@ -3851,7 +3859,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   1.0,
                                                                   5.0,
@@ -3863,7 +3871,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -3881,7 +3889,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -3897,7 +3905,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
@@ -3924,7 +3932,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           5.0,
@@ -3934,7 +3942,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 width: 800.0,
                                                                 height: 425.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
@@ -3951,7 +3959,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Name:',
@@ -3963,7 +3971,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -3975,7 +3983,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.name,
@@ -4000,7 +4008,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Addr1:',
@@ -4012,7 +4020,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4024,7 +4032,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.addr1,
@@ -4042,7 +4050,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Acct Created:',
@@ -4059,7 +4067,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             dateTimeFormat("yMd",
@@ -4084,7 +4092,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Addr2:',
@@ -4096,7 +4104,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4108,7 +4116,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.addr2,
@@ -4126,7 +4134,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Last Call on:',
@@ -4143,7 +4151,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             dateTimeFormat("yMd",
@@ -4168,7 +4176,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Addr3:',
@@ -4180,7 +4188,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4192,7 +4200,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.addr3,
@@ -4210,7 +4218,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Used Today:',
@@ -4227,7 +4235,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             FFAppState().currentSearchUser.dayUsage.toString(),
@@ -4251,7 +4259,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Addr4:',
@@ -4263,7 +4271,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4275,7 +4283,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.addr4,
@@ -4300,7 +4308,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Phone:',
@@ -4312,7 +4320,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4324,7 +4332,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.phone,
@@ -4349,7 +4357,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Born:',
@@ -4361,7 +4369,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4373,7 +4381,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               dateTimeFormat("yMd", FFAppState().currentSearchUser.born!),
@@ -4391,7 +4399,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Sex:',
@@ -4408,7 +4416,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             FFAppState().currentSearchUser.sex,
@@ -4420,7 +4428,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               25.0,
                                                                               0.0,
                                                                               0.0,
@@ -4432,7 +4440,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               'Default Editor:',
@@ -4450,7 +4458,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             FFAppState().currentSearchUser.defaultEditor,
@@ -4474,7 +4482,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'System:',
@@ -4486,7 +4494,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4498,7 +4506,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.system,
@@ -4523,7 +4531,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Screen:',
@@ -4535,7 +4543,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4547,7 +4555,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               '${FFAppState().currentSearchUser.screen}  ${FFAppState().currentSearchUser.screen2}---${FFAppState().currentSearchUser.screen3}',
@@ -4572,7 +4580,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Class:',
@@ -4584,7 +4592,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4596,7 +4604,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.userClass,
@@ -4621,7 +4629,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Passwd:',
@@ -4633,7 +4641,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4645,7 +4653,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.passwd,
@@ -4670,7 +4678,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Credit Avail:',
@@ -4682,7 +4690,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               150.0,
                                                                               0.0,
                                                                               0.0,
@@ -4694,7 +4702,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.creditAvail.toString(),
@@ -4719,7 +4727,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Credits Totl:',
@@ -4731,7 +4739,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               150.0,
                                                                               0.0,
                                                                               0.0,
@@ -4743,7 +4751,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.creditTotal.toString(),
@@ -4768,7 +4776,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Credits Paid:',
@@ -4780,7 +4788,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               150.0,
                                                                               0.0,
                                                                               0.0,
@@ -4792,7 +4800,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.creditsPaid.toString(),
@@ -4807,7 +4815,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ],
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           5.0,
                                                                           0.0,
@@ -4831,7 +4839,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           5.0,
                                                                           0.0,
@@ -4847,7 +4855,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               'Has Master Key:',
@@ -4859,7 +4867,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -4868,7 +4876,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 150.0,
                                                                               height: 25.0,
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                               child: Text(
                                                                                 FFAppState().currentSearchUser.hasMaster,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4880,7 +4888,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 25.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -4889,7 +4897,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 100.0,
                                                                               height: 25.0,
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                               child: Text(
                                                                                 'Suspended:',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4901,7 +4909,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -4910,7 +4918,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 150.0,
                                                                               height: 25.0,
-                                                                              decoration: const BoxDecoration(),
+                                                                              decoration: BoxDecoration(),
                                                                               child: Text(
                                                                                 FFAppState().currentSearchUser.suspended,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4935,7 +4943,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           height:
                                                                               25.0,
                                                                           decoration:
-                                                                              const BoxDecoration(),
+                                                                              BoxDecoration(),
                                                                           child:
                                                                               Text(
                                                                             'Tag\'d for Kill:',
@@ -4947,7 +4955,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -4959,7 +4967,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.tagForKill,
@@ -4972,7 +4980,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               25.0,
                                                                               0.0,
                                                                               0.0,
@@ -4984,7 +4992,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               'Protected:',
@@ -4997,7 +5005,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
@@ -5009,7 +5017,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             height:
                                                                                 25.0,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 Text(
                                                                               FFAppState().currentSearchUser.protected,
@@ -5034,7 +5042,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   ],
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           1.0, 5.0, 1.0, 1.0),
                                                   child: Container(
@@ -5047,7 +5055,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               .primaryText,
                                                       border: Border.all(
                                                         color:
-                                                            const Color(0xFFE5EE8C),
+                                                            Color(0xFFE5EE8C),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -5057,7 +5065,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5091,22 +5099,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'account'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -5131,7 +5139,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5165,22 +5173,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'audit'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -5205,7 +5213,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5218,13 +5226,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Emulate',
@@ -5248,7 +5256,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5261,13 +5269,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Stats',
@@ -5291,7 +5299,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5304,13 +5312,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'Monitor',
@@ -5334,7 +5342,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5368,22 +5376,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'summary'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -5408,7 +5416,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5442,22 +5450,22 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBackground
-                                                                    : const Color(
+                                                                    : Color(
                                                                         0x00000000),
                                                                 border:
                                                                     Border.all(
                                                                   color: FFAppState()
                                                                               .sideNavMC ==
                                                                           'channels'
-                                                                      ? const Color(
+                                                                      ? Color(
                                                                           0xFF57FFFF)
-                                                                      : const Color(
+                                                                      : Color(
                                                                           0xFFE5EE8C),
                                                                 ),
                                                               ),
                                                               child: Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -5482,7 +5490,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       1.0,
@@ -5495,13 +5503,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 BoxDecoration(
                                                               border:
                                                                   Border.all(
-                                                                color: const Color(
+                                                                color: Color(
                                                                     0xFFE5EE8C),
                                                               ),
                                                             ),
                                                             child: Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 'About',
@@ -5554,18 +5562,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(1.0, 1.0, 1.0, 1.0),
                                               child: Container(
                                                 width: 919.0,
                                                 height: 50.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xFF57FFFF),
+                                                    color: Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
-                                                child: SizedBox(
+                                                child: Container(
                                                   width: 900.0,
                                                   height: 45.0,
                                                   child: custom_widgets
@@ -5588,14 +5596,14 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(1.0, 1.0, 1.0, 1.0),
                                               child: Container(
                                                 width: 919.0,
                                                 height: 60.0,
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
-                                                    color: const Color(0xFF57FFFF),
+                                                    color: Color(0xFF57FFFF),
                                                     width: 1.0,
                                                   ),
                                                 ),
@@ -5605,7 +5613,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -5617,7 +5625,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -5631,11 +5639,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -5661,7 +5669,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -5677,7 +5685,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -5703,7 +5711,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -5715,7 +5723,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -5729,11 +5737,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -5759,7 +5767,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -5775,7 +5783,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -5801,7 +5809,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -5813,7 +5821,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -5827,11 +5835,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -5857,7 +5865,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -5873,7 +5881,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -5899,7 +5907,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -5911,7 +5919,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -5925,11 +5933,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -5955,7 +5963,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -5971,7 +5979,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -5997,7 +6005,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6009,7 +6017,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6023,11 +6031,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -6053,7 +6061,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -6100,7 +6108,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       if ('1' ==
                                                                           '2')
                                                                         Align(
-                                                                          alignment: const AlignmentDirectional(
+                                                                          alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
@@ -6114,7 +6122,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ),
                                                                         ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
@@ -6138,7 +6146,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6150,7 +6158,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6164,11 +6172,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -6194,7 +6202,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -6210,7 +6218,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -6236,7 +6244,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6248,7 +6256,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6262,11 +6270,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -6292,7 +6300,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -6308,7 +6316,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -6334,7 +6342,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6346,7 +6354,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6360,11 +6368,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -6390,7 +6398,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -6406,7 +6414,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
@@ -6432,7 +6440,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6444,7 +6452,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6453,7 +6461,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   1.0,
@@ -6465,7 +6473,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                         decoration:
                                                             BoxDecoration(
                                                           border: Border.all(
-                                                            color: const Color(
+                                                            color: Color(
                                                                 0xFF57FFFF),
                                                             width: 1.0,
                                                           ),
@@ -6479,11 +6487,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             6.0,
@@ -6509,7 +6517,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -6525,7 +6533,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 ),
                                                                 child: Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(

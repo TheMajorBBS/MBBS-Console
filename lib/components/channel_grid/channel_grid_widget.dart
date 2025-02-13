@@ -47,7 +47,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
         border: Border.all(
-          color: const Color(0xFF57FFFF),
+          color: Color(0xFF57FFFF),
           width: 1.0,
         ),
       ),
@@ -61,10 +61,10 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
               Container(
                 width: 20.0,
                 height: 20.0,
-                decoration: const BoxDecoration(),
+                decoration: BoxDecoration(),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
                 child: Text(
                   '0',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -75,7 +75,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '1',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -86,7 +86,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '2',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -97,7 +97,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '3',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -108,7 +108,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '4',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -119,7 +119,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '5',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -130,7 +130,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '6',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -141,7 +141,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '7',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -152,7 +152,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '8',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -163,7 +163,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   '9',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -174,7 +174,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   'A',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -185,7 +185,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   'B',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -196,7 +196,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   'C',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -207,7 +207,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   'D',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -218,7 +218,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                 child: Text(
                   'E',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -248,7 +248,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(7.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '0',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -260,7 +260,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '1',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -272,7 +272,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '2',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -284,7 +284,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '3',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -296,7 +296,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '4',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -308,7 +308,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '5',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -320,7 +320,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '6',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -332,7 +332,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '7',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -344,7 +344,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '8',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -356,7 +356,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       '9',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -368,7 +368,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'A',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -380,7 +380,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'B',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -392,7 +392,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'C',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -404,7 +404,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'D',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -416,7 +416,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'E',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -428,7 +428,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                     child: Text(
                       'F',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -446,7 +446,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                   height: 420.0,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: const Color(0xFF57FFFF),
+                      color: Color(0xFF57FFFF),
                       width: 1.0,
                     ),
                   ),
@@ -457,7 +457,7 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
 
                       return GridView.builder(
                         padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 16,
                           crossAxisSpacing: 0.0,
                           mainAxisSpacing: 0.0,
@@ -471,9 +471,9 @@ class _ChannelGridWidgetState extends State<ChannelGridWidget> {
                           return Container(
                             width: 5.0,
                             height: 10.0,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
                                   functions.returnCharacter(

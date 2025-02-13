@@ -47,7 +47,7 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
 
         return GridView.builder(
           padding: EdgeInsets.zero,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 16,
             crossAxisSpacing: 0.0,
             mainAxisSpacing: 0.0,
@@ -60,9 +60,9 @@ class _GridLayoutWidgetState extends State<GridLayoutWidget> {
             return Container(
               width: 5.0,
               height: 10.0,
-              decoration: const BoxDecoration(),
+              decoration: BoxDecoration(),
               child: Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
                     functions.returnCharacter(chnnelGridListItem.character),

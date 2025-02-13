@@ -33,7 +33,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       safeSetState(() {});
       _model.stateTime = InstantTimer.periodic(
-        duration: const Duration(milliseconds: 2000),
+        duration: Duration(milliseconds: 2000),
         callback: (timer) async {
           unawaited(
             () async {
@@ -64,7 +64,10 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -81,22 +84,22 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                   fontWeight: FontWeight.w600,
                 ),
           ),
-          actions: const [],
+          actions: [],
           centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                    child: SizedBox(
+                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                    child: Container(
                       width: 600.0,
                       height: 100.0,
                       child: custom_widgets.WebSocketConn(
@@ -110,10 +113,10 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                     child: Container(
                       width: 800.0,
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -126,9 +129,9 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             text: 'Summary',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.consoleView == 'summary'
                                   ? FlutterFlowTheme.of(context)
@@ -146,7 +149,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                     fontWeight: FontWeight.w600,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -161,9 +164,9 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             text: 'Audit',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.consoleView == 'audit'
                                   ? FlutterFlowTheme.of(context)
@@ -181,7 +184,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                     fontWeight: FontWeight.w600,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -196,9 +199,9 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             text: 'Channels',
                             options: FFButtonOptions(
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: _model.consoleView == 'channels'
                                   ? FlutterFlowTheme.of(context)
@@ -215,7 +218,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -230,7 +233,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                     builder: (context) {
                       if (_model.consoleView == 'summary') {
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Material(
                             color: Colors.transparent,
@@ -255,7 +258,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 1.0, 0.0, 0.0),
                                     child: SingleChildScrollView(
                                       child: Column(
@@ -270,7 +273,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       .secondaryBackground,
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Text(
                                                 'Channel Status',
@@ -306,7 +309,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           2.0, 0.0, 2.0, 0.0),
                                                   child: Column(
@@ -315,7 +318,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -347,7 +350,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -379,7 +382,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -411,7 +414,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -443,7 +446,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -475,7 +478,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -507,7 +510,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -539,7 +542,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -571,7 +574,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -603,7 +606,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -635,7 +638,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -667,7 +670,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -699,7 +702,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -731,7 +734,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -763,7 +766,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -795,7 +798,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     5.0,
@@ -833,7 +836,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   height: 560.0,
                                                   decoration: BoxDecoration(
                                                     border: Border.all(
-                                                      color: const Color(0xFF48D7F6),
+                                                      color: Color(0xFF48D7F6),
                                                       width: 2.0,
                                                     ),
                                                   ),
@@ -856,7 +859,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                   channelStatusIndex];
                                                           return Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         4.0,
@@ -909,7 +912,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 1.0, 0.0, 0.0),
                                     child: SingleChildScrollView(
                                       child: Column(
@@ -924,7 +927,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                       .secondaryBackground,
                                             ),
                                             child: Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Text(
                                                 'Audit Trail',
@@ -972,10 +975,10 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                         myAudits[myAuditsIndex];
                                                     return Container(
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     5.0,
                                                                     0.0,
@@ -990,7 +993,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1027,7 +1030,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1058,7 +1061,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1107,7 +1110,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                         );
                       } else if (_model.consoleView == 'audit') {
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Container(
                             width: 800.0,
@@ -1115,7 +1118,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(5.0),
                                 bottomRight: Radius.circular(5.0),
                                 topLeft: Radius.circular(5.0),
@@ -1144,7 +1147,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 5.0),
                                   child: Container(
                                     height: 635.0,
@@ -1172,7 +1175,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                             final auditDetailItem =
                                                 auditDetail[auditDetailIndex];
                                             return Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 0.0, 5.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -1181,7 +1184,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Text(
@@ -1206,7 +1209,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Text(
@@ -1228,7 +1231,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Text(
@@ -1277,7 +1280,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                         );
                       } else {
                         return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Container(
                             width: 800.0,
@@ -1285,7 +1288,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(5.0),
                                 bottomRight: Radius.circular(5.0),
                                 topLeft: Radius.circular(5.0),
@@ -1314,7 +1317,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 5.0),
                                   child: Container(
                                     height: 600.0,
@@ -1328,7 +1331,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   2.0, 0.0, 0.0, 0.0),
                                           child: Container(
                                             width: 200.0,
@@ -1350,7 +1353,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1382,7 +1385,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1414,7 +1417,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1446,7 +1449,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1478,7 +1481,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1510,7 +1513,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1542,7 +1545,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1574,7 +1577,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1606,7 +1609,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1638,7 +1641,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1670,7 +1673,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1702,7 +1705,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1734,7 +1737,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1766,7 +1769,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1798,7 +1801,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1830,7 +1833,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1881,7 +1884,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                                 channelDetailOldIndex];
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       4.0,
@@ -1895,7 +1898,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                               Container(
                                                                 width: 150.0,
                                                                 decoration:
-                                                                    const BoxDecoration(),
+                                                                    BoxDecoration(),
                                                                 child: Text(
                                                                   channelDetailOldItem
                                                                       .character
@@ -1931,7 +1934,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   2.0, 0.0, 0.0, 0.0),
                                           child: Container(
                                             width: 580.0,
@@ -1964,7 +1967,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                             channelDetailIndex];
                                                     return Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   5.0,
@@ -1976,7 +1979,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2005,7 +2008,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2030,7 +2033,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2056,7 +2059,7 @@ class _ConsoleWidgetState extends State<ConsoleWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
