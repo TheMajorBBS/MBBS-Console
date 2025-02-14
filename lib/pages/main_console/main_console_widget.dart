@@ -1557,6 +1557,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               FFAppState()
                                                                       .sideNavMC =
                                                                   'account';
+                                                              FFAppState()
+                                                                      .getFirstAcct =
+                                                                  true;
                                                               safeSetState(
                                                                   () {});
                                                             },
@@ -2252,6 +2255,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               FFAppState()
                                                                       .sideNavMC =
                                                                   'account';
+                                                              FFAppState()
+                                                                      .getFirstAcct =
+                                                                  true;
                                                               safeSetState(
                                                                   () {});
                                                             },
@@ -3412,6 +3418,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                               FFAppState()
                                                                       .sideNavMC =
                                                                   'account';
+                                                              FFAppState()
+                                                                      .getFirstAcct =
+                                                                  true;
                                                               safeSetState(
                                                                   () {});
                                                             },
