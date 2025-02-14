@@ -64,6 +64,26 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       );
     });
 
+    _model.textController1 ??=
+        TextEditingController(text: FFAppState().currentSearchUser.name);
+    _model.textFieldFocusNode1 ??= FocusNode();
+
+    _model.textController2 ??=
+        TextEditingController(text: FFAppState().currentSearchUser.addr1);
+    _model.textFieldFocusNode2 ??= FocusNode();
+
+    _model.textController3 ??=
+        TextEditingController(text: FFAppState().currentSearchUser.addr2);
+    _model.textFieldFocusNode3 ??= FocusNode();
+
+    _model.textController4 ??=
+        TextEditingController(text: FFAppState().currentSearchUser.addr3);
+    _model.textFieldFocusNode4 ??= FocusNode();
+
+    _model.textController5 ??=
+        TextEditingController(text: FFAppState().currentSearchUser.addr4);
+    _model.textFieldFocusNode5 ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -4017,13 +4037,47 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             decoration:
                                                                                 BoxDecoration(),
                                                                             child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.name,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
+                                                                                Container(
+                                                                              width: 200.0,
+                                                                              child: TextFormField(
+                                                                                controller: _model.textController1,
+                                                                                focusNode: _model.textFieldFocusNode1,
+                                                                                onFieldSubmitted: (_) async {
+                                                                                  FFAppState().updateAcct = true;
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][NAME:${_model.textController1.text}]';
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                                autofocus: false,
+                                                                                obscureText: false,
+                                                                                decoration: InputDecoration(
+                                                                                  isDense: true,
+                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  hintText: 'Name',
+                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        fontFamily: 'Readex Pro',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  enabledBorder: InputBorder.none,
+                                                                                  focusedBorder: InputBorder.none,
+                                                                                  errorBorder: InputBorder.none,
+                                                                                  focusedErrorBorder: InputBorder.none,
+                                                                                  filled: true,
+                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Courier Prime',
+                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                                textAlign: TextAlign.start,
+                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                validator: _model.textController1Validator.asValidator(context),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -4066,13 +4120,70 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             decoration:
                                                                                 BoxDecoration(),
                                                                             child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.addr1,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                    letterSpacing: 0.0,
+                                                                                Container(
+                                                                              width: 200.0,
+                                                                              child: TextFormField(
+                                                                                controller: _model.textController2,
+                                                                                focusNode: _model.textFieldFocusNode2,
+                                                                                onFieldSubmitted: (_) async {
+                                                                                  FFAppState().updateAcct = true;
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD1:${_model.textController2.text}]';
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                                autofocus: false,
+                                                                                obscureText: false,
+                                                                                decoration: InputDecoration(
+                                                                                  isDense: true,
+                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  hintText: 'Addr1',
+                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        fontFamily: 'Readex Pro',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
+                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  errorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedErrorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  filled: true,
+                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Courier Prime',
+                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                validator: _model.textController2Validator.asValidator(context),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -4150,13 +4261,70 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             decoration:
                                                                                 BoxDecoration(),
                                                                             child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.addr2,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                    letterSpacing: 0.0,
+                                                                                Container(
+                                                                              width: 200.0,
+                                                                              child: TextFormField(
+                                                                                controller: _model.textController3,
+                                                                                focusNode: _model.textFieldFocusNode3,
+                                                                                onFieldSubmitted: (_) async {
+                                                                                  FFAppState().updateAcct = true;
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD2:${_model.textController3.text}]';
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                                autofocus: false,
+                                                                                obscureText: false,
+                                                                                decoration: InputDecoration(
+                                                                                  isDense: true,
+                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  hintText: 'ADDR2',
+                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
+                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  errorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedErrorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  filled: true,
+                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Courier Prime',
+                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                validator: _model.textController3Validator.asValidator(context),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -4234,13 +4402,69 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             decoration:
                                                                                 BoxDecoration(),
                                                                             child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.addr3,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                    letterSpacing: 0.0,
+                                                                                Container(
+                                                                              width: 200.0,
+                                                                              child: TextFormField(
+                                                                                controller: _model.textController4,
+                                                                                focusNode: _model.textFieldFocusNode4,
+                                                                                onFieldSubmitted: (_) async {
+                                                                                  FFAppState().updateAcct = true;
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD3:${_model.textController4.text}]';
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                                autofocus: false,
+                                                                                obscureText: false,
+                                                                                decoration: InputDecoration(
+                                                                                  isDense: true,
+                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
+                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  errorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedErrorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  filled: true,
+                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Courier Prime',
+                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                validator: _model.textController4Validator.asValidator(context),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
@@ -4317,13 +4541,70 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             decoration:
                                                                                 BoxDecoration(),
                                                                             child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.addr4,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).secondary,
-                                                                                    letterSpacing: 0.0,
+                                                                                Container(
+                                                                              width: 200.0,
+                                                                              child: TextFormField(
+                                                                                controller: _model.textController5,
+                                                                                focusNode: _model.textFieldFocusNode5,
+                                                                                onFieldSubmitted: (_) async {
+                                                                                  FFAppState().updateAcct = true;
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD4:${_model.textController5.text}]';
+                                                                                  safeSetState(() {});
+                                                                                },
+                                                                                autofocus: false,
+                                                                                obscureText: false,
+                                                                                decoration: InputDecoration(
+                                                                                  isDense: true,
+                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  hintText: 'TextField',
+                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        fontFamily: 'Courier Prime',
+                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
+                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  errorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedErrorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  filled: true,
+                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Courier Prime',
+                                                                                      color: FlutterFlowTheme.of(context).secondary,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                validator: _model.textController5Validator.asValidator(context),
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),

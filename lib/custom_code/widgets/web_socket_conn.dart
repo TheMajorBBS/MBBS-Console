@@ -177,6 +177,12 @@ class _WebSocketConnState extends State<WebSocketConn> {
           _channel.sink.add('[ACCDETREQFIRST]');
           FFAppState().getFirstAcct = false;
         }
+        if (FFAppState().updateAcct) {
+          print('Update Account: ');
+          _channel.sink.add(FFAppState().acctUpdateStr);
+          FFAppState().updateAcct = false;
+          FFAppState().acctUpdateStr = '';
+        }
       });
       myMessage = '${event}';
       print(myMessage);
@@ -208,12 +214,14 @@ class _WebSocketConnState extends State<WebSocketConn> {
       textFieldFocusNode.requestFocus();
     }, onError: (e) {
       print('WEBSOCKET ERROR:  $e');
+      startStream();
     }, onDone: () {
       print('WEBSOCKET CLOSED');
       FFAppState().connected = false;
       myMessage = 'Disconnected';
       FFAppState().wsMessage = myMessage;
       setState(() {});
+      startStream();
     });
   }
 
