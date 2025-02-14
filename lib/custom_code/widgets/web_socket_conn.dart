@@ -214,15 +214,19 @@ class _WebSocketConnState extends State<WebSocketConn> {
       textFieldFocusNode.requestFocus();
     }, onError: (e) {
       print('WEBSOCKET ERROR:  $e');
-      startStream();
+      doStreamRestart();
     }, onDone: () {
       print('WEBSOCKET CLOSED');
       FFAppState().connected = false;
       myMessage = 'Disconnected';
       FFAppState().wsMessage = myMessage;
       setState(() {});
-      startStream();
+      doStreamRestart();
     });
+  }
+
+  doStreamRestart() {
+    startStream();
   }
 
   @override

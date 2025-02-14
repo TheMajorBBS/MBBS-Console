@@ -4062,10 +4062,34 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         color: FlutterFlowTheme.of(context).secondary,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
+                                                                                  enabledBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Color(0x00000000),
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  errorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
+                                                                                  focusedErrorBorder: OutlineInputBorder(
+                                                                                    borderSide: BorderSide(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      width: 1.0,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                                  ),
                                                                                   filled: true,
                                                                                   fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                                                                 ),
@@ -4141,7 +4165,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       ),
                                                                                   hintText: 'Addr1',
                                                                                   hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
+                                                                                        fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
@@ -4560,7 +4584,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         color: FlutterFlowTheme.of(context).secondary,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
-                                                                                  hintText: 'TextField',
                                                                                   hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
