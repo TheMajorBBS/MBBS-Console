@@ -21,6 +21,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '../../flutter_flow/flutter_flow_widgets.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:flutter/scheduler.dart';
+import 'dart:async';
 
 class WebSocketConn extends StatefulWidget {
   const WebSocketConn({
@@ -73,7 +74,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
   void dispose() {
     _channel.sink.close(status.normalClosure);
     textFieldFocusNode.dispose();
-    _listener.dispose();
     super.dispose();
   }
 
@@ -173,8 +173,9 @@ class _WebSocketConnState extends State<WebSocketConn> {
           _channel.sink.add('[ACCDETREQPREV]');
         }
         if (FFAppState().getFirstAcct) {
-          FFAppState().getFirstAcct = false;
+          print('GET FIRST ACCOUNT');
           _channel.sink.add('[ACCDETREQFIRST]');
+          FFAppState().getFirstAcct = false;
         }
       });
       myMessage = '${event}';
