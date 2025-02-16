@@ -67,7 +67,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
     _model.textController1 ??=
         TextEditingController(text: FFAppState().currentSearchUser.name);
     _model.textFieldFocusNode1 ??= FocusNode();
-
+    _model.textFieldFocusNode1!.addListener(() => safeSetState(() {}));
     _model.textController2 ??=
         TextEditingController(text: FFAppState().currentSearchUser.addr1);
     _model.textFieldFocusNode2 ??= FocusNode();
@@ -4038,69 +4038,98 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 BoxDecoration(),
                                                                             child:
                                                                                 Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.textController1,
-                                                                                focusNode: _model.textFieldFocusNode1,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  FFAppState().updateAcct = true;
-                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][NAME:${_model.textController1.text}]';
-                                                                                  safeSetState(() {});
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                              width: 350.0,
+                                                                              height: 25.0,
+                                                                              child: Stack(
+                                                                                children: [
+                                                                                  if (_model.editName)
+                                                                                    Container(
+                                                                                      width: 200.0,
+                                                                                      child: TextFormField(
+                                                                                        controller: _model.textController1,
+                                                                                        focusNode: _model.textFieldFocusNode1,
+                                                                                        onFieldSubmitted: (_) async {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.textController1.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          _model.editName = false;
+                                                                                          safeSetState(() {});
+                                                                                        },
+                                                                                        autofocus: false,
+                                                                                        obscureText: false,
+                                                                                        decoration: InputDecoration(
+                                                                                          isDense: true,
+                                                                                          labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                                fontFamily: 'Courier Prime',
+                                                                                                color: FlutterFlowTheme.of(context).secondary,
+                                                                                                letterSpacing: 0.0,
+                                                                                              ),
+                                                                                          hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                                fontFamily: 'Courier Prime',
+                                                                                                color: FlutterFlowTheme.of(context).secondary,
+                                                                                                letterSpacing: 0.0,
+                                                                                              ),
+                                                                                          enabledBorder: OutlineInputBorder(
+                                                                                            borderSide: BorderSide(
+                                                                                              color: Color(0x00000000),
+                                                                                              width: 1.0,
+                                                                                            ),
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                          ),
+                                                                                          focusedBorder: OutlineInputBorder(
+                                                                                            borderSide: BorderSide(
+                                                                                              color: Color(0x00000000),
+                                                                                              width: 1.0,
+                                                                                            ),
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                          ),
+                                                                                          errorBorder: OutlineInputBorder(
+                                                                                            borderSide: BorderSide(
+                                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                                              width: 1.0,
+                                                                                            ),
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                          ),
+                                                                                          focusedErrorBorder: OutlineInputBorder(
+                                                                                            borderSide: BorderSide(
+                                                                                              color: FlutterFlowTheme.of(context).error,
+                                                                                              width: 1.0,
+                                                                                            ),
+                                                                                            borderRadius: BorderRadius.circular(8.0),
+                                                                                          ),
+                                                                                          filled: true,
+                                                                                          fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                        ),
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                        validator: _model.textController1Validator.asValidator(context),
                                                                                       ),
-                                                                                  hintText: 'Name',
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                                    ),
+                                                                                  if (!_model.editName)
+                                                                                    InkWell(
+                                                                                      splashColor: Colors.transparent,
+                                                                                      focusColor: Colors.transparent,
+                                                                                      hoverColor: Colors.transparent,
+                                                                                      highlightColor: Colors.transparent,
+                                                                                      onTap: () async {
+                                                                                        _model.editName = true;
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                      child: Text(
+                                                                                        FFAppState().currentSearchUser.name,
+                                                                                        textAlign: TextAlign.start,
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
                                                                                       ),
-                                                                                  enabledBorder: OutlineInputBorder(
-                                                                                    borderSide: BorderSide(
-                                                                                      color: Color(0x00000000),
-                                                                                      width: 1.0,
                                                                                     ),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  focusedBorder: OutlineInputBorder(
-                                                                                    borderSide: BorderSide(
-                                                                                      color: Color(0x00000000),
-                                                                                      width: 1.0,
-                                                                                    ),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  errorBorder: OutlineInputBorder(
-                                                                                    borderSide: BorderSide(
-                                                                                      color: FlutterFlowTheme.of(context).error,
-                                                                                      width: 1.0,
-                                                                                    ),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  focusedErrorBorder: OutlineInputBorder(
-                                                                                    borderSide: BorderSide(
-                                                                                      color: FlutterFlowTheme.of(context).error,
-                                                                                      width: 1.0,
-                                                                                    ),
-                                                                                    borderRadius: BorderRadius.circular(8.0),
-                                                                                  ),
-                                                                                  filled: true,
-                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                                textAlign: TextAlign.start,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
-                                                                                validator: _model.textController1Validator.asValidator(context),
+                                                                                ],
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4151,7 +4180,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 focusNode: _model.textFieldFocusNode2,
                                                                                 onFieldSubmitted: (_) async {
                                                                                   FFAppState().updateAcct = true;
-                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD1:${_model.textController2.text}]';
+                                                                                  FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.textController2.text}]';
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 autofocus: false,
@@ -4292,7 +4321,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 focusNode: _model.textFieldFocusNode3,
                                                                                 onFieldSubmitted: (_) async {
                                                                                   FFAppState().updateAcct = true;
-                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD2:${_model.textController3.text}]';
+                                                                                  FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.textController3.text}]';
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 autofocus: false,
@@ -4433,7 +4462,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 focusNode: _model.textFieldFocusNode4,
                                                                                 onFieldSubmitted: (_) async {
                                                                                   FFAppState().updateAcct = true;
-                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD3:${_model.textController4.text}]';
+                                                                                  FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.textController4.text}]';
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 autofocus: false,
@@ -4572,7 +4601,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 focusNode: _model.textFieldFocusNode5,
                                                                                 onFieldSubmitted: (_) async {
                                                                                   FFAppState().updateAcct = true;
-                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD4:${_model.textController5.text}]';
+                                                                                  FFAppState().acctUpdateStr = '[UPDATEUSR][${FFAppState().currentSearchUser.username}][ADD4][${_model.textController5.text}]';
                                                                                   safeSetState(() {});
                                                                                 },
                                                                                 autofocus: false,
