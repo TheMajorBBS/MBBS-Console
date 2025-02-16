@@ -8,6 +8,8 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
   String sideNav = 'summary';
 
+  bool editName = false;
+
   ///  State fields for stateful widgets in this page.
 
   final shortcutsFocusNode = FocusNode();
