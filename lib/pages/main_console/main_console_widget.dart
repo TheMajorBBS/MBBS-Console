@@ -64,24 +64,19 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       );
     });
 
-    _model.textController1 ??=
-        TextEditingController(text: FFAppState().currentSearchUser.name);
+    _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
     _model.textFieldFocusNode1!.addListener(() => safeSetState(() {}));
-    _model.textController2 ??=
-        TextEditingController(text: FFAppState().currentSearchUser.addr1);
+    _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??=
-        TextEditingController(text: FFAppState().currentSearchUser.addr2);
+    _model.textController3 ??= TextEditingController();
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textController4 ??=
-        TextEditingController(text: FFAppState().currentSearchUser.addr3);
+    _model.textController4 ??= TextEditingController();
     _model.textFieldFocusNode4 ??= FocusNode();
 
-    _model.textController5 ??=
-        TextEditingController(text: FFAppState().currentSearchUser.addr4);
+    _model.textController5 ??= TextEditingController();
     _model.textFieldFocusNode5 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -156,6 +151,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             await actions.consolePrint(
               'PAGE UP PRESSED',
             );
+
+            safeSetState(() {});
           }
         }),
         SingleActivator(
@@ -167,6 +164,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             await actions.consolePrint(
               'PAGE DOWN PRESSED',
             );
+
+            safeSetState(() {});
           }
         }),
       },
@@ -4059,6 +4058,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         obscureText: false,
                                                                                         decoration: InputDecoration(
                                                                                           isDense: true,
+                                                                                          labelText: FFAppState().currentSearchUser.name,
                                                                                           labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                                 fontFamily: 'Courier Prime',
                                                                                                 color: FlutterFlowTheme.of(context).secondary,
@@ -4098,7 +4098,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                             borderRadius: BorderRadius.circular(8.0),
                                                                                           ),
                                                                                           filled: true,
-                                                                                          fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                                                                         ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               fontFamily: 'Courier Prime',
@@ -4187,12 +4186,12 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   isDense: true,
+                                                                                  labelText: FFAppState().currentSearchUser.addr1,
                                                                                   labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
-                                                                                  hintText: 'Addr1',
                                                                                   hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -4328,12 +4327,12 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   isDense: true,
+                                                                                  labelText: FFAppState().currentSearchUser.addr2,
                                                                                   labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
-                                                                                  hintText: 'ADDR2',
                                                                                   hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -4469,6 +4468,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   isDense: true,
+                                                                                  labelText: FFAppState().currentSearchUser.addr3,
                                                                                   labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
@@ -4608,6 +4608,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   isDense: true,
+                                                                                  labelText: FFAppState().currentSearchUser.addr4,
                                                                                   labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Courier Prime',
                                                                                         color: FlutterFlowTheme.of(context).secondary,
