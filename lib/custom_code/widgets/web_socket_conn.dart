@@ -166,11 +166,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
       Timer.periodic(const Duration(seconds: 1), (timer) {
         if (FFAppState().doPgUp) {
           FFAppState().doPgUp = false;
-          _channel.sink.add('[ACCDETREQNEXT]');
+          _channel.sink.add('[ACCDETREQPREV');
         }
         if (FFAppState().doPgDown) {
           FFAppState().doPgDown = false;
-          _channel.sink.add('[ACCDETREQPREV]');
+          _channel.sink.add('[ACCDETREQNEXT]');
         }
         if (FFAppState().getFirstAcct) {
           print('GET FIRST ACCOUNT');
@@ -214,19 +214,23 @@ class _WebSocketConnState extends State<WebSocketConn> {
       textFieldFocusNode.requestFocus();
     }, onError: (e) {
       print('WEBSOCKET ERROR:  $e');
+      closeConnect();
       doStreamRestart();
     }, onDone: () {
       print('WEBSOCKET CLOSED');
       FFAppState().connected = false;
       myMessage = 'Disconnected';
       FFAppState().wsMessage = myMessage;
+      closeConnect();
       setState(() {});
       doStreamRestart();
     });
   }
 
   doStreamRestart() {
-    startStream();
+    Future.delayed(const Duration(seconds: 5)).then((val) {
+      startStream();
+    });
   }
 
   @override

@@ -34,6 +34,10 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   FocusNode? textFieldFocusNode5;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode6;
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
 
   @override
   void initState(BuildContext context) {
@@ -57,5 +61,8 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
     textFieldFocusNode5?.dispose();
     textController5?.dispose();
+
+    textFieldFocusNode6?.dispose();
+    textController6?.dispose();
   }
 }
