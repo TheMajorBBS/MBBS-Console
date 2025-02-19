@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,9 @@ export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
+
+  static String routeName = 'HomePage';
+  static String routePath = '/homePage';
 
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
@@ -719,7 +723,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       FFAppState().password = _model.conPass!;
                       safeSetState(() {});
 
-                      context.goNamed('setupData');
+                      context.goNamed(SetupDataWidget.routeName);
 
                       safeSetState(() {});
                     },
@@ -754,7 +758,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('mainConsole');
+                        context.pushNamed(MainConsoleWidget.routeName);
                       },
                       child: Text(
                         'Version: ${FFAppState().version}',

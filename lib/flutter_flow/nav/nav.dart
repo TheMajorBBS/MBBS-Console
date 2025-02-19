@@ -5,8 +5,9 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -42,23 +43,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => HomePageWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
+          name: HomePageWidget.routeName,
+          path: HomePageWidget.routePath,
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
-          name: 'console',
-          path: '/console',
+          name: ConsoleWidget.routeName,
+          path: ConsoleWidget.routePath,
           builder: (context, params) => ConsoleWidget(),
         ),
         FFRoute(
-          name: 'setupData',
-          path: '/setupData',
+          name: SetupDataWidget.routeName,
+          path: SetupDataWidget.routePath,
           builder: (context, params) => SetupDataWidget(),
         ),
         FFRoute(
-          name: 'mainConsole',
-          path: '/mainConsole',
+          name: MainConsoleWidget.routeName,
+          path: MainConsoleWidget.routePath,
           builder: (context, params) => MainConsoleWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
