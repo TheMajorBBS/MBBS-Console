@@ -15,6 +15,9 @@ export 'console_model.dart';
 class ConsoleWidget extends StatefulWidget {
   const ConsoleWidget({super.key});
 
+  static String routeName = 'console';
+  static String routePath = '/console';
+
   @override
   State<ConsoleWidget> createState() => _ConsoleWidgetState();
 }

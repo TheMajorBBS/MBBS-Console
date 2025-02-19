@@ -8,6 +8,7 @@ import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +19,9 @@ export 'main_console_model.dart';
 
 class MainConsoleWidget extends StatefulWidget {
   const MainConsoleWidget({super.key});
+
+  static String routeName = 'mainConsole';
+  static String routePath = '/mainConsole';
 
   @override
   State<MainConsoleWidget> createState() => _MainConsoleWidgetState();
@@ -214,7 +218,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.goNamed('HomePage');
+                            context.goNamed(HomePageWidget.routeName);
                           },
                           child: Icon(
                             Icons.home_filled,
@@ -4112,7 +4116,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 29,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController1Validator.asValidator(context),
                                                                               ),
                                                                             ),
@@ -4228,7 +4232,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 29,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController2Validator.asValidator(context),
                                                                               ),
                                                                             ),
@@ -4379,7 +4383,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 29,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController3Validator.asValidator(context),
                                                                               ),
                                                                             ),
@@ -4530,7 +4534,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 29,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController4Validator.asValidator(context),
                                                                               ),
                                                                             ),
@@ -4680,7 +4684,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 29,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController5Validator.asValidator(context),
                                                                               ),
                                                                             ),
@@ -4794,7 +4798,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLength: 15,
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
                                                                                 validator: _model.textController6Validator.asValidator(context),
                                                                               ),
                                                                             ),

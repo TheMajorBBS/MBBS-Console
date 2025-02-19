@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -11,6 +12,9 @@ export 'setup_data_model.dart';
 
 class SetupDataWidget extends StatefulWidget {
   const SetupDataWidget({super.key});
+
+  static String routeName = 'setupData';
+  static String routePath = '/setupData';
 
   @override
   State<SetupDataWidget> createState() => _SetupDataWidgetState();
@@ -40,7 +44,7 @@ class _SetupDataWidgetState extends State<SetupDataWidget> {
           functions.initialChannelList().toList().cast<ChannelStruct>();
       safeSetState(() {});
 
-      context.pushNamed('mainConsole');
+      context.pushNamed(MainConsoleWidget.routeName);
 
       FFAppState().updateUseyAtIndex(
         0,
