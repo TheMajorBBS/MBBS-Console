@@ -109,6 +109,10 @@ List<ChannelStruct> parseInit(String? initString) {
         mymsg = 'Channel not defined...';
       } else if (char == '77') {
         mymsg = 'MajorLink Connected';
+      } else if (char == '24') {
+        mymsg = 'Incoming Connection';
+      } else if (char == '18') {
+        mymsg = 'User Connected';
       } else {
         mymsg = 'TCP/IP channel ready...';
       }
