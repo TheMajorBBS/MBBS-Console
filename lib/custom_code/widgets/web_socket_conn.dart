@@ -90,7 +90,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     }
     if (type == 'users') {
       List<ChannelStruct> cs = functions.parseInitUsers(initMessage!);
-      await actions.processInitMessage(
+      await actions.processInitUserMessage(
         cs,
       );
     }
