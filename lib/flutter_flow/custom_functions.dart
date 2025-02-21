@@ -244,7 +244,7 @@ List<ChannelStruct> parseInitUsers(String? initString) {
 
       initMatches.add(ChannelStruct(
           msg: mymsg,
-          character: int.parse(char),
+          character: 0,
           code: 0,
           channel: int.parse(hex, radix: 16)));
     }
