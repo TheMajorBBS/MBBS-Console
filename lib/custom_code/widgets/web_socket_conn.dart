@@ -81,11 +81,19 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel.sink.close(status.normalClosure);
   }
 
-  doInitMessage(String initMessage) async {
-    List<ChannelStruct> cs = functions.parseInit(initMessage!);
-    await actions.processInitMessage(
-      cs,
-    );
+  doInitMessage(String initMessage, String type) async {
+    if (type == 'init') {
+      List<ChannelStruct> cs = functions.parseInit(initMessage!);
+      await actions.processInitMessage(
+        cs,
+      );
+    }
+    if (type == 'users') {
+      List<ChannelStruct> cs = functions.parseInitUsers(initMessage!);
+      await actions.processInitMessage(
+        cs,
+      );
+    }
   }
 
   doSysUse(String sysUseMessage) async {
@@ -146,8 +154,10 @@ class _WebSocketConnState extends State<WebSocketConn> {
             functions.getChannel(s), (_) => functions.parseChannelLog(s));
       } else if (st == 'AUDIT') {
         FFAppState().addToAuditLogList(functions.parseAuditLog(s));
-      } else if (st == 'INIT') {
-        doInitMessage(s);
+      } else if (st == 'INITCHANNELS') {
+        doInitMessage(s, 'init');
+      } else if (st == 'INITUSERS') {
+        doInitMessage(s, 'users');
       } else if (st == 'SYSVAR') {
         FFAppState().MySysVars = functions.processSysVar(myMessage);
       } else if (st == 'SYSUSE') {
@@ -199,16 +209,18 @@ class _WebSocketConnState extends State<WebSocketConn> {
                       ? processMessage(myMessage, 'CHANNEL')
                       : myMessage.startsWith('[AUDIT')
                           ? processMessage(myMessage, 'AUDIT')
-                          : myMessage.startsWith('[INIT')
-                              ? processMessage(myMessage, 'INIT')
-                              : myMessage.startsWith('[SYSVAR')
-                                  ? processMessage(myMessage, 'SYSVAR')
-                                  : myMessage.startsWith('[SYSUSE')
-                                      ? processMessage(myMessage, 'SYSUSE')
-                                      : myMessage.startsWith('[ACCDETRESP')
-                                          ? processMessage(
-                                              myMessage, 'ACCDETRESP')
-                                          : null;
+                          : myMessage.startsWith('[INITCHANNELS')
+                              ? processMessage(myMessage, 'INITCHANNELS')
+                              : myMessage.startsWith('[INITUSERS')
+                                  ? processMessage(myMessage, 'INITUSERS')
+                                  : myMessage.startsWith('[SYSVAR')
+                                      ? processMessage(myMessage, 'SYSVAR')
+                                      : myMessage.startsWith('[SYSUSE')
+                                          ? processMessage(myMessage, 'SYSUSE')
+                                          : myMessage.startsWith('[ACCDETRESP')
+                                              ? processMessage(
+                                                  myMessage, 'ACCDETRESP')
+                                              : null;
 
       setState(() {});
       textFieldFocusNode.requestFocus();

@@ -223,6 +223,36 @@ SysVarsStruct processSysVar(String myMessage) {
   );
 }
 
+List<ChannelStruct> parseInitUsers(String? initString) {
+  RegExp regExp = RegExp(r'\[(.*?)\]');
+
+  // Find all matches
+  Iterable<RegExpMatch> matches = regExp.allMatches(initString!);
+  List<ChannelStruct> initMatches = [];
+
+  // Iterate over matches and print the groups
+  for (var match in matches) {
+    String matchData = match.group(1)!;
+    String hex = '';
+    String char = '';
+    String mymsg = '';
+    if (matchData.contains(':')) {
+      List<String> splitData = matchData.split(':');
+      hex = splitData[0];
+      char = splitData[1];
+      mymsg = char;
+
+      initMatches.add(ChannelStruct(
+          msg: mymsg,
+          character: int.parse(char),
+          code: 0,
+          channel: int.parse(hex, radix: 16)));
+    }
+  }
+  //print('INIT: ' + initMatches.toString());
+  return initMatches;
+}
+
 String chanToHex(int channelInt) {
   final myInt = channelInt;
   final newHex = myInt.toRadixString(16);
