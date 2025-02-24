@@ -81,6 +81,11 @@ class _WebSocketConnState extends State<WebSocketConn> {
     _channel.sink.close(status.normalClosure);
   }
 
+  doDisconnect() {
+    FFAppState().clickDisconnect = true;
+    closeConnect();
+  }
+
   doInitMessage(String initMessage, String type) async {
     if (type == 'init') {
       List<ChannelStruct> cs = functions.parseInit(initMessage!);
@@ -110,6 +115,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
 
   startStream() async {
     myMessage = 'Connecting...';
+    FFAppState().clickDisconnect = false;
     FFAppState().wsMessage = myMessage;
     setState(() {});
     _channel = WebSocketChannel.connect(
@@ -240,9 +246,13 @@ class _WebSocketConnState extends State<WebSocketConn> {
   }
 
   doStreamRestart() {
-    Future.delayed(const Duration(seconds: 5)).then((val) {
-      startStream();
-    });
+    if (FFAppState().clickDisconnect) {
+      FFAppState().clickDisconnect = false;
+    } else {
+      Future.delayed(const Duration(seconds: 5)).then((val) {
+        startStream();
+      });
+    }
   }
 
   @override
@@ -324,7 +334,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
           child: FFButtonWidget(
             onPressed: () async {
               if (FFAppState().connected) {
-                closeConnect();
+                //closeConnect();
+                doDisconnect();
                 setState(() {});
               } else {
                 startStream();
