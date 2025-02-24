@@ -125,7 +125,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.9.3';
+  String _version = '0.9.4';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -631,6 +631,12 @@ class FFAppState extends ChangeNotifier {
   String get acctUpdateStr => _acctUpdateStr;
   set acctUpdateStr(String value) {
     _acctUpdateStr = value;
+  }
+
+  bool _clickDisconnect = false;
+  bool get clickDisconnect => _clickDisconnect;
+  set clickDisconnect(bool value) {
+    _clickDisconnect = value;
   }
 }
 

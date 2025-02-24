@@ -933,6 +933,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       padding:
                                                                           EdgeInsets
                                                                               .zero,
+                                                                      reverse:
+                                                                          true,
                                                                       scrollDirection:
                                                                           Axis.vertical,
                                                                       itemCount:
