@@ -15,6 +15,16 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
   final shortcutsFocusNode = FocusNode();
   InstantTimer? stateTime;
+  // State field(s) for GridView widget.
+  ScrollController? gridViewController1;
+  // State field(s) for ListViewAudit widget.
+  ScrollController? listViewAudit;
+  // State field(s) for ListView widget.
+  ScrollController? listViewController1;
+  // State field(s) for GridView widget.
+  ScrollController? gridViewController2;
+  // State field(s) for ListView widget.
+  ScrollController? listViewController2;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -43,11 +53,21 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   @override
   void initState(BuildContext context) {
     shortcutsFocusNode.requestFocus();
+    gridViewController1 = ScrollController();
+    listViewAudit = ScrollController();
+    listViewController1 = ScrollController();
+    gridViewController2 = ScrollController();
+    listViewController2 = ScrollController();
   }
 
   @override
   void dispose() {
     stateTime?.cancel();
+    gridViewController1?.dispose();
+    listViewAudit?.dispose();
+    listViewController1?.dispose();
+    gridViewController2?.dispose();
+    listViewController2?.dispose();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
