@@ -923,18 +923,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) {
-                                                                    final auditTrailLogs =
-                                                                        FFAppState()
-                                                                            .auditLogList
-                                                                            .toList();
+                                                                    final auditTrailLogs = FFAppState()
+                                                                        .auditLogList
+                                                                        .toList()
+                                                                        .take(
+                                                                            15)
+                                                                        .toList();
 
                                                                     return ListView
                                                                         .builder(
                                                                       padding:
                                                                           EdgeInsets
                                                                               .zero,
-                                                                      reverse:
-                                                                          true,
                                                                       scrollDirection:
                                                                           Axis.vertical,
                                                                       itemCount:
