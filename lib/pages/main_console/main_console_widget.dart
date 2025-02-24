@@ -63,6 +63,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
           );
 
           safeSetState(() {});
+          await _model.listViewAudit?.animateTo(
+            _model.listViewAudit!.position.maxScrollExtent,
+            duration: Duration(milliseconds: 100),
+            curve: Curves.ease,
+          );
         },
         startImmediately: true,
       );
@@ -813,6 +818,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                           ),
                                                                                         );
                                                                                       },
+                                                                                      controller: _model.gridViewController1,
                                                                                     );
                                                                                   },
                                                                                 ),
@@ -923,18 +929,18 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                 child: Builder(
                                                                   builder:
                                                                       (context) {
-                                                                    final auditTrailLogs = FFAppState()
-                                                                        .auditLogList
-                                                                        .toList()
-                                                                        .take(
-                                                                            15)
-                                                                        .toList();
+                                                                    final auditTrailLogs =
+                                                                        FFAppState()
+                                                                            .auditLogList
+                                                                            .toList();
 
                                                                     return ListView
                                                                         .builder(
                                                                       padding:
                                                                           EdgeInsets
                                                                               .zero,
+                                                                      shrinkWrap:
+                                                                          true,
                                                                       scrollDirection:
                                                                           Axis.vertical,
                                                                       itemCount:
@@ -971,6 +977,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ],
                                                                         );
                                                                       },
+                                                                      controller:
+                                                                          _model
+                                                                              .listViewAudit,
                                                                     );
                                                                   },
                                                                 ),
@@ -2228,6 +2237,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ],
                                                                         );
                                                                       },
+                                                                      controller:
+                                                                          _model
+                                                                              .listViewController1,
                                                                     );
                                                                   },
                                                                 ),
@@ -3279,6 +3291,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                           ),
                                                                                         );
                                                                                       },
+                                                                                      controller: _model.gridViewController2,
                                                                                     );
                                                                                   },
                                                                                 ),
@@ -3391,6 +3404,9 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           ],
                                                                         );
                                                                       },
+                                                                      controller:
+                                                                          _model
+                                                                              .listViewController2,
                                                                     );
                                                                   },
                                                                 ),
