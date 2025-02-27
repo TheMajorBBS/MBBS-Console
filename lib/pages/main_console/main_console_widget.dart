@@ -73,23 +73,23 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       );
     });
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
-    _model.textFieldFocusNode1!.addListener(() => safeSetState(() {}));
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.nameFieldTextController ??= TextEditingController();
+    _model.nameFieldFocusNode ??= FocusNode();
+    _model.nameFieldFocusNode!.addListener(() => safeSetState(() {}));
+    _model.add1FieldTextController ??= TextEditingController();
+    _model.add1FieldFocusNode ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.add2FieldTextController ??= TextEditingController();
+    _model.add2FieldFocusNode ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.add3FieldTextController ??= TextEditingController();
+    _model.add3FieldFocusNode ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.add4FieldTextController ??= TextEditingController();
+    _model.add4FieldFocusNode ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
+    _model.phoneFieldTextController ??= TextEditingController();
+    _model.phoneFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -4061,81 +4061,107 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               0.0,
                                                                               0.0),
                                                                           child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
+                                                                              InkWell(
+                                                                            splashColor:
+                                                                                Colors.transparent,
+                                                                            focusColor:
+                                                                                Colors.transparent,
+                                                                            hoverColor:
+                                                                                Colors.transparent,
+                                                                            highlightColor:
+                                                                                Colors.transparent,
+                                                                            onTap:
+                                                                                () async {
+                                                                              _model.nameFieldColorBg = FlutterFlowTheme.of(context).primary;
+                                                                              _model.nameFieldColorTxt = FlutterFlowTheme.of(context).primaryBackground;
+                                                                              safeSetState(() {});
+                                                                            },
                                                                             child:
                                                                                 Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.textController1,
-                                                                                focusNode: _model.textFieldFocusNode1,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (_model.textController1.text == '') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('Name is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty name field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.textController1.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.textController1.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.name,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                              width: 350.0,
+                                                                              height: 25.0,
+                                                                              decoration: BoxDecoration(),
+                                                                              child: Container(
+                                                                                width: 200.0,
+                                                                                child: TextFormField(
+                                                                                  controller: _model.nameFieldTextController,
+                                                                                  focusNode: _model.nameFieldFocusNode,
+                                                                                  onFieldSubmitted: (_) async {
+                                                                                    if (_model.nameFieldTextController.text == '') {
+                                                                                      var confirmDialogResponse = await showDialog<bool>(
+                                                                                            context: context,
+                                                                                            builder: (alertDialogContext) {
+                                                                                              return AlertDialog(
+                                                                                                title: Text('Name is Empty'),
+                                                                                                content: Text('Are you sure you want to submit with empty name field?'),
+                                                                                                actions: [
+                                                                                                  TextButton(
+                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                    child: Text('Cancel'),
+                                                                                                  ),
+                                                                                                  TextButton(
+                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                    child: Text('Confirm'),
+                                                                                                  ),
+                                                                                                ],
+                                                                                              );
+                                                                                            },
+                                                                                          ) ??
+                                                                                          false;
+                                                                                      FFAppState().updateAcct = true;
+                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
+                                                                                      safeSetState(() {});
+                                                                                      _model.nameFieldColorBg = Color(0x00000000);
+                                                                                      _model.nameFieldColorTxt = FlutterFlowTheme.of(context).secondary;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.nameFieldTextController?.clear();
+                                                                                      });
+                                                                                    } else {
+                                                                                      FFAppState().updateAcct = true;
+                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
+                                                                                      safeSetState(() {});
+                                                                                      _model.nameFieldColorBg = Color(0x00000000);
+                                                                                      _model.nameFieldColorTxt = FlutterFlowTheme.of(context).secondary;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.nameFieldTextController?.clear();
+                                                                                      });
+                                                                                    }
+                                                                                  },
+                                                                                  autofocus: false,
+                                                                                  obscureText: false,
+                                                                                  decoration: InputDecoration(
+                                                                                    isDense: true,
+                                                                                    labelText: FFAppState().currentSearchUser.name,
+                                                                                    labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                          fontFamily: 'Courier Prime',
+                                                                                          color: _model.nameFieldColorTxt,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                    hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                          fontFamily: 'Courier Prime',
+                                                                                          color: _model.nameFieldColorTxt,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                    enabledBorder: InputBorder.none,
+                                                                                    focusedBorder: InputBorder.none,
+                                                                                    errorBorder: InputBorder.none,
+                                                                                    focusedErrorBorder: InputBorder.none,
+                                                                                    filled: true,
+                                                                                    fillColor: _model.nameFieldColorBg,
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
+                                                                                        color: _model.nameFieldColorTxt,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
+                                                                                  maxLength: 29,
+                                                                                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                  buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                  cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                  validator: _model.nameFieldTextControllerValidator.asValidator(context),
                                                                                 ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                                maxLength: 29,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController1Validator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4187,10 +4213,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 200.0,
                                                                               child: TextFormField(
-                                                                                controller: _model.textController2,
-                                                                                focusNode: _model.textFieldFocusNode2,
+                                                                                controller: _model.add1FieldTextController,
+                                                                                focusNode: _model.add1FieldFocusNode,
                                                                                 onFieldSubmitted: (_) async {
-                                                                                  if (_model.textController2.text == '') {
+                                                                                  if (_model.add1FieldTextController.text == '') {
                                                                                     var confirmDialogResponse = await showDialog<bool>(
                                                                                           context: context,
                                                                                           builder: (alertDialogContext) {
@@ -4212,11 +4238,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         ) ??
                                                                                         false;
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.textController2.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   } else {
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.textController2.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   }
                                                                                 },
@@ -4240,7 +4266,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   errorBorder: InputBorder.none,
                                                                                   focusedErrorBorder: InputBorder.none,
                                                                                   filled: true,
-                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       fontFamily: 'Courier Prime',
@@ -4251,7 +4276,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
                                                                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController2Validator.asValidator(context),
+                                                                                validator: _model.add1FieldTextControllerValidator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4338,10 +4363,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 200.0,
                                                                               child: TextFormField(
-                                                                                controller: _model.textController3,
-                                                                                focusNode: _model.textFieldFocusNode3,
+                                                                                controller: _model.add2FieldTextController,
+                                                                                focusNode: _model.add2FieldFocusNode,
                                                                                 onFieldSubmitted: (_) async {
-                                                                                  if (_model.textController3.text == '') {
+                                                                                  if (_model.add2FieldTextController.text == '') {
                                                                                     var confirmDialogResponse = await showDialog<bool>(
                                                                                           context: context,
                                                                                           builder: (alertDialogContext) {
@@ -4363,11 +4388,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         ) ??
                                                                                         false;
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.textController3.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   } else {
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.textController3.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   }
                                                                                 },
@@ -4402,7 +4427,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
                                                                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController3Validator.asValidator(context),
+                                                                                validator: _model.add2FieldTextControllerValidator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4489,10 +4514,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 200.0,
                                                                               child: TextFormField(
-                                                                                controller: _model.textController4,
-                                                                                focusNode: _model.textFieldFocusNode4,
+                                                                                controller: _model.add3FieldTextController,
+                                                                                focusNode: _model.add3FieldFocusNode,
                                                                                 onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.textController4.text == 'true') {
+                                                                                  if (/* NOT RECOMMENDED */ _model.add3FieldTextController.text == 'true') {
                                                                                     var confirmDialogResponse = await showDialog<bool>(
                                                                                           context: context,
                                                                                           builder: (alertDialogContext) {
@@ -4514,11 +4539,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         ) ??
                                                                                         false;
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.textController4.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   } else {
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.textController4.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   }
                                                                                 },
@@ -4553,7 +4578,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
                                                                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController4Validator.asValidator(context),
+                                                                                validator: _model.add3FieldTextControllerValidator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4639,10 +4664,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 200.0,
                                                                               child: TextFormField(
-                                                                                controller: _model.textController5,
-                                                                                focusNode: _model.textFieldFocusNode5,
+                                                                                controller: _model.add4FieldTextController,
+                                                                                focusNode: _model.add4FieldFocusNode,
                                                                                 onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.textController5.text == 'true') {
+                                                                                  if (/* NOT RECOMMENDED */ _model.add4FieldTextController.text == 'true') {
                                                                                     var confirmDialogResponse = await showDialog<bool>(
                                                                                           context: context,
                                                                                           builder: (alertDialogContext) {
@@ -4664,11 +4689,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         ) ??
                                                                                         false;
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.textController5.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   } else {
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.textController5.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   }
                                                                                 },
@@ -4703,7 +4728,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
                                                                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController5Validator.asValidator(context),
+                                                                                validator: _model.add4FieldTextControllerValidator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
@@ -4755,10 +4780,10 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 Container(
                                                                               width: 200.0,
                                                                               child: TextFormField(
-                                                                                controller: _model.textController6,
-                                                                                focusNode: _model.textFieldFocusNode6,
+                                                                                controller: _model.phoneFieldTextController,
+                                                                                focusNode: _model.phoneFieldFocusNode,
                                                                                 onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.textController6.text == 'true') {
+                                                                                  if (/* NOT RECOMMENDED */ _model.phoneFieldTextController.text == 'true') {
                                                                                     var confirmDialogResponse = await showDialog<bool>(
                                                                                           context: context,
                                                                                           builder: (alertDialogContext) {
@@ -4780,11 +4805,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                         ) ??
                                                                                         false;
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.textController6.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   } else {
                                                                                     FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.textController6.text}]';
+                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
                                                                                     safeSetState(() {});
                                                                                   }
                                                                                 },
@@ -4817,7 +4842,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 maxLengthEnforcement: MaxLengthEnforcement.enforced,
                                                                                 buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
                                                                                 cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.textController6Validator.asValidator(context),
+                                                                                validator: _model.phoneFieldTextControllerValidator.asValidator(context),
                                                                               ),
                                                                             ),
                                                                           ),
