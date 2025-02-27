@@ -11,6 +11,10 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
   bool editName = false;
 
+  Color nameFieldColorBg = Color(4278190251);
+
+  Color nameFieldColorTxt = Color(4281979584);
+
   ///  State fields for stateful widgets in this page.
 
   final shortcutsFocusNode = FocusNode();
@@ -25,30 +29,30 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   ScrollController? gridViewController2;
   // State field(s) for ListView widget.
   ScrollController? listViewController2;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
+  // State field(s) for Name_Field widget.
+  FocusNode? nameFieldFocusNode;
+  TextEditingController? nameFieldTextController;
+  String? Function(BuildContext, String?)? nameFieldTextControllerValidator;
+  // State field(s) for Add1_Field widget.
+  FocusNode? add1FieldFocusNode;
+  TextEditingController? add1FieldTextController;
+  String? Function(BuildContext, String?)? add1FieldTextControllerValidator;
+  // State field(s) for Add2_Field widget.
+  FocusNode? add2FieldFocusNode;
+  TextEditingController? add2FieldTextController;
+  String? Function(BuildContext, String?)? add2FieldTextControllerValidator;
+  // State field(s) for Add3_Field widget.
+  FocusNode? add3FieldFocusNode;
+  TextEditingController? add3FieldTextController;
+  String? Function(BuildContext, String?)? add3FieldTextControllerValidator;
+  // State field(s) for Add4_Field widget.
+  FocusNode? add4FieldFocusNode;
+  TextEditingController? add4FieldTextController;
+  String? Function(BuildContext, String?)? add4FieldTextControllerValidator;
+  // State field(s) for Phone_Field widget.
+  FocusNode? phoneFieldFocusNode;
+  TextEditingController? phoneFieldTextController;
+  String? Function(BuildContext, String?)? phoneFieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -68,22 +72,22 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
     listViewController1?.dispose();
     gridViewController2?.dispose();
     listViewController2?.dispose();
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    nameFieldFocusNode?.dispose();
+    nameFieldTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    add1FieldFocusNode?.dispose();
+    add1FieldTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    add2FieldFocusNode?.dispose();
+    add2FieldTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    add3FieldFocusNode?.dispose();
+    add3FieldTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController5?.dispose();
+    add4FieldFocusNode?.dispose();
+    add4FieldTextController?.dispose();
 
-    textFieldFocusNode6?.dispose();
-    textController6?.dispose();
+    phoneFieldFocusNode?.dispose();
+    phoneFieldTextController?.dispose();
   }
 }
