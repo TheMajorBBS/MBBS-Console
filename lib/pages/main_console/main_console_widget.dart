@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
-import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -58,12 +57,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       _model.stateTime = InstantTimer.periodic(
         duration: Duration(milliseconds: 1000),
         callback: (timer) async {
-          unawaited(
-            () async {
-              await actions.consolePrint(
-                'TimerFired',
-              );
-            }(),
+          await actions.consolePrint(
+            'TimerFired',
           );
 
           safeSetState(() {});
