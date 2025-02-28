@@ -59,7 +59,11 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
         duration: Duration(milliseconds: 1000),
         callback: (timer) async {
           unawaited(
-            () async {}(),
+            () async {
+              await actions.consolePrint(
+                'TimerFired',
+              );
+            }(),
           );
 
           safeSetState(() {});
@@ -1599,6 +1603,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1673,6 +1679,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1876,6 +1884,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1950,6 +1960,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2300,6 +2312,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2374,6 +2388,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2577,6 +2593,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2651,6 +2669,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3467,6 +3487,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3541,6 +3563,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3744,6 +3768,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3818,6 +3844,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5593,6 +5621,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5667,6 +5697,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5870,6 +5902,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5944,6 +5978,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
+                                                              _model.stateTime
+                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
