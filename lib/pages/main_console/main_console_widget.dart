@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -63,10 +64,14 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
           safeSetState(() {});
           if (_model.sideNav == 'summary') {
-            await _model.listViewAudit?.animateTo(
-              _model.listViewAudit!.position.maxScrollExtent,
-              duration: Duration(milliseconds: 100),
-              curve: Curves.ease,
+            unawaited(
+              () async {
+                await _model.listViewAudit?.animateTo(
+                  _model.listViewAudit!.position.maxScrollExtent,
+                  duration: Duration(milliseconds: 100),
+                  curve: Curves.ease,
+                );
+              }(),
             );
           }
         },
