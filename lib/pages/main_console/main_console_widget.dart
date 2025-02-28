@@ -79,7 +79,12 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
     _model.nameFieldTextController ??= TextEditingController();
     _model.nameFieldFocusNode ??= FocusNode();
-    _model.nameFieldFocusNode!.addListener(() => safeSetState(() {}));
+    _model.nameFieldFocusNode!.addListener(
+      () async {
+        _model.editName = false;
+        safeSetState(() {});
+      },
+    );
     _model.add1FieldTextController ??= TextEditingController();
     _model.add1FieldFocusNode ??= FocusNode();
 
@@ -1603,8 +1608,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1679,8 +1682,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1884,8 +1885,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -1960,8 +1959,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2312,8 +2309,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2388,8 +2383,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2593,8 +2586,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -2669,8 +2660,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3487,8 +3476,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3563,8 +3550,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3768,8 +3753,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -3844,8 +3827,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -4082,117 +4063,124 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              InkWell(
-                                                                            splashColor:
-                                                                                Colors.transparent,
-                                                                            focusColor:
-                                                                                Colors.transparent,
-                                                                            hoverColor:
-                                                                                Colors.transparent,
-                                                                            highlightColor:
-                                                                                Colors.transparent,
-                                                                            onTap:
-                                                                                () async {
-                                                                              _model.nameFieldColorBg = FlutterFlowTheme.of(context).primary;
-                                                                              _model.nameFieldColorTxt = FlutterFlowTheme.of(context).primaryBackground;
-                                                                              safeSetState(() {});
-                                                                            },
-                                                                            child:
-                                                                                Container(
-                                                                              width: 350.0,
-                                                                              height: 25.0,
-                                                                              decoration: BoxDecoration(),
-                                                                              child: Container(
-                                                                                width: 200.0,
-                                                                                child: TextFormField(
-                                                                                  controller: _model.nameFieldTextController,
-                                                                                  focusNode: _model.nameFieldFocusNode,
-                                                                                  onFieldSubmitted: (_) async {
-                                                                                    if (_model.nameFieldTextController.text == '') {
-                                                                                      var confirmDialogResponse = await showDialog<bool>(
-                                                                                            context: context,
-                                                                                            builder: (alertDialogContext) {
-                                                                                              return AlertDialog(
-                                                                                                title: Text('Name is Empty'),
-                                                                                                content: Text('Are you sure you want to submit with empty name field?'),
-                                                                                                actions: [
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                    child: Text('Cancel'),
-                                                                                                  ),
-                                                                                                  TextButton(
-                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                    child: Text('Confirm'),
-                                                                                                  ),
-                                                                                                ],
-                                                                                              );
-                                                                                            },
-                                                                                          ) ??
-                                                                                          false;
-                                                                                      FFAppState().updateAcct = true;
-                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
-                                                                                      safeSetState(() {});
-                                                                                      _model.nameFieldColorBg = Color(0x00000000);
-                                                                                      _model.nameFieldColorTxt = FlutterFlowTheme.of(context).secondary;
-                                                                                      safeSetState(() {});
-                                                                                      safeSetState(() {
-                                                                                        _model.nameFieldTextController?.clear();
-                                                                                      });
-                                                                                    } else {
-                                                                                      FFAppState().updateAcct = true;
-                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
-                                                                                      safeSetState(() {});
-                                                                                      _model.nameFieldColorBg = Color(0x00000000);
-                                                                                      _model.nameFieldColorTxt = FlutterFlowTheme.of(context).secondary;
-                                                                                      safeSetState(() {});
-                                                                                      safeSetState(() {
-                                                                                        _model.nameFieldTextController?.clear();
-                                                                                      });
-                                                                                    }
-                                                                                  },
-                                                                                  autofocus: false,
-                                                                                  obscureText: false,
-                                                                                  decoration: InputDecoration(
-                                                                                    isDense: true,
-                                                                                    labelText: FFAppState().currentSearchUser.name,
-                                                                                    labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                          fontFamily: 'Courier Prime',
-                                                                                          color: _model.nameFieldColorTxt,
-                                                                                          letterSpacing: 0.0,
-                                                                                        ),
-                                                                                    hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                          fontFamily: 'Courier Prime',
-                                                                                          color: _model.nameFieldColorTxt,
-                                                                                          letterSpacing: 0.0,
-                                                                                        ),
-                                                                                    enabledBorder: InputBorder.none,
-                                                                                    focusedBorder: InputBorder.none,
-                                                                                    errorBorder: InputBorder.none,
-                                                                                    focusedErrorBorder: InputBorder.none,
-                                                                                    filled: true,
-                                                                                    fillColor: _model.nameFieldColorBg,
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: _model.nameFieldColorTxt,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editName)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.nameFieldTextController,
+                                                                                      focusNode: _model.nameFieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (_model.nameFieldTextController.text == '') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('Name is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty name field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.nameFieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editName = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][NAME][${_model.nameFieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.nameFieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editName = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelText: FFAppState().currentSearchUser.name,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Readex Pro',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                       ),
-                                                                                  maxLength: 29,
-                                                                                  maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                  buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                  cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                  validator: _model.nameFieldTextControllerValidator.asValidator(context),
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Readex Pro',
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      cursorColor: FlutterFlowTheme.of(context).primaryText,
+                                                                                      validator: _model.nameFieldTextControllerValidator.asValidator(context),
+                                                                                    ),
+                                                                                  ),
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editName)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editName = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.nameFieldTextController?.text = FFAppState().currentSearchUser.name;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.name,
+                                                                                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
@@ -5621,8 +5609,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   true;
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5697,8 +5683,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'audit';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5902,8 +5886,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'summary';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
@@ -5978,8 +5960,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                   'channels';
                                                               safeSetState(
                                                                   () {});
-                                                              _model.stateTime
-                                                                  ?.cancel();
                                                             },
                                                             child: Container(
                                                               width: 100.0,
