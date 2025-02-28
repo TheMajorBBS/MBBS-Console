@@ -63,7 +63,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
           );
 
           safeSetState(() {});
-          if (_model.sideNav == 'summary') {
+          if (FFAppState().sideNavMC == 'summary') {
             unawaited(
               () async {
                 await _model.listViewAudit?.animateTo(
