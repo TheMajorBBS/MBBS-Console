@@ -58,10 +58,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
       _model.stateTime = InstantTimer.periodic(
         duration: Duration(milliseconds: 1000),
         callback: (timer) async {
-          await actions.consolePrint(
-            'TimerFired',
-          );
-
           safeSetState(() {});
           if (FFAppState().sideNavMC == 'summary') {
             unawaited(
@@ -81,12 +77,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
 
     _model.nameFieldTextController ??= TextEditingController();
     _model.nameFieldFocusNode ??= FocusNode();
-    _model.nameFieldFocusNode!.addListener(
-      () async {
-        _model.editName = false;
-        safeSetState(() {});
-      },
-    );
+
     _model.add1FieldTextController ??= TextEditingController();
     _model.add1FieldFocusNode ??= FocusNode();
 
