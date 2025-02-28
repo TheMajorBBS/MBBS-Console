@@ -62,11 +62,13 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
           );
 
           safeSetState(() {});
-          await _model.listViewAudit?.animateTo(
-            _model.listViewAudit!.position.maxScrollExtent,
-            duration: Duration(milliseconds: 100),
-            curve: Curves.ease,
-          );
+          if (_model.sideNav == 'summary') {
+            await _model.listViewAudit?.animateTo(
+              _model.listViewAudit!.position.maxScrollExtent,
+              duration: Duration(milliseconds: 100),
+              curve: Curves.ease,
+            );
+          }
         },
         startImmediately: true,
       );
