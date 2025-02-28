@@ -4124,7 +4124,6 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       obscureText: false,
                                                                                       decoration: InputDecoration(
                                                                                         isDense: true,
-                                                                                        labelText: FFAppState().currentSearchUser.name,
                                                                                         labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
                                                                                               fontFamily: 'Courier Prime',
                                                                                               color: FlutterFlowTheme.of(context).secondary,
@@ -4144,6 +4143,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       ),
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             fontFamily: 'Readex Pro',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
                                                                                             letterSpacing: 0.0,
                                                                                           ),
                                                                                       cursorColor: FlutterFlowTheme.of(context).primaryText,
@@ -4169,6 +4169,12 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       safeSetState(() {});
                                                                                       safeSetState(() {
                                                                                         _model.nameFieldTextController?.text = FFAppState().currentSearchUser.name;
+                                                                                        _model.nameFieldFocusNode?.requestFocus();
+                                                                                        WidgetsBinding.instance.addPostFrameCallback((_) {
+                                                                                          _model.nameFieldTextController?.selection = TextSelection.collapsed(
+                                                                                            offset: _model.nameFieldTextController!.text.length,
+                                                                                          );
+                                                                                        });
                                                                                       });
                                                                                     },
                                                                                     child: Text(
