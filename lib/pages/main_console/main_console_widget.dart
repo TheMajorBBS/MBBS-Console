@@ -5641,8 +5641,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       controller: _model.masterFieldDdValueController ??= FormFieldController<String>(null),
                                                                                       options: [
                                                                                         '',
-                                                                                        'No',
-                                                                                        'Yes'
+                                                                                        'NO',
+                                                                                        'YES'
                                                                                       ],
                                                                                       onChanged: (val) async {
                                                                                         safeSetState(() => _model.masterFieldDdValue = val);
