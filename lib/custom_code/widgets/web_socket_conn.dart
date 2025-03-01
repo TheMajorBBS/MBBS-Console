@@ -194,7 +194,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
           FFAppState().getFirstAcct = false;
         }
         if (FFAppState().updateAcct) {
-          print('Update Account: ');
+          print('Update Account: ' + FFAppState().acctUpdateStr);
           _channel.sink.add(FFAppState().acctUpdateStr);
           FFAppState().updateAcct = false;
           FFAppState().acctUpdateStr = '';
