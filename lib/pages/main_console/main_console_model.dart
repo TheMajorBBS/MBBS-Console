@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
 import '/index.dart';
 import 'main_console_widget.dart' show MainConsoleWidget;
@@ -14,6 +15,18 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   Color nameFieldColorBg = Color(4278190251);
 
   Color nameFieldColorTxt = Color(4281979584);
+
+  bool editAdd1 = false;
+
+  bool editAdd2 = false;
+
+  bool editAdd3 = false;
+
+  bool editAdd4 = false;
+
+  bool editPhone = false;
+
+  bool editMaster = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -53,6 +66,9 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   FocusNode? phoneFieldFocusNode;
   TextEditingController? phoneFieldTextController;
   String? Function(BuildContext, String?)? phoneFieldTextControllerValidator;
+  // State field(s) for master_field_dd widget.
+  String? masterFieldDdValue;
+  FormFieldController<String>? masterFieldDdValueController;
 
   @override
   void initState(BuildContext context) {

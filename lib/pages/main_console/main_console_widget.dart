@@ -1,8 +1,10 @@
 import '/backend/schema/structs/index.dart';
 import '/components/socket_log_comp/socket_log_comp_widget.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
@@ -180,6 +182,44 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
             );
 
             safeSetState(() {});
+          }
+        }),
+        SingleActivator(
+          LogicalKeyboardKey.escape,
+        ): VoidCallbackIntent(() async {
+          if (_model.editName) {
+            _model.editName = false;
+            safeSetState(() {});
+          } else {
+            if (_model.editAdd1) {
+              _model.editAdd1 = false;
+              safeSetState(() {});
+            } else {
+              if (_model.editAdd2) {
+                _model.editAdd2 = false;
+                safeSetState(() {});
+              } else {
+                if (_model.editAdd3) {
+                  _model.editAdd3 = false;
+                  safeSetState(() {});
+                } else {
+                  if (_model.editAdd4) {
+                    _model.editAdd4 = false;
+                    safeSetState(() {});
+                  } else {
+                    if (_model.editPhone) {
+                      _model.editPhone = false;
+                      safeSetState(() {});
+                    } else {
+                      if (_model.editMaster) {
+                        _model.editMaster = false;
+                        safeSetState(() {});
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }),
       },
@@ -4044,7 +4084,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Name:',
@@ -4134,7 +4174,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       ),
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             fontFamily: 'Readex Pro',
-                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
                                                                                             letterSpacing: 0.0,
                                                                                           ),
                                                                                       cursorColor: FlutterFlowTheme.of(context).primaryText,
@@ -4198,7 +4238,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Addr1:',
@@ -4210,91 +4250,127 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.add1FieldTextController,
-                                                                                focusNode: _model.add1FieldFocusNode,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (_model.add1FieldTextController.text == '') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('ADDR1 is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty ADDR1 field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.addr1,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editAdd1)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.add1FieldTextController,
+                                                                                      focusNode: _model.add1FieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (_model.add1FieldTextController.text == '') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('ADDR1 is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty ADDR1 field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add1FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd1 = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD1][${_model.add1FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add1FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd1 = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).primary,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      maxLength: 29,
+                                                                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                      cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                      validator: _model.add1FieldTextControllerValidator.asValidator(context),
                                                                                     ),
-                                                                                maxLength: 29,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.add1FieldTextControllerValidator.asValidator(context),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editAdd1)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editAdd1 = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.add1FieldTextController?.text = FFAppState().currentSearchUser.addr1;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.addr1,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -4348,7 +4424,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Addr2:',
@@ -4360,92 +4436,127 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.add2FieldTextController,
-                                                                                focusNode: _model.add2FieldFocusNode,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (_model.add2FieldTextController.text == '') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('ADDR2 is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty ADDR2 field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.addr2,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editAdd2)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.add2FieldTextController,
+                                                                                      focusNode: _model.add2FieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (_model.add2FieldTextController.text == '') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('ADDR2 is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty ADDR2 field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add2FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd2 = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD2][${_model.add2FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add2FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd2 = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).primary,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
-                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      maxLength: 29,
+                                                                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                      cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                      validator: _model.add2FieldTextControllerValidator.asValidator(context),
                                                                                     ),
-                                                                                maxLength: 29,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.add2FieldTextControllerValidator.asValidator(context),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editAdd2)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editAdd2 = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.add2FieldTextController?.text = FFAppState().currentSearchUser.addr2;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.addr2,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -4499,7 +4610,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Addr3:',
@@ -4511,92 +4622,127 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.add3FieldTextController,
-                                                                                focusNode: _model.add3FieldFocusNode,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.add3FieldTextController.text == 'true') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('ADDR3 is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty ADDR3 field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.addr3,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editAdd3)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.add3FieldTextController,
+                                                                                      focusNode: _model.add3FieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (/* NOT RECOMMENDED */ _model.add3FieldTextController.text == 'true') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('ADDR3 is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty ADDR3 field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add3FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd3 = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD3][${_model.add3FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add3FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd3 = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).primary,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
-                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      maxLength: 29,
+                                                                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                      cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                      validator: _model.add3FieldTextControllerValidator.asValidator(context),
                                                                                     ),
-                                                                                maxLength: 29,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.add3FieldTextControllerValidator.asValidator(context),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editAdd3)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editAdd3 = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.add3FieldTextController?.text = FFAppState().currentSearchUser.addr3;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.addr3,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                         Container(
                                                                           width:
@@ -4649,7 +4795,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Addr4:',
@@ -4661,92 +4807,127 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.add4FieldTextController,
-                                                                                focusNode: _model.add4FieldFocusNode,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.add4FieldTextController.text == 'true') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('ADDR4 is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty ADDR4 field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.addr4,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editAdd4)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.add4FieldTextController,
+                                                                                      focusNode: _model.add4FieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (/* NOT RECOMMENDED */ _model.add4FieldTextController.text == 'true') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('ADDR4 is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty ADDR4 field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add4FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd4 = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][ADD4][${_model.add4FieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.add4FieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editAdd4 = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).primary,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
-                                                                                  fillColor: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).secondary,
-                                                                                      letterSpacing: 0.0,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      maxLength: 29,
+                                                                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                      cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                      validator: _model.add4FieldTextControllerValidator.asValidator(context),
                                                                                     ),
-                                                                                maxLength: 29,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.add4FieldTextControllerValidator.asValidator(context),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editAdd4)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editAdd4 = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.add4FieldTextController?.text = FFAppState().currentSearchUser.addr4;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.addr4,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
@@ -4765,7 +4946,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               'Phone:',
@@ -4777,90 +4958,126 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                350.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 200.0,
-                                                                              child: TextFormField(
-                                                                                controller: _model.phoneFieldTextController,
-                                                                                focusNode: _model.phoneFieldFocusNode,
-                                                                                onFieldSubmitted: (_) async {
-                                                                                  if (/* NOT RECOMMENDED */ _model.phoneFieldTextController.text == 'true') {
-                                                                                    var confirmDialogResponse = await showDialog<bool>(
-                                                                                          context: context,
-                                                                                          builder: (alertDialogContext) {
-                                                                                            return AlertDialog(
-                                                                                              title: Text('PHONE is Empty'),
-                                                                                              content: Text('Are you sure you want to submit with empty PHONE field?'),
-                                                                                              actions: [
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                  child: Text('Cancel'),
-                                                                                                ),
-                                                                                                TextButton(
-                                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                  child: Text('Confirm'),
-                                                                                                ),
-                                                                                              ],
-                                                                                            );
-                                                                                          },
-                                                                                        ) ??
-                                                                                        false;
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  } else {
-                                                                                    FFAppState().updateAcct = true;
-                                                                                    FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
-                                                                                    safeSetState(() {});
-                                                                                  }
-                                                                                },
-                                                                                autofocus: false,
-                                                                                obscureText: false,
-                                                                                decoration: InputDecoration(
-                                                                                  isDense: true,
-                                                                                  labelText: FFAppState().currentSearchUser.phone,
-                                                                                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Courier Prime',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (_model.editPhone)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: Container(
+                                                                                    width: 200.0,
+                                                                                    child: TextFormField(
+                                                                                      controller: _model.phoneFieldTextController,
+                                                                                      focusNode: _model.phoneFieldFocusNode,
+                                                                                      onFieldSubmitted: (_) async {
+                                                                                        if (/* NOT RECOMMENDED */ _model.phoneFieldTextController.text == 'true') {
+                                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                                context: context,
+                                                                                                builder: (alertDialogContext) {
+                                                                                                  return AlertDialog(
+                                                                                                    title: Text('PHONE is Empty'),
+                                                                                                    content: Text('Are you sure you want to submit with empty PHONE field?'),
+                                                                                                    actions: [
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                        child: Text('Cancel'),
+                                                                                                      ),
+                                                                                                      TextButton(
+                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                        child: Text('Confirm'),
+                                                                                                      ),
+                                                                                                    ],
+                                                                                                  );
+                                                                                                },
+                                                                                              ) ??
+                                                                                              false;
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.phoneFieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editPhone = false;
+                                                                                          safeSetState(() {});
+                                                                                        } else {
+                                                                                          FFAppState().updateAcct = true;
+                                                                                          FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PHONE][${_model.phoneFieldTextController.text}]';
+                                                                                          safeSetState(() {});
+                                                                                          safeSetState(() {
+                                                                                            _model.phoneFieldTextController?.clear();
+                                                                                          });
+                                                                                          _model.editPhone = false;
+                                                                                          safeSetState(() {});
+                                                                                        }
+                                                                                      },
+                                                                                      autofocus: false,
+                                                                                      obscureText: false,
+                                                                                      decoration: InputDecoration(
+                                                                                        isDense: true,
+                                                                                        labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                              fontFamily: 'Readex Pro',
+                                                                                              color: FlutterFlowTheme.of(context).secondary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                        enabledBorder: InputBorder.none,
+                                                                                        focusedBorder: InputBorder.none,
+                                                                                        errorBorder: InputBorder.none,
+                                                                                        focusedErrorBorder: InputBorder.none,
+                                                                                        filled: true,
+                                                                                        fillColor: FlutterFlowTheme.of(context).primary,
                                                                                       ),
-                                                                                  hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Readex Pro',
-                                                                                        color: FlutterFlowTheme.of(context).secondary,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                  enabledBorder: InputBorder.none,
-                                                                                  focusedBorder: InputBorder.none,
-                                                                                  errorBorder: InputBorder.none,
-                                                                                  focusedErrorBorder: InputBorder.none,
-                                                                                  filled: true,
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Readex Pro',
-                                                                                      letterSpacing: 0.0,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Readex Pro',
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      maxLength: 15,
+                                                                                      maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                                                                                      buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
+                                                                                      cursorColor: FlutterFlowTheme.of(context).secondary,
+                                                                                      validator: _model.phoneFieldTextControllerValidator.asValidator(context),
                                                                                     ),
-                                                                                maxLength: 15,
-                                                                                maxLengthEnforcement: MaxLengthEnforcement.enforced,
-                                                                                buildCounter: (context, {required currentLength, required isFocused, maxLength}) => null,
-                                                                                cursorColor: FlutterFlowTheme.of(context).secondary,
-                                                                                validator: _model.phoneFieldTextControllerValidator.asValidator(context),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ),
+                                                                            if (!_model.editPhone)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 350.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editPhone = true;
+                                                                                      safeSetState(() {});
+                                                                                      safeSetState(() {
+                                                                                        _model.phoneFieldTextController?.text = FFAppState().currentSearchUser.phone;
+                                                                                      });
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.phone,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).secondary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
@@ -5384,26 +5601,83 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                   ),
                                                                             ),
                                                                           ),
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 150.0,
-                                                                              height: 25.0,
-                                                                              decoration: BoxDecoration(),
-                                                                              child: Text(
-                                                                                FFAppState().currentSearchUser.hasMaster,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      letterSpacing: 0.0,
+                                                                          Stack(
+                                                                            children: [
+                                                                              if (!_model.editMaster)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 150.0,
+                                                                                    height: 25.0,
+                                                                                    decoration: BoxDecoration(),
+                                                                                    child: InkWell(
+                                                                                      splashColor: Colors.transparent,
+                                                                                      focusColor: Colors.transparent,
+                                                                                      hoverColor: Colors.transparent,
+                                                                                      highlightColor: Colors.transparent,
+                                                                                      onTap: () async {
+                                                                                        _model.editMaster = true;
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                      child: Text(
+                                                                                        FFAppState().currentSearchUser.hasMaster,
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                      ),
                                                                                     ),
-                                                                              ),
-                                                                            ),
+                                                                                  ),
+                                                                                ),
+                                                                              if (_model.editMaster)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 150.0,
+                                                                                    height: 25.0,
+                                                                                    decoration: BoxDecoration(),
+                                                                                    child: FlutterFlowDropDown<String>(
+                                                                                      controller: _model.masterFieldDdValueController ??= FormFieldController<String>(null),
+                                                                                      options: [
+                                                                                        '',
+                                                                                        'No',
+                                                                                        'Yes'
+                                                                                      ],
+                                                                                      onChanged: (val) async {
+                                                                                        safeSetState(() => _model.masterFieldDdValue = val);
+                                                                                        FFAppState().updateAcct = true;
+                                                                                        safeSetState(() {});
+                                                                                        FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][MASTER][${_model.masterFieldDdValue}]';
+                                                                                        safeSetState(() {});
+                                                                                        _model.editMaster = false;
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                      width: 200.0,
+                                                                                      height: 40.0,
+                                                                                      textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Readex Pro',
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      icon: Icon(
+                                                                                        Icons.keyboard_arrow_down_rounded,
+                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                        size: 24.0,
+                                                                                      ),
+                                                                                      fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      elevation: 2.0,
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderWidth: 0.0,
+                                                                                      borderRadius: 8.0,
+                                                                                      margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                      hidesUnderline: true,
+                                                                                      isOverButton: false,
+                                                                                      isSearchable: false,
+                                                                                      isMultiSelect: false,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                            ],
                                                                           ),
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
