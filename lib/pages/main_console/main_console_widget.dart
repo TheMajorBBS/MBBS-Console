@@ -214,6 +214,21 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                       if (_model.editMaster) {
                         _model.editMaster = false;
                         safeSetState(() {});
+                      } else {
+                        if (_model.editKill) {
+                          _model.editKill = false;
+                          safeSetState(() {});
+                        } else {
+                          if (_model.editSuspend) {
+                            _model.editSuspend = false;
+                            safeSetState(() {});
+                          } else {
+                            if (_model.editProtected) {
+                              _model.editProtected = false;
+                              safeSetState(() {});
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -5641,8 +5656,8 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                       controller: _model.masterFieldDdValueController ??= FormFieldController<String>(null),
                                                                                       options: [
                                                                                         '',
-                                                                                        'No',
-                                                                                        'Yes'
+                                                                                        'NO',
+                                                                                        'YES'
                                                                                       ],
                                                                                       onChanged: (val) async {
                                                                                         safeSetState(() => _model.masterFieldDdValue = val);
@@ -5700,26 +5715,83 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                10.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 150.0,
-                                                                              height: 25.0,
-                                                                              decoration: BoxDecoration(),
-                                                                              child: Text(
-                                                                                FFAppState().currentSearchUser.suspended,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Courier Prime',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      letterSpacing: 0.0,
+                                                                          Stack(
+                                                                            children: [
+                                                                              if (!_model.editSuspend)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 150.0,
+                                                                                    height: 25.0,
+                                                                                    decoration: BoxDecoration(),
+                                                                                    child: InkWell(
+                                                                                      splashColor: Colors.transparent,
+                                                                                      focusColor: Colors.transparent,
+                                                                                      hoverColor: Colors.transparent,
+                                                                                      highlightColor: Colors.transparent,
+                                                                                      onTap: () async {
+                                                                                        _model.editSuspend = true;
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                      child: Text(
+                                                                                        FFAppState().currentSearchUser.suspended,
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              fontFamily: 'Courier Prime',
+                                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                                              letterSpacing: 0.0,
+                                                                                            ),
+                                                                                      ),
                                                                                     ),
-                                                                              ),
-                                                                            ),
+                                                                                  ),
+                                                                                ),
+                                                                              if (_model.editSuspend)
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 150.0,
+                                                                                    height: 25.0,
+                                                                                    decoration: BoxDecoration(),
+                                                                                    child: FlutterFlowDropDown<String>(
+                                                                                      controller: _model.suspDdValueController ??= FormFieldController<String>(null),
+                                                                                      options: [
+                                                                                        '',
+                                                                                        'YES',
+                                                                                        'NO'
+                                                                                      ],
+                                                                                      onChanged: (val) async {
+                                                                                        safeSetState(() => _model.suspDdValue = val);
+                                                                                        FFAppState().updateAcct = true;
+                                                                                        safeSetState(() {});
+                                                                                        FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][SUSP][${_model.suspDdValue}]';
+                                                                                        safeSetState(() {});
+                                                                                        _model.editSuspend = false;
+                                                                                        safeSetState(() {});
+                                                                                      },
+                                                                                      width: 200.0,
+                                                                                      height: 40.0,
+                                                                                      textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Readex Pro',
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                      icon: Icon(
+                                                                                        Icons.keyboard_arrow_down_rounded,
+                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                        size: 24.0,
+                                                                                      ),
+                                                                                      fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      elevation: 2.0,
+                                                                                      borderColor: Colors.transparent,
+                                                                                      borderWidth: 0.0,
+                                                                                      borderRadius: 8.0,
+                                                                                      margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                      hidesUnderline: true,
+                                                                                      isOverButton: false,
+                                                                                      isSearchable: false,
+                                                                                      isMultiSelect: false,
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                            ],
                                                                           ),
                                                                         ],
                                                                       ),
@@ -5746,30 +5818,83 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                                 ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                150.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.tagForKill,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (!_model.editKill)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 150.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editKill = true;
+                                                                                      safeSetState(() {});
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.tagForKill,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
-                                                                            ),
-                                                                          ),
+                                                                                ),
+                                                                              ),
+                                                                            if (_model.editKill)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 150.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: FlutterFlowDropDown<String>(
+                                                                                    controller: _model.killDdValueController ??= FormFieldController<String>(null),
+                                                                                    options: [
+                                                                                      '',
+                                                                                      'YES',
+                                                                                      'NO'
+                                                                                    ],
+                                                                                    onChanged: (val) async {
+                                                                                      safeSetState(() => _model.killDdValue = val);
+                                                                                      FFAppState().updateAcct = true;
+                                                                                      safeSetState(() {});
+                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][TAGKILL][${_model.killDdValue}]';
+                                                                                      safeSetState(() {});
+                                                                                      _model.editKill = false;
+                                                                                      safeSetState(() {});
+                                                                                    },
+                                                                                    width: 200.0,
+                                                                                    height: 40.0,
+                                                                                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Readex Pro',
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                    icon: Icon(
+                                                                                      Icons.keyboard_arrow_down_rounded,
+                                                                                      color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                      size: 24.0,
+                                                                                    ),
+                                                                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    elevation: 2.0,
+                                                                                    borderColor: Colors.transparent,
+                                                                                    borderWidth: 0.0,
+                                                                                    borderRadius: 8.0,
+                                                                                    margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                    hidesUnderline: true,
+                                                                                    isOverButton: false,
+                                                                                    isSearchable: false,
+                                                                                    isMultiSelect: false,
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -5796,30 +5921,83 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                150.0,
-                                                                            height:
-                                                                                25.0,
-                                                                            decoration:
-                                                                                BoxDecoration(),
-                                                                            child:
-                                                                                Text(
-                                                                              FFAppState().currentSearchUser.protected,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    fontFamily: 'Courier Prime',
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    letterSpacing: 0.0,
+                                                                        Stack(
+                                                                          children: [
+                                                                            if (!_model.editProtected)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 150.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: InkWell(
+                                                                                    splashColor: Colors.transparent,
+                                                                                    focusColor: Colors.transparent,
+                                                                                    hoverColor: Colors.transparent,
+                                                                                    highlightColor: Colors.transparent,
+                                                                                    onTap: () async {
+                                                                                      _model.editProtected = true;
+                                                                                      safeSetState(() {});
+                                                                                    },
+                                                                                    child: Text(
+                                                                                      FFAppState().currentSearchUser.protected,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Courier Prime',
+                                                                                            color: FlutterFlowTheme.of(context).primary,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
-                                                                            ),
-                                                                          ),
+                                                                                ),
+                                                                              ),
+                                                                            if (_model.editProtected)
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 150.0,
+                                                                                  height: 25.0,
+                                                                                  decoration: BoxDecoration(),
+                                                                                  child: FlutterFlowDropDown<String>(
+                                                                                    controller: _model.protDdValueController ??= FormFieldController<String>(null),
+                                                                                    options: [
+                                                                                      '',
+                                                                                      'YES',
+                                                                                      'NO'
+                                                                                    ],
+                                                                                    onChanged: (val) async {
+                                                                                      safeSetState(() => _model.protDdValue = val);
+                                                                                      FFAppState().updateAcct = true;
+                                                                                      safeSetState(() {});
+                                                                                      FFAppState().acctUpdateStr = '[ACCDETUPD][${FFAppState().currentSearchUser.username}][PROT][${_model.protDdValue}]';
+                                                                                      safeSetState(() {});
+                                                                                      _model.editProtected = false;
+                                                                                      safeSetState(() {});
+                                                                                    },
+                                                                                    width: 200.0,
+                                                                                    height: 40.0,
+                                                                                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Readex Pro',
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                    icon: Icon(
+                                                                                      Icons.keyboard_arrow_down_rounded,
+                                                                                      color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                      size: 24.0,
+                                                                                    ),
+                                                                                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    elevation: 2.0,
+                                                                                    borderColor: Colors.transparent,
+                                                                                    borderWidth: 0.0,
+                                                                                    borderRadius: 8.0,
+                                                                                    margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                                                                                    hidesUnderline: true,
+                                                                                    isOverButton: false,
+                                                                                    isSearchable: false,
+                                                                                    isMultiSelect: false,
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                          ],
                                                                         ),
                                                                       ],
                                                                     ),
