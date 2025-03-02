@@ -436,3 +436,7 @@ UserRecordStruct parseAccDet(String accDetString) {
     dayUsage: dayUsage,
   );
 }
+
+int convertToInt(String timeRestart) {
+  return int.parse(timeRestart);
+}

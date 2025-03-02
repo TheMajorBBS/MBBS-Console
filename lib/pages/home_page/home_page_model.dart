@@ -27,6 +27,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? Function(BuildContext, String?)? textController4Validator;
   Color? colorPicked1;
   Color? colorPicked2;
+  // State field(s) for restartTimeValue widget.
+  FocusNode? restartTimeValueFocusNode;
+  TextEditingController? restartTimeValueTextController;
+  String? Function(BuildContext, String?)?
+      restartTimeValueTextControllerValidator;
   // Stores action output result for [Custom Action - convertPass] action in Button widget.
   String? conPass;
 
@@ -48,5 +53,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
     textFieldFocusNode4?.dispose();
     textController4?.dispose();
+
+    restartTimeValueFocusNode?.dispose();
+    restartTimeValueTextController?.dispose();
   }
 }

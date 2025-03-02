@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -62,6 +63,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     _model.textController4 ??=
         TextEditingController(text: FFAppState().systemPort.toString());
     _model.textFieldFocusNode4 ??= FocusNode();
+
+    _model.restartTimeValueTextController ??=
+        TextEditingController(text: FFAppState().restartTime.toString());
+    _model.restartTimeValueFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -681,6 +686,124 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                   Padding(
                     padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: 600.0,
+                      ),
+                      decoration: BoxDecoration(),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            15.0, 0.0, 15.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  140.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Restart Time',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: valueOrDefault<Color>(
+                                        FFAppState().defaultBG,
+                                        FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                      ),
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    150.0, 0.0, 50.0, 0.0),
+                                child: Container(
+                                  width: 10.0,
+                                  child: TextFormField(
+                                    controller:
+                                        _model.restartTimeValueTextController,
+                                    focusNode: _model.restartTimeValueFocusNode,
+                                    autofocus: false,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintText: 'TextField',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    cursorColor: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    validator: _model
+                                        .restartTimeValueTextControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                     child: FFButtonWidget(
                       onPressed: () async {
@@ -721,6 +844,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           int.parse(_model.textController4.text);
                       FFAppState().username = _model.textController1.text;
                       FFAppState().password = _model.conPass!;
+                      FFAppState().restartTime = functions.convertToInt(
+                          _model.restartTimeValueTextController.text);
                       safeSetState(() {});
 
                       context.goNamed(SetupDataWidget.routeName);

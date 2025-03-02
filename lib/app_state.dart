@@ -116,6 +116,10 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _SystemUsers;
     });
+    await _safeInitAsync(() async {
+      _restartTime =
+          await secureStorage.getInt('ff_restartTime') ?? _restartTime;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -125,7 +129,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.9.9';
+  String _version = '0.9.10';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -637,6 +641,17 @@ class FFAppState extends ChangeNotifier {
   bool get clickDisconnect => _clickDisconnect;
   set clickDisconnect(bool value) {
     _clickDisconnect = value;
+  }
+
+  int _restartTime = 30;
+  int get restartTime => _restartTime;
+  set restartTime(int value) {
+    _restartTime = value;
+    secureStorage.setInt('ff_restartTime', value);
+  }
+
+  void deleteRestartTime() {
+    secureStorage.delete(key: 'ff_restartTime');
   }
 }
 
