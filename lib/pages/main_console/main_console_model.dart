@@ -28,6 +28,12 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
 
   bool editMaster = false;
 
+  bool editKill = false;
+
+  bool editSuspend = false;
+
+  bool editProtected = false;
+
   ///  State fields for stateful widgets in this page.
 
   final shortcutsFocusNode = FocusNode();
@@ -69,6 +75,15 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   // State field(s) for master_field_dd widget.
   String? masterFieldDdValue;
   FormFieldController<String>? masterFieldDdValueController;
+  // State field(s) for susp_dd widget.
+  String? suspDdValue;
+  FormFieldController<String>? suspDdValueController;
+  // State field(s) for kill_dd widget.
+  String? killDdValue;
+  FormFieldController<String>? killDdValueController;
+  // State field(s) for prot_dd widget.
+  String? protDdValue;
+  FormFieldController<String>? protDdValueController;
 
   @override
   void initState(BuildContext context) {
