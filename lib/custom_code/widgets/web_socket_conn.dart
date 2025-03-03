@@ -52,7 +52,6 @@ class _WebSocketConnState extends State<WebSocketConn> {
   late WebSocketChannel _channel;
   late FocusNode textFieldFocusNode;
   late TextEditingController textController;
-  const int restartTimer = FFAppState().restartTime;
 
   @override
   void initState() {
@@ -250,7 +249,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
     if (FFAppState().clickDisconnect) {
       FFAppState().clickDisconnect = false;
     } else {
-      Future.delayed(const Duration(seconds: restartTimer)).then((val) {
+      Future.delayed(Duration(seconds: FFAppState().restartTime)).then((val) {
         startStream();
       });
     }
