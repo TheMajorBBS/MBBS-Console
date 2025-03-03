@@ -249,7 +249,8 @@ class _WebSocketConnState extends State<WebSocketConn> {
     if (FFAppState().clickDisconnect) {
       FFAppState().clickDisconnect = false;
     } else {
-      Future.delayed(const Duration(seconds: 30)).then((val) {
+      Future.delayed(const Duration(seconds: FFAppState().restartTime))
+          .then((val) {
         startStream();
       });
     }
