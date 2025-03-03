@@ -720,7 +720,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    150.0, 0.0, 50.0, 0.0),
+                                    175.0, 0.0, 10.0, 0.0),
                                 child: Container(
                                   width: 10.0,
                                   child: TextFormField(
@@ -796,6 +796,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
+                            ),
+                            Text(
+                              'seconds',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ],
                         ),
