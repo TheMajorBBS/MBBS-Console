@@ -42,12 +42,12 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
   ScrollController? gridViewController1;
   // State field(s) for ListViewAudit widget.
   ScrollController? listViewAudit;
-  // State field(s) for ListView widget.
-  ScrollController? listViewController1;
+  // State field(s) for MainAudit widget.
+  ScrollController? mainAudit;
   // State field(s) for GridView widget.
   ScrollController? gridViewController2;
   // State field(s) for ListView widget.
-  ScrollController? listViewController2;
+  ScrollController? listViewController;
   // State field(s) for Name_Field widget.
   FocusNode? nameFieldFocusNode;
   TextEditingController? nameFieldTextController;
@@ -90,9 +90,9 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
     shortcutsFocusNode.requestFocus();
     gridViewController1 = ScrollController();
     listViewAudit = ScrollController();
-    listViewController1 = ScrollController();
+    mainAudit = ScrollController();
     gridViewController2 = ScrollController();
-    listViewController2 = ScrollController();
+    listViewController = ScrollController();
   }
 
   @override
@@ -100,9 +100,9 @@ class MainConsoleModel extends FlutterFlowModel<MainConsoleWidget> {
     stateTime?.cancel();
     gridViewController1?.dispose();
     listViewAudit?.dispose();
-    listViewController1?.dispose();
+    mainAudit?.dispose();
     gridViewController2?.dispose();
-    listViewController2?.dispose();
+    listViewController?.dispose();
     nameFieldFocusNode?.dispose();
     nameFieldTextController?.dispose();
 

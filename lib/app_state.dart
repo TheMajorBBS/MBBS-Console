@@ -129,7 +129,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _version = '0.9.10';
+  String _version = '0.9.11';
   String get version => _version;
   set version(String value) {
     _version = value;
@@ -652,6 +652,18 @@ class FFAppState extends ChangeNotifier {
 
   void deleteRestartTime() {
     secureStorage.delete(key: 'ff_restartTime');
+  }
+
+  bool _doKillUpdate = false;
+  bool get doKillUpdate => _doKillUpdate;
+  set doKillUpdate(bool value) {
+    _doKillUpdate = value;
+  }
+
+  String _doKillUpdateStr = '';
+  String get doKillUpdateStr => _doKillUpdateStr;
+  set doKillUpdateStr(String value) {
+    _doKillUpdateStr = value;
   }
 }
 
