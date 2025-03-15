@@ -543,7 +543,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 final _colorPicked1Color =
                                     await showFFColorPicker(
                                   context,
-                                  currentColor: _model.colorPicked1 ??=
+                                  currentColor: _model.colorPicked1 ??
                                       FFAppState().defaultBG,
                                   showRecentColors: true,
                                   allowOpacity: true,
@@ -633,7 +633,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 final _colorPicked2Color =
                                     await showFFColorPicker(
                                   context,
-                                  currentColor: _model.colorPicked2 ??=
+                                  currentColor: _model.colorPicked2 ??
                                       FFAppState().defaultTxt,
                                   showRecentColors: true,
                                   allowOpacity: true,

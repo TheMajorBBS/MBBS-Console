@@ -1,4 +1,6 @@
+import '';
 import '/backend/schema/structs/index.dart';
+import '/components/kill_screen_modal/kill_screen_modal_widget.dart';
 import '/components/socket_log_comp/socket_log_comp_widget.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -235,6 +237,39 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                 }
               }
             }
+          }
+        }),
+        SingleActivator(
+          LogicalKeyboardKey.f10,
+        ): VoidCallbackIntent(() async {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            enableDrag: false,
+            context: context,
+            builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                child: Padding(
+                  padding: MediaQuery.viewInsetsOf(context),
+                  child: KillScreenModalWidget(),
+                ),
+              );
+            },
+          ).then((value) => safeSetState(() {}));
+        }),
+        SingleActivator(
+          LogicalKeyboardKey.end,
+        ): VoidCallbackIntent(() async {
+          if (FFAppState().sideNavMC == 'audit') {
+            await _model.mainAudit?.animateTo(
+              _model.mainAudit!.position.maxScrollExtent,
+              duration: Duration(milliseconds: 100),
+              curve: Curves.ease,
+            );
           }
         }),
       },
@@ -2296,7 +2331,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       },
                                                                       controller:
                                                                           _model
-                                                                              .listViewController1,
+                                                                              .mainAudit,
                                                                     );
                                                                   },
                                                                 ),
@@ -3463,7 +3498,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                                                                       },
                                                                       controller:
                                                                           _model
-                                                                              .listViewController2,
+                                                                              .listViewController,
                                                                     );
                                                                   },
                                                                 ),
