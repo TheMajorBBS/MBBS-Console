@@ -140,7 +140,7 @@ class _MainConsoleWidgetState extends State<MainConsoleWidget> {
                 child: Padding(
                   padding: MediaQuery.viewInsetsOf(context),
                   child: Container(
-                    height: 600.0,
+                    height: 700.0,
                     child: SocketLogCompWidget(),
                   ),
                 ),
