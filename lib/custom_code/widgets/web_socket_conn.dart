@@ -199,7 +199,7 @@ class _WebSocketConnState extends State<WebSocketConn> {
           FFAppState().updateAcct = false;
           FFAppState().acctUpdateStr = '';
         }
-        if (FFAPPState().doKillUpdate) {
+        if (FFAppState().doKillUpdate) {
           print('Kill Command: ' + FFAppState().doKillUpdateStr);
           _channel.sink.add(FFAppState().doKillUpdateStr);
           FFAppState().doKillUpdate = false;
