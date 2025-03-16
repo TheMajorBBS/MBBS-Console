@@ -63,7 +63,7 @@ class _SocketLogCompWidgetState extends State<SocketLogCompWidget> {
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Container(
                   width: 500.0,
-                  height: 500.0,
+                  height: 700.0,
                   constraints: BoxConstraints(
                     maxWidth: 700.0,
                   ),
@@ -83,83 +83,88 @@ class _SocketLogCompWidgetState extends State<SocketLogCompWidget> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 12.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'WebSocket Log',
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .override(
-                                            fontFamily: 'Courier Prime',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30.0,
-                                borderWidth: 1.0,
-                                buttonSize: 44.0,
-                                icon: Icon(
-                                  Icons.close_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Builder(
-                          builder: (context) {
-                            final socketLog =
-                                FFAppState().socketMessageLog.toList();
-
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: socketLog.length,
-                              itemBuilder: (context, socketLogIndex) {
-                                final socketLogItem = socketLog[socketLogIndex];
-                                return SelectionArea(
-                                    child: Text(
-                                  socketLogItem,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Courier Prime',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        letterSpacing: 0.0,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 12.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'WebSocket Log',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineLarge
+                                            .override(
+                                              fontFamily: 'Courier Prime',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
-                                ));
-                              },
-                            );
-                          },
-                        ),
-                      ],
+                                    ],
+                                  ),
+                                ),
+                                FlutterFlowIconButton(
+                                  borderColor: Colors.transparent,
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 44.0,
+                                  icon: Icon(
+                                    Icons.close_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          Builder(
+                            builder: (context) {
+                              final socketLog =
+                                  FFAppState().socketMessageLog.toList();
+
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: socketLog.length,
+                                itemBuilder: (context, socketLogIndex) {
+                                  final socketLogItem =
+                                      socketLog[socketLogIndex];
+                                  return SelectionArea(
+                                      child: Text(
+                                    socketLogItem,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Courier Prime',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ));
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
