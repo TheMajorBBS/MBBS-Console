@@ -58,7 +58,7 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
       width: 400.0,
       height: 300.0,
       decoration: BoxDecoration(
-        color: Color(0xB20B191E),
+        color: FlutterFlowTheme.of(context).primary,
       ),
       child: Align(
         alignment: AlignmentDirectional(0.0, 1.0),
@@ -100,7 +100,8 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
                   ),
                 ),
                 child: Container(
-                  width: double.infinity,
+                  width: 400.0,
+                  height: 250.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).primaryBackground,
                     borderRadius: BorderRadius.only(
