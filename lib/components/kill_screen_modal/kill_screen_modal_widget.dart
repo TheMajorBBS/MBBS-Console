@@ -193,7 +193,7 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
                         color: Color(0xFFE0E3E7),
                       ),
                       Container(
-                        width: double.infinity,
+                        width: 300.0,
                         height: 30.0,
                         decoration: BoxDecoration(),
                         child: Stack(
@@ -208,9 +208,11 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
                                       .bodySmall
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
                                         letterSpacing: 0.0,
                                       ),
-                                  hintText: 'Type command here...',
+                                  hintText: 'Channel to kill...',
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -259,6 +261,8 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
                                       letterSpacing: 0.0,
                                     ),
                                 minLines: 1,
@@ -267,7 +271,7 @@ class _KillScreenModalWidgetState extends State<KillScreenModalWidget> {
                                     .asValidator(context),
                                 inputFormatters: [
                                   FilteringTextInputFormatter.allow(
-                                      RegExp('[a-zA-Z]'))
+                                      RegExp('[a-zA-Z0-9]'))
                                 ],
                               ),
                             if (_model.systemKill)
